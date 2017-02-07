@@ -10,8 +10,8 @@ export class LoginService {
 	private loginUrl = 'http://centralark.org/LifeKit/SERVER/test.php';
 	constructor(private http: Http) {}
 	
-    login(user: string, password: string) : Promise <string> {
-        return this.http.get(this.loginUrl).toPromise().then(response => response.json().data as string)
+    login(userName: string, passWord: string) : Promise <string> {
+        return this.http.get(this.loginUrl).toPromise().then(response => response.text() as string)
 		.catch(this.handleError);
   }
   

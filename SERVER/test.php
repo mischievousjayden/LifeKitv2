@@ -1,10 +1,8 @@
 <?php
-	echo "{
-  'data': [
-    { 'id': 1, 'name': 'Windstorm' },
-    { 'id': 2, 'name': 'Bombasto' },
-    { 'id': 3, 'name': 'Magneta' },
-    { 'id': 4, 'name': 'Tornado' }
-  ]
-}";
+
+var userName = $_GET['userName'];
+var passWord = $GET['passWord'];
+
+echo userName . passWord ;
+
 ?>
