@@ -1,2 +1,4 @@
 if cannot locate main.js
 ---> run " npm rebuild node-sass"
+if cannot do CORS, serve from the server and access it or run from the phone
+if cannot ionic serve with a script-ionic error, then run npm install
