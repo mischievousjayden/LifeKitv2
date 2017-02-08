@@ -21,7 +21,7 @@ export class LoginPage {
   }
   
   goLogin(){
-	console.log(this.lS.login(this.user.userName,this.user.passWord));
+	console.log((this.lS.login(this.user.userName,this.user.passWord)));
   }
 }
 

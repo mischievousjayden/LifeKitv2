@@ -11,7 +11,8 @@ export class LoginService {
 	constructor(private http: Http) {}
 	
     login(userName: string, passWord: string) : Promise <string> {
-        return this.http.get(this.loginUrl).toPromise().then(response => response.text() as string)
+		console.log(this.loginUrl + "?passWord=" + passWord + "&userName=" + userName);
+        return this.http.get(this.loginUrl + "?passWord=" + passWord + "&userName=" + userName ).toPromise().then(response => response.text())
 		.catch(this.handleError);
   }
   
