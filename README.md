@@ -2,7 +2,7 @@
 
 Our Work Flow
 
-We will be following a model of forks and branches. We each work on our own fork, and only Mark (who's managing operations) can merge to the master repo. If your git-fu fails you and everything is completely messed up, it won't affect anyone else this way, and you can always do a clean pull from master to reset everything.
+We will be following a model of forks and branches. We each work on our own fork, and only me (who's managing operations) can merge to the master repo. If your git-fu fails you and everything is completely messed up, it won't affect anyone else this way, and you can always do a clean pull from master to reset everything.
 
 First Steps
 
