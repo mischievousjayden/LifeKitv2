@@ -1,0 +1,30 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content padding>
+<div class='slogan'>
+	<h1> Login The Application</h1>
+</div>
+
+
+    <ion-list>
+
+  <ion-item>
+    <ion-label stacked>Username</ion-label>
+    <ion-input [(ngModel)] = "this.user.userName" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Password</ion-label>
+    <ion-input [(ngModel)] = "this.user.passWord" type="password"></ion-input>
+  </ion-item>
+
+</ion-list>
+
+
+</ion-content>
+<ion-footer>
+	<button class='footerBut' (click) = 'this.navCtrl.pop()' ion-button>Back</button>
+	<button class='footerBut' (click) = 'goLogin()' ion-button>Login</button>
+</ion-footer>
