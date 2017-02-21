@@ -1,5 +1,26 @@
-<ion-tabs>
-        <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-        <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
-        <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
-</ion-tabs>
+<ion-header>
+        <ion-toolbar>
+                <ion-title>Dashboard</ion-title>
+        </ion-toolbar>
+</ion-header>
+
+<ion-content>
+       <ion-list>
+           <ion-list-header>
+            Page Listings
+           </ion-list-header>
+           <ion-item (click)="open('about')">About Page - /#/about</ion-item>
+           <ion-item (click)="open('contact')">Contact Page - /#/contact</ion-item>
+           <ion-item (click)="open('login')">Login Page - /#/login</ion-item>
+           <ion-item (click)="open('start')">Start Page - /#/start</ion-item>
+           <ion-item (click)="open('signup')">SignUpPage - /#/signup</ion-item>
+           <ion-item (click)="open('reset')">Reset - /#/reset</ion-item>
+           <ion-item (click)="open('devices')">Devices - /#/devices</ion-item>
+           <ion-item (click)="open('emergency')">Emergency - /#/emergency</ion-item>
+           <ion-item (click)="open('help')">Help - /#/help</ion-item>
+           <ion-item (click)="open('carriers')">Carriers - /#/carriers</ion-item>
+           <ion-item (click)="open('profile')">Profile - /#/profile</ion-item>
+           <ion-item (click)="open('settings')">Settings - /#/settings</ion-item>
+           <ion-item (click)="open('vitals')">Vitals - /#/vitals</ion-item>
+       </ion-list>
+</ion-content>
