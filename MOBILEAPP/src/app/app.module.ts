@@ -59,7 +59,7 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     ],
     imports: [
         //Auth,
-        IonicModule.forRoot(MyApp, {}, deepLinkConfig)
+        IonicModule.forRoot(MyApp,{},deepLinkConfig)
     ],
     bootstrap: [IonicApp],
     entryComponents: [
