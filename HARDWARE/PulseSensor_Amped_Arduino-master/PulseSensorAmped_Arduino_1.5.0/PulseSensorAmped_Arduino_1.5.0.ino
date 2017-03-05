@@ -1,4 +1,17 @@
 
+/*  Pulse Sensor Amped 1.5    by Joel Murphy and Yury Gitman   http://www.pulsesensor.com
+
+----------------------  Notes ----------------------  ----------------------
+This code:
+1) Blinks an LED to User's Live Heartbeat   PIN 13
+2) Fades an LED to User's Live HeartBeat    PIN 5
+3) Determines BPM
+4) Prints All of the Above to Serial
+
+Read Me:
+https://github.com/WorldFamousElectronics/PulseSensor_Amped_Arduino/blob/master/README.md
+ ----------------------       ----------------------  ----------------------
+*/
 
 #define PROCESSING_VISUALIZER 1
 #define SERIAL_PLOTTER  2
@@ -16,6 +29,11 @@ volatile int IBI = 600;             // int that holds the time interval between 
 volatile boolean Pulse = false;     // "True" when User's live heartbeat is detected. "False" when not a "live beat".
 volatile boolean QS = false;        // becomes true when Arduoino finds a beat.
 
+// SET THE SERIAL OUTPUT TYPE TO YOUR NEEDS
+// PROCESSING_VISUALIZER works with Pulse Sensor Processing Visualizer
+//      https://github.com/WorldFamousElectronics/PulseSensor_Amped_Processing_Visualizer
+// SERIAL_PLOTTER outputs sensor data for viewing with the Arduino Serial Plotter
+//      run the Serial Plotter at 115200 baud: Tools/Serial Plotter or Command+L
 static int outputType = SERIAL_PLOTTER;
 
 
