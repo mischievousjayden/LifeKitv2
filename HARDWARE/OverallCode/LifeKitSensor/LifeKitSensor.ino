@@ -116,10 +116,17 @@ void readAccel(){
 #define NOISE 100
 #define NUM_CUR_READING 3
 #define RESPIRATORY_SIGNAL_STRENGTH 10000
+#define RESPIR_TIME_BUFF 10
 int slopeStatus = 0;
 float pastReading = 0;
 float printedReading = 0;
 int state = 0;
+double respirRate = -1;  //per minute
+unsigned long respirTimeBuff [RESPIR_TIME_BUFF];
+boolean filledOnce = false;
+unsigned long lastRespirTime = -1;
+int respirTimeCount = 0;
+
 
 boolean respirPulse = false;
 
@@ -151,6 +158,32 @@ void readStetch(){
         //respiratory rate measured
         respirPulse = true;
         state = 1;
+
+        if(lastRespirTime != -1){
+          unsigned long respirTime = millis();
+          if(respirTime>lastRespirTime){
+            respirTimeBuff[respirTimeCount] = respirTime - lastRespirTime;
+            lastRespirTime = respirTime;
+            respirTimeCount = (respirTimeCount + 1)%RESPIR_TIME_BUFF;
+            if(respirTimeCount == RESPIR_TIME_BUFF - 1){
+              filledOnce = true;
+            }
+            if(filledOnce){
+              respirRate = 0;
+              for(int i = 0 ; i < RESPIR_TIME_BUFF; i ++){
+                respirRate = respirRate + respirTimeBuff[i];
+              }
+      
+              respirRate = (respirRate * 1.0) / RESPIR_TIME_BUFF;
+              respirRate = 60000/respirRate;
+                
+            }
+          }else{
+            lastRespirTime = respirTime;
+          }
+        }else{
+          lastRespirTime = millis();
+        }
       }else{
         state = 1;
       }
@@ -177,22 +210,14 @@ void printRespirPulse(){
   }
 }
 
-float myAbs(float x){
-  if(x < 0){
-    return(x * -1);
-  }else{
-    return(x);
-  }
-}
-
 void printAllValues(){
-        //Serial.print(filteredX.Current()); Serial.print(",");
-        //Serial.print(filteredY.Current()); Serial.print(",");
-        //Serial.print(filteredZ.Current()); Serial.print(",");
+        Serial.print(filteredX.Current()); Serial.print(",");
+        Serial.print(filteredY.Current()); Serial.print(",");
+        Serial.print(filteredZ.Current()); Serial.print(",");
         Serial.print(printedReading); Serial.print(',');
-        //Serial.print(state); Serial.print(',');
-
-        printRespirPulse();
+        Serial.print(state); Serial.print(',');
+        printRespirPulse(); Serial.print(',');
+        Serial.print(respirRate);
         Serial.println("");
 
 }
