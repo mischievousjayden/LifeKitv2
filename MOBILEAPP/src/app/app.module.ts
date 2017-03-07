@@ -3,7 +3,7 @@ import {IonicApp, IonicModule, IonicErrorHandler, DeepLinkConfig} from "ionic-an
 import {MyApp} from "./app.component";
 import {AboutPage} from "../pages/about/about";
 import {ContactPage} from "../pages/contacts/contact";
-import {HomePage} from "../pages/home/home";
+//import {Menu} from "../pages/menu/menu";
 import {Dashboard} from "../pages/dashboard/dashboard";
 import {StartPage} from "../pages/auth/start/start";
 import {LoginPage} from "../pages/auth/login/login";
@@ -18,11 +18,10 @@ import {Settings} from "../pages/settings/settings";
 import {Vitals} from "../pages/vitals-monitor/vitals";
 //import { Auth } from '../pages/auth/auth.module';
 
-const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
+export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
         {component: ContactPage, name: "contact", segment: "contact"},
         {component: AboutPage, name: "about", segment: "about"},
-        {component: HomePage, name: "home", segment: "home"},
         {component: LoginPage, name: "login", segment: "login"},
         {component: StartPage, name: "start", segment: "start"},
         {component: SignUpPage, name: "signup", segment: "signup"},
@@ -43,7 +42,6 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         MyApp,
         AboutPage,
         ContactPage,
-        HomePage,
         Dashboard,
         StartPage,
         LoginPage,
@@ -66,7 +64,6 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         MyApp,
         AboutPage,
         ContactPage,
-        HomePage,
         Dashboard,
         StartPage,
         LoginPage,
@@ -80,7 +77,8 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         Settings,
         Vitals
     ],
-    providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+    providers: [ {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {
+
 }
