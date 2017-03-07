@@ -1,3 +1,35 @@
-<p>Devices</p>
+
+
+<ion-content>
+  <p>Devices</p>
   <button (click) = "this.connectDevice(device)" *ngFor="let device of this.discoveredBluetoothDevices" ion-button color="secondary">{{device.id}}</button>
   <div id ='bluetooth'>{{bluetoothData}}</div>
+
+  <ion-card>
+    <ion-card-header>
+      Bar Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Doughnut Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #doughnutCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Line Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
