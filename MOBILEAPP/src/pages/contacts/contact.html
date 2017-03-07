@@ -1,17 +1,84 @@
 <ion-header>
-        <ion-navbar>
-                <ion-title>
-                        Contact
-                </ion-title>
-        </ion-navbar>
+    <ion-navbar>
+        <ion-title align = "center">Contacts</ion-title>
+    </ion-navbar>
 </ion-header>
-
 <ion-content>
-        <ion-list>
-                <ion-list-header>Follow us on Twitter</ion-list-header>
-                <ion-item>
-                        <ion-icon name="ionic" item-left></ion-icon>
-                        @ionicframework
-                </ion-item>
-        </ion-list>
+    <ion-item-group>
+        <ion-item-divider color="light">A</ion-item-divider>
+            <ion-item>
+                <ion-icon name='contact' item-left></ion-icon>
+                        Andy Ly
+                        <button ion-button round item-right>
+                            <ion-icon name='create'></ion-icon>  
+                        </button>
+                        <button ion-button color = "danger" round item-right>
+                            <ion-icon name='trash'></ion-icon>  
+                        </button>
+            </ion-item>
+            <ion-item>
+                <ion-icon name='contact' item-left></ion-icon>
+                        Anna Wang
+                        <button ion-button round item-right>
+                            <ion-icon name='create'></ion-icon>  
+                        </button>
+                        <button ion-button color = "danger" round item-right>
+                            <ion-icon name='trash'></ion-icon>  
+                        </button>
+            </ion-item>
+    </ion-item-group>
+
+    <ion-item-group>
+        <ion-item-divider color="light">B</ion-item-divider>
+            <ion-item>
+                <ion-icon name='contact' item-left></ion-icon>
+                        Bobby Muth
+                        <button ion-button round item-right>
+                            <ion-icon name='create'></ion-icon>  
+                        </button>
+                        <button ion-button color = "danger" round item-right>
+                            <ion-icon name='trash'></ion-icon>  
+                        </button>
+            </ion-item>
+            <ion-item>
+                <ion-icon name='contact' item-left></ion-icon>
+                        Billy Yue
+                        <button ion-button round item-right>
+                            <ion-icon name='create'></ion-icon>  
+                        </button>
+                        <button ion-button color = "danger" round item-right>
+                            <ion-icon name='trash'></ion-icon>  
+                        </button>
+            </ion-item>
+    </ion-item-group>
+    <ion-item-group>
+        <ion-item-divider color="light">C</ion-item-divider>
+            <ion-item>
+                <ion-icon name='contact' item-left></ion-icon>
+                        Chris Evan
+                        <button ion-button round item-right>
+                            <ion-icon name='create'></ion-icon>  
+                        </button>
+                        <button ion-button color = "danger" round item-right>
+                            <ion-icon name='trash'></ion-icon>  
+                        </button>
+            </ion-item>
+            <ion-item>
+                <ion-icon name='contact' item-left></ion-icon>
+                        Chloe Lin
+                        <button ion-button round item-right>
+                            <ion-icon name='create'></ion-icon>  
+                        </button>
+                        <button ion-button color = "danger" round item-right>
+                            <ion-icon name='trash'></ion-icon>  
+                        </button>
+            </ion-item>
+    </ion-item-group>
+    <ion-fab right bottom>
+        <button ion-fab color ="dark"><ion-icon name = "add"></ion-icon></button>
+        <ion-fab-list side = "top">
+            <button ion-fab><ion-icon name = "create"></ion-icon></button>
+            <button ion-fab><ion-icon name = "book"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>        
 </ion-content>

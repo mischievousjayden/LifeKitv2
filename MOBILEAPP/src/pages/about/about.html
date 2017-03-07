@@ -1,11 +1,87 @@
 <ion-header>
-        <ion-navbar>
-                <ion-title>
+        <ion-navbar no-border-bottom>
+                <ion-title align = "center">
                         About
                 </ion-title>
         </ion-navbar>
+
+<ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="about">
+        <ion-segment-button value="naloxone-about">
+            Naloxone
+        </ion-segment-button>
+        <ion-segment-button value="opioid-about">
+            Opioid
+        </ion-segment-button>
+        <ion-segment-button value="app-about">
+            Application
+        </ion-segment-button>
+        <ion-segment-button value="quiz-about">
+            Quiz
+        </ion-segment-button>
+    </ion-segment>
+</ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+    <div [ngSwitch]="about">
+        <ion-list *ngSwitchCase="'naloxone-about'">
+            <ion-item>
+                <p> Naloxone Info here </p>
+            </ion-item>
+        </ion-list>
+        <ion-list *ngSwitchCase="'opioid-about'">
+            <ion-item>
+                <p> Opioid Info here </p>
+            </ion-item>
+        </ion-list>
+        <ion-list *ngSwitchCase="'app-about'">
+            <ion-item>
+                <p> App Info here </p>
+            </ion-item>
+        </ion-list>
+        <ion-list *ngSwitchCase="'quiz-about'">
+            <ion-item>
+                <ion-label>Gender</ion-label>
+                <ion-select [(ngModel)]="gender">
+                    <ion-option value="f">Female</ion-option>
+                    <ion-option value="m">Male</ion-option>
+                    <ion-option value="o">Other</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Family Disease History</ion-label>
+                <ion-select [(ngModel)]="history">
+                    <ion-option value="diabetes">Diabetes</ion-option>
+                    <ion-option value="heartDisease">Heart Disease</ion-option>
+                    <ion-option value="cancer">Cancer</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" placeholder="Other, Please Specify"></ion-input>
+                <button ion-button color = "secondary" round outline item-right> Done </button>
+            </ion-item>
+            <ion-item>
+                <ion-label align="left"> Daily Opioid Usage </ion-label>
+                <ion-range min="1" max="10" step="1" snaps="true" [(ngModel)]="usage" color="danger">
+                    <ion-label range-left> Rarely  </ion-label>
+                    <ion-label range-right> Always </ion-label>
+                </ion-range>
+            </ion-item>
+            <ion-item>
+                <ion-label align="left"> Daily Pain </ion-label>
+                <ion-range min="1" max="10" step="1" snaps="true" [(ngModel)]="pain" color="danger">
+                    <ion-label range-left> Low  </ion-label>
+                    <ion-label range-right> High </ion-label>
+                </ion-range>
+            </ion-item>
+            <ion-item>
+                <p align = "center">
+                    <button ion-button color ="secondary" round outline>Submit</button>
+                </p>
+            </ion-item>
+        </ion-list>
+    </div>
 
 </ion-content>
+
