@@ -1,1 +1,3 @@
 <p>Devices</p>
+  <button (click) = "this.connectDevice(device)" *ngFor="let device of this.discoveredBluetoothDevices" ion-button color="secondary">{{device.id}}</button>
+  <div id ='bluetooth'>{{bluetoothData}}</div>
