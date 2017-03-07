@@ -21,15 +21,13 @@ export class Devices {
     }
 
     public discoverUnpairedDevices(){
-      BluetoothSerial.setDeviceDiscoveredListener().subscribe(device=>{
-        this.discoveredBluetoothDevices.push(device);
-        this.ref.detectChanges();
-      });
-      BluetoothSerial.discoverUnpaired().then(devices =>{
+        BluetoothSerial.discoverUnpaired().then(devices =>{
           this.discoveredBluetoothDevices = devices;
           this.ref.detectChanges();
-        //    this.discoverUnpairedDevices();
-      });
+          BluetoothSerial.isConnected().catch(res =>{
+            this.discoverUnpairedDevices();
+          })
+        });
     }
     public bluetoothOff(){
       alert('Bluetooth is off...');
@@ -45,11 +43,15 @@ export class Devices {
         alert('connection success');
 
       },function(){
-        alert('connection failed');
+        //If disconnect then continue with discovery.
+        alert('connection failed, continuing discovery');
+        this.discoverUnpairedDevices();
       });
       BluetoothSerial.subscribe('\n').subscribe(data => {
         this.bluetoothData = data;
         this.ref.detectChanges();
       });
     }
+
+
 }
