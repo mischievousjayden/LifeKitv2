@@ -215,7 +215,7 @@ void printAllValues(){
         Serial.print(filteredY.Current()); Serial.print(",");
         Serial.print(filteredZ.Current()); Serial.print(",");
         Serial.print(printedReading); Serial.print(',');
-        Serial.print(state); Serial.print(',');
+        //Serial.print(state); Serial.print(',');
         printRespirPulse(); Serial.print(',');
         Serial.print(respirRate);
         Serial.println("");
