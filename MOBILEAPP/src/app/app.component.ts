@@ -1,8 +1,8 @@
 import { Component , ViewChild} from '@angular/core';
-import { Platform, NavController } from 'ionic-angular';
+import {Platform, NavController, DeepLinkMetadata} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { deepLinkConfig } from './app.module';
-import { Dashboard } from '../pages/dashboard/dashboard';
+import { Vitals } from '../pages/vitals-monitor/vitals';
 
 //import { Menu } from '../pages/menu/menu';
 //import { MenuItem } from '../pages/menu/menu-item';
@@ -13,11 +13,8 @@ import { Dashboard } from '../pages/dashboard/dashboard';
 })
 export class MyApp {
   @ViewChild('myNav') nav: NavController;
-
-  rootPage = Dashboard;
-  //menu: MenuItem[];
-
-  menu: Array<{component: any, name: string, segment: string}>;
+  rootPage = Vitals;
+  menu: Array<DeepLinkMetadata>;
 
   constructor(platform: Platform, /*private menuService : Menu*/) {
     platform.ready().then(() => {
@@ -25,16 +22,9 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
-      //this.getMenu();
-
       this.menu = deepLinkConfig.links;
     });
   }
-
-  /*getMenu(): void {
-    this.menu = this.menuService.getMenu();
-  }*/
-
 
   open(url){
     this.nav.push(url);
