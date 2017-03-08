@@ -27,7 +27,7 @@ export class MyApp {
       Splashscreen.hide();
       //this.getMenu();
 
-      this.menu = deepLinkConfig.links;
+      //this.menu = deepLinkConfig.links;
     });
   }
 
