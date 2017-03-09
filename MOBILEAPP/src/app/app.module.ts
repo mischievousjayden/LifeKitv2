@@ -16,6 +16,13 @@ import {Carriers} from "../pages/naloxone-carriers/carriers";
 import {Profile} from "../pages/profile/profile";
 import {Settings} from "../pages/settings/settings";
 import {Vitals} from "../pages/vitals-monitor/vitals";
+import { 
+    ApiService,
+    UserService,
+    JwtService,
+    DeviceService
+} from "../shared";
+
 //import { Auth } from '../pages/auth/auth.module';
 
 export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
@@ -60,24 +67,8 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         IonicModule.forRoot(MyApp,{},deepLinkConfig)
     ],
     bootstrap: [IonicApp],
-    entryComponents: [
-        MyApp,
-        AboutPage,
-        ContactPage,
-        Dashboard,
-        StartPage,
-        LoginPage,
-        ResetPage,
-        SignUpPage,
-        Devices,
-        Emergency,
-        Help,
-        Carriers,
-        Profile,
-        Settings,
-        Vitals
-    ],
-    providers: [ {provide: ErrorHandler, useClass: IonicErrorHandler}]
+    entryComponents: [],
+    providers: [ {provide: ErrorHandler, useClass: IonicErrorHandler}, ApiService, DeviceService, JwtService, UserService]
 })
 export class AppModule {
 
