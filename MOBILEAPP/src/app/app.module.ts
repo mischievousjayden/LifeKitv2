@@ -16,6 +16,13 @@ import {Carriers} from "../pages/naloxone-carriers/carriers";
 import {Profile} from "../pages/profile/profile";
 import {Settings} from "../pages/settings/settings";
 import {Vitals} from "../pages/vitals-monitor/vitals";
+import {
+    ApiService,
+    UserService,
+    JwtService,
+    DeviceService
+} from "../shared";
+
 //import { Auth } from '../pages/auth/auth.module';
 import {ContactAddPage} from "../pages/contact-add/contact-add";
 import {DevicesEdit} from "../pages/devices-edit/devices-edit";
