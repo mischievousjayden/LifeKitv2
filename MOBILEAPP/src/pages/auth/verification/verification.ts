@@ -1,8 +1,6 @@
 import {Component} from "@angular/core";
 import {NgForm} from "@angular/forms";
-import {NavController} from "ionic-angular";
-import {Dashboard} from "../../dashboard/dashboard";
-
+import {AlertController} from 'ionic-angular';
 
 @Component({
     templateUrl: 'verification.html'
@@ -11,21 +9,32 @@ import {Dashboard} from "../../dashboard/dashboard";
 export class VerificationPage {
     login:{username?:string, password?:string} = {};
     submitted = false;
+    modelOk = false;
 
-    constructor(public navCtrl:NavController) {
-    }
 
     onLogin(form:NgForm) {
         this.submitted = true;
 
         if (form.valid) {
             //this.userData.login(this.login.username);
-            this.navCtrl.push(Dashboard);
+            //this.navCtrl.push(Dashboard);
         }
     }
 
-    modelOk(form:NgForm):boolean {
-        return (this.login.username && this.login.password) ? true : false;
-    }
+    activateButton() {
+        this.modelOk = (this.login.username && this.login.password) ? true : false;
+        ;
+        }
+
+    constructor(public alerCtrl: AlertController) { }
     
+    sendVerif(){
+        let alert = this.alerCtrl.create({
+        title: 'Phone Number Accepted!',
+        message: 'Please enter the verification code sent to you to continue.',
+        buttons: [{
+            text: 'Ok',
+            handler: () => console.log('')}]});
+        alert.present();
+        }
 }
