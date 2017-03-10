@@ -6,8 +6,6 @@ import { OpioidUsers } from '../pages/opioid-users/opioidusers';
 import {Start} from '../pages/start/start';
 
 
-//import { Menu } from '../pages/menu/menu';
-//import { MenuItem } from '../pages/menu/menu-item';
 
 
 @Component({
@@ -16,8 +14,6 @@ import {Start} from '../pages/start/start';
 export class MyApp {
   @ViewChild('myNav') nav: NavController;
   rootPage = Start;
-
-
   constructor(platform: Platform, /*private menuService : Menu*/) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

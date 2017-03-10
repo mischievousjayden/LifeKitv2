@@ -17,6 +17,7 @@ import {SettingsEdit} from "../pages/setting-edit/setting-edit";
 import {OpioidUsers} from "../pages/opioid-users/opioidusers";
 import {Home} from "../pages/home/home";
 import {Start } from "../pages/start/start";
+import {CarrierSettingsModel} from "../shared/models/carrier-settings/carrier-settings.model";
 
 import {
     ApiService,
@@ -67,6 +68,7 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         OpioidUsers,
         Dashboard,
         Home,
+        CarrierSettingsModel
         ],
     imports: [
         //Auth,
