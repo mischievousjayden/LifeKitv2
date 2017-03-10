@@ -17,6 +17,10 @@ import {Profile} from "../pages/profile/profile";
 import {Settings} from "../pages/settings/settings";
 import {Vitals} from "../pages/vitals-monitor/vitals";
 //import { Auth } from '../pages/auth/auth.module';
+import {ContactAddPage} from "../pages/contact-add/contact-add";
+import {DevicesEdit} from "../pages/devices-edit/devices-edit";
+import {OpioidTool} from "../pages/opioid-tool/opioid";
+import {SettingsEdit} from "../pages/setting-edit/setting-edit";
 
 const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
@@ -34,6 +38,10 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         {component: Profile, name: "profile", segment: "profile"},
         {component: Settings, name: "settings", segment: "settings"},
         {component: Vitals, name: "vitals", segment: "vitals"},
+        {component: ContactAddPage, name: "contactadd", segment: "contactadd"},
+        {component: DevicesEdit, name: "devicesedit", segment: "devicesedit"},
+        {component: OpioidTool, name: "opioidtool", segment: "opioidtool"},
+        {component: SettingsEdit, name: "settingsedit", segment: "settingsedit"},
         {component: Dashboard, name: "dashboard", segment: "dashboard"}
     ]
 };
@@ -55,7 +63,11 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         Carriers,
         Profile,
         Settings,
-        Vitals
+        Vitals,
+        SettingsEdit,
+        OpioidTool,
+        DevicesEdit,
+        ContactAddPage
     ],
     imports: [
         //Auth,
@@ -78,7 +90,11 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         Carriers,
         Profile,
         Settings,
-        Vitals
+        Vitals,
+        SettingsEdit,
+        OpioidTool,
+        DevicesEdit,
+        ContactAddPage
     ],
     providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

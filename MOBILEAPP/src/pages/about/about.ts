@@ -11,4 +11,5 @@ export class AboutPage {
         this.about = "naloxone-about";
     }
 
+	
 }
