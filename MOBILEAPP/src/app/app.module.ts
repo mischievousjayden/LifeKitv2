@@ -16,6 +16,8 @@ import {DevicesEdit} from "../pages/devices-edit/devices-edit";
 import {OpioidTool} from "../pages/opioid-tool/opioid";
 import {SettingsEdit} from "../pages/setting-edit/setting-edit";
 import {OpioidUsers} from "../pages/opioid-users/opioidusers";
+import {CarrierSettingsModel} from "../shared/models/carrier-settings/carrier-settings.model";
+
 import {
     ApiService,
     UserService,
@@ -61,7 +63,8 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         DevicesEdit,
         ContactAddPage,
         OpioidUsers,
-        Dashboard
+        Dashboard,
+        CarrierSettingsModel
         ],
     imports: [
         //Auth,

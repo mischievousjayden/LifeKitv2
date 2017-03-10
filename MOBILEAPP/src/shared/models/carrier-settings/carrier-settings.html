@@ -1,0 +1,21 @@
+<ion-content>
+
+  <div>
+    <p>For Carrier</p>
+  </div>
+
+  <div *ngIf="carrierSetting">
+    <div>
+      <div style="display: inline">
+        <ion-label> On Duty</ion-label>
+        <ion-toggle checked="carrierSetting.onDuty"></ion-toggle>
+      </div>
+      <div style="display: inline">
+        <ion-label> Has Naloxone</ion-label>
+        <ion-toggle checked="carrierSetting.hasNaloxone"></ion-toggle>
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>
