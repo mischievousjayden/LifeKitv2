@@ -11,11 +11,11 @@ import {OpioidUsers}from '../opioid-users/opioidusers'
 
 export class Home {
   rootPage = OpioidUsers;
-  menu: Array<DeepLinkMetadata>;
+  menu: Array<DeepLinkMetadata>;                          
   public discoveredBluetoothDevices: any [];
   public bluetoothData: any;
     constructor(public navCtrl: NavController, public platform: Platform, public ref: ChangeDetectorRef) {
       this.menu = deepLinkConfig.links;
-      navCtrl.setRoot('home');
+      //navCtrl.setRoot('home');
     }
 }
