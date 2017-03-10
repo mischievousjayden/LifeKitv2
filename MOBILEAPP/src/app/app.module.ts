@@ -9,11 +9,8 @@ import {VerificationPage} from "../pages/auth/verification/verification";
 import {SignUpPage} from "../pages/auth/signup/signup";
 import {Devices} from "../pages/devices/devices";
 import {Emergency} from "../pages/emergency/emergency";
-import {Help} from "../pages/help/help";
 import {Carriers} from "../pages/naloxone-carriers/carriers";
-import {Profile} from "../pages/profile/profile";
 import {Settings} from "../pages/settings/settings";
-import {Vitals} from "../pages/vitals-monitor/vitals";
 import {ContactAddPage} from "../pages/contact-add/contact-add";
 import {DevicesEdit} from "../pages/devices-edit/devices-edit";
 import {OpioidTool} from "../pages/opioid-tool/opioid";
@@ -37,11 +34,8 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         {component: SignUpPage, name: "signup", segment: "signup"},
         {component: Devices, name: "devices", segment: "devices"},
         {component: Emergency, name: "emergency", segment: "emergency"},
-        {component: Help, name: "help", segment: "help"},
         {component: Carriers, name: "carriers", segment: "carriers"},
-        {component: Profile, name: "profile", segment: "profile"},
         {component: Settings, name: "settings", segment: "settings"},
-        {component: Vitals, name: "vitals", segment: "vitals"},
         {component: ContactAddPage, name: "contactadd", segment: "contactadd"},
         {component: DevicesEdit, name: "devicesedit", segment: "devicesedit"},
         {component: OpioidTool, name: "opioidtool", segment: "opioidtool"},
@@ -57,15 +51,11 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         AboutPage,
         ContactPage,
         VerificationPage,
-        Dashboard,
         SignUpPage,
         Devices,
         Emergency,
-        Help,
         Carriers,
-        Profile,
         Settings,
-        Vitals,
         SettingsEdit,
         OpioidTool,
         DevicesEdit,
@@ -87,11 +77,8 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         SignUpPage,
         Devices,
         Emergency,
-        Help,
         Carriers,
-        Profile,
         Settings,
-        Vitals,
         SettingsEdit,
         OpioidTool,
         DevicesEdit,

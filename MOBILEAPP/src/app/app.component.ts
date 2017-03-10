@@ -2,7 +2,7 @@ import { Component , ViewChild} from '@angular/core';
 import {Platform, NavController, DeepLinkMetadata} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { deepLinkConfig } from './app.module';
-import { Vitals } from '../pages/vitals-monitor/vitals';
+import { OpioidUsers } from '../pages/opioid-users/opioidusers';
 
 //import { Menu } from '../pages/menu/menu';
 //import { MenuItem } from '../pages/menu/menu-item';
@@ -13,7 +13,7 @@ import { Vitals } from '../pages/vitals-monitor/vitals';
 })
 export class MyApp {
   @ViewChild('myNav') nav: NavController;
-  rootPage = Vitals;
+  rootPage = OpioidUsers;
   menu: Array<DeepLinkMetadata>;
 
   constructor(platform: Platform, /*private menuService : Menu*/) {
