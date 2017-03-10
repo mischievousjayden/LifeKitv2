@@ -12,7 +12,7 @@ import { OpioidUsers } from '../pages/opioid-users/opioidusers';
 export class MyApp {
   @ViewChild('myNav') nav: NavController;
 
-  rootPage:any = Dashboard;
+  rootPage:any = OpioidUsers;
   menu: Array<DeepLinkMetadata>;
 
   constructor(platform: Platform, /*private menuService : Menu*/) {

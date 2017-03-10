@@ -28,4 +28,8 @@ export class Carriers {
   constructor(public navCtrl:NavController) {
 
   }
+
+  open(url){
+    this.navCtrl.push(url);
+  }
 }
