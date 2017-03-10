@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -11,7 +10,7 @@ import { RouterModule } from '@angular/router';
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        RouterModule
+
     ],
     declarations: [],
     exports: [
@@ -19,7 +18,7 @@ import { RouterModule } from '@angular/router';
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        RouterModule
+
     ]
 })
 export class SharedModule { }
