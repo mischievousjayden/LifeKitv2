@@ -12,10 +12,12 @@ import {Emergency} from "../pages/emergency/emergency";
 import {Carriers} from "../pages/naloxone-carriers/carriers";
 import {Settings} from "../pages/settings/settings";
 import {ContactAddPage} from "../pages/contact-add/contact-add";
-import {DevicesEdit} from "../pages/devices-edit/devices-edit";
 import {OpioidTool} from "../pages/opioid-tool/opioid";
 import {SettingsEdit} from "../pages/setting-edit/setting-edit";
 import {OpioidUsers} from "../pages/opioid-users/opioidusers";
+import {Home} from "../pages/home/home";
+import {Start } from "../pages/start/start";
+
 import {
     ApiService,
     UserService,
@@ -28,7 +30,8 @@ import {
 
 export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
-        {component: ContactPage, name: "contact", segment: "contact"},
+         {component: Start, name: "start", segment: "start"},
+         {component: ContactPage, name: "contact", segment: "contact"},
         {component: AboutPage, name: "about", segment: "about"},
         {component: VerificationPage, name: "verification", segment: "verification"},
         {component: SignUpPage, name: "signup", segment: "signup"},
@@ -37,16 +40,18 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         {component: Carriers, name: "carriers", segment: "carriers"},
         {component: Settings, name: "settings", segment: "settings"},
         {component: ContactAddPage, name: "contactadd", segment: "contactadd"},
-        {component: DevicesEdit, name: "devicesedit", segment: "devicesedit"},
         {component: OpioidTool, name: "opioidtool", segment: "opioidtool"},
         {component: SettingsEdit, name: "settingsedit", segment: "settingsedit"},
         {component: OpioidUsers, name: "opioidusers", segment: "opioidusers"},
-        {component: Dashboard, name: "dashboard", segment: "dashboard"}
-        ]
+        {component: Dashboard, name: "dashboard", segment: "dashboard"},
+        {component: Home, name: "home", segment: "home"}
+
+    ]
 };
 
 @NgModule({
     declarations: [
+        Start,
         MyApp,
         AboutPage,
         ContactPage,
@@ -58,10 +63,10 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         Settings,
         SettingsEdit,
         OpioidTool,
-        DevicesEdit,
         ContactAddPage,
         OpioidUsers,
-        Dashboard
+        Dashboard,
+        Home,
         ],
     imports: [
         //Auth,
@@ -69,6 +74,7 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     ],
     bootstrap: [IonicApp],
     entryComponents: [
+        Start,
         MyApp,
         AboutPage,
         ContactPage,
@@ -81,9 +87,9 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         Settings,
         SettingsEdit,
         OpioidTool,
-        DevicesEdit,
         ContactAddPage,
-        OpioidUsers
+        OpioidUsers,
+        Home
     ],
     providers: [ {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

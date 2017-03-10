@@ -1,12 +1,13 @@
 import {Component} from "@angular/core";
 import {NgForm} from "@angular/forms";
-import {AlertController} from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
 
 @Component({
     templateUrl: 'verification.html'
 })
 
 export class VerificationPage {
+    veriCode: String;
     login:{username?:string, password?:string} = {};
     submitted = false;
     modelOk = false;
@@ -21,20 +22,15 @@ export class VerificationPage {
         }
     }
 
-    activateButton() {
-        this.modelOk = (this.login.username && this.login.password) ? true : false;
-        ;
-        }
+    constructor(public alerCtrl: AlertController, public navCtrl: NavController) {
 
-    constructor(public alerCtrl: AlertController) { }
-    
-    sendVerif(){
-        let alert = this.alerCtrl.create({
-        title: 'Phone Number Accepted!',
-        message: 'Please enter the verification code sent to you to continue.',
-        buttons: [{
-            text: 'Ok',
-            handler: () => console.log('')}]});
-        alert.present();
-        }
+
+    }
+
+    clickSendVeriCode(veriCode:String){
+      //Do that post and get thing and then epending on the promised response then do the following
+      //for now we are just going to go to the next page on a success....
+      alert('This is the verification code: ' + this.veriCode);
+      this.navCtrl.push('home');
+    }
 }
