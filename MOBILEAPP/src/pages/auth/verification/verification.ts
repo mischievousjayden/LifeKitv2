@@ -1,15 +1,14 @@
 import {Component} from "@angular/core";
 import {NgForm} from "@angular/forms";
 import {NavController} from "ionic-angular";
-import {ResetPage} from "./reset";
 import {Dashboard} from "../../dashboard/dashboard";
 
 
 @Component({
-    templateUrl: 'login.html'
+    templateUrl: 'verification.html'
 })
 
-export class LoginPage {
+export class VerificationPage {
     login:{username?:string, password?:string} = {};
     submitted = false;
 
@@ -28,8 +27,5 @@ export class LoginPage {
     modelOk(form:NgForm):boolean {
         return (this.login.username && this.login.password) ? true : false;
     }
-
-    goToResetPage() {
-        this.navCtrl.push(ResetPage);
-    }
+    
 }

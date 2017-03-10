@@ -5,9 +5,7 @@ import {AboutPage} from "../pages/about/about";
 import {ContactPage} from "../pages/contacts/contact";
 import {HomePage} from "../pages/home/home";
 import {Dashboard} from "../pages/dashboard/dashboard";
-import {StartPage} from "../pages/auth/start/start";
-import {LoginPage} from "../pages/auth/login/login";
-import {ResetPage} from "../pages/auth/login/reset";
+import {VerificationPage} from "../pages/auth/verification/verification";
 import {SignUpPage} from "../pages/auth/signup/signup";
 import {Devices} from "../pages/devices/devices";
 import {Emergency} from "../pages/emergency/emergency";
@@ -16,21 +14,19 @@ import {Carriers} from "../pages/naloxone-carriers/carriers";
 import {Profile} from "../pages/profile/profile";
 import {Settings} from "../pages/settings/settings";
 import {Vitals} from "../pages/vitals-monitor/vitals";
-//import { Auth } from '../pages/auth/auth.module';
 import {ContactAddPage} from "../pages/contact-add/contact-add";
 import {DevicesEdit} from "../pages/devices-edit/devices-edit";
 import {OpioidTool} from "../pages/opioid-tool/opioid";
 import {SettingsEdit} from "../pages/setting-edit/setting-edit";
+import {OpioidUsers} from "../pages/opioid-users/opioidusers";
 
 const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
         {component: ContactPage, name: "contact", segment: "contact"},
         {component: AboutPage, name: "about", segment: "about"},
         {component: HomePage, name: "home", segment: "home"},
-        {component: LoginPage, name: "login", segment: "login"},
-        {component: StartPage, name: "start", segment: "start"},
+        {component: VerificationPage, name: "verification", segment: "verification"},
         {component: SignUpPage, name: "signup", segment: "signup"},
-        {component: ResetPage, name: "reset", segment: "reset"},
         {component: Devices, name: "devices", segment: "devices"},
         {component: Emergency, name: "emergency", segment: "emergency"},
         {component: Help, name: "help", segment: "help"},
@@ -42,8 +38,9 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         {component: DevicesEdit, name: "devicesedit", segment: "devicesedit"},
         {component: OpioidTool, name: "opioidtool", segment: "opioidtool"},
         {component: SettingsEdit, name: "settingsedit", segment: "settingsedit"},
+        {component: OpioidUsers, name: "opioidusers", segment: "opioidusers"},
         {component: Dashboard, name: "dashboard", segment: "dashboard"}
-    ]
+        ]
 };
 
 @NgModule({
@@ -52,10 +49,7 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         AboutPage,
         ContactPage,
         HomePage,
-        Dashboard,
-        StartPage,
-        LoginPage,
-        ResetPage,
+        VerificationPage,
         SignUpPage,
         Devices,
         Emergency,
@@ -67,8 +61,10 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         SettingsEdit,
         OpioidTool,
         DevicesEdit,
-        ContactAddPage
-    ],
+        ContactAddPage,
+        OpioidUsers,
+        Dashboard
+        ],
     imports: [
         //Auth,
         IonicModule.forRoot(MyApp,{},deepLinkConfig)
@@ -80,9 +76,7 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         ContactPage,
         HomePage,
         Dashboard,
-        StartPage,
-        LoginPage,
-        ResetPage,
+        VerificationPage,
         SignUpPage,
         Devices,
         Emergency,
@@ -94,7 +88,8 @@ const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         SettingsEdit,
         OpioidTool,
         DevicesEdit,
-        ContactAddPage
+        ContactAddPage,
+        OpioidUsers
     ],
     providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
