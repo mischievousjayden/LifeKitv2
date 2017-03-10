@@ -1,21 +1,22 @@
-<div class="wrapper">
-        <ion-content class="login">
-                <div class="logo">
-                        <img src="assets/img/appicon.svg" alt="Ionic logo">
-                </div>
-        </ion-content>
-        <ion-footer class="login transparent">
-                <ion-row>
-                        <ion-col>
-                                <button ion-button (click)="goToSignUp()" type="submit" round outline
-                                        class="margin-auto margin-t">Sign Up
-                                </button>
-                        </ion-col>
-                        <ion-col>
-                                <button ion-button (click)="goToLogin()" type="submit" round outline
-                                        class="margin-auto margin-t">Login
-                                </button>
-                        </ion-col>
-                </ion-row>
-        </ion-footer>
-</div>
+<ion-header>
+    <ion-navbar>
+        <ion-title align = "center"> </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-item-group>
+        <ion-item-divider color="light">Please input your phone number to sign up for LifeKit</ion-item-divider>
+        <ion-item>
+            <ion-label>Phone</ion-label> 
+           <ion-input type = "tel"></ion-input>
+        </ion-item>
+    </ion-item-group>
+
+    <ion-content padding>
+    <p align = "center">
+        <button ion-button background-color =#49C7B5 (click)="sendVerif()"  round outline>Next</button>
+        <button ion-button color="secondary" round outline>Exit</button>
+    </p>
+    <ion-content padding>
+</ion-content>
+
