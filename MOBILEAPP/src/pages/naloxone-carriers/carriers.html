@@ -1,7 +1,36 @@
 <ion-header>
-    <ion-navbar no-border-bottom>
-        <ion-title>
-           Carriers 
-        </ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title align = "center">Naloxone Carrier</ion-title>
+  </ion-navbar>
 </ion-header>
+<ion-content>
+  <div *ngIf="opiodData">
+      <ion-card>
+
+          <ion-card-header>
+              {{opiodData.opiod.total}}
+          </ion-card-header>
+
+          <ion-card-content>
+            <!-- Add card content here! -->
+            <p>Opiod users are within {{opiodData.opiod.radius}} mile near you</p>
+          </ion-card-content>
+
+      </ion-card>
+      <ion-card>
+
+          <ion-card-header>
+              {{opiodData.naloxone.total}}
+          </ion-card-header>
+
+          <ion-card-content>
+            <!-- Add card content here! -->
+            <p>Opiod users are within {{opiodData.naloxone.radius}} mile near you</p>
+          </ion-card-content>
+
+      </ion-card>
+  </div>
+
+  <carrier-settings [carrierSetting]="carrierSetting"></carrier-settings>
+</ion-content>
+

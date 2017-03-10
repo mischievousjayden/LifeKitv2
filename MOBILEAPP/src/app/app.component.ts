@@ -4,8 +4,6 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { deepLinkConfig } from './app.module';
 import { OpioidUsers } from '../pages/opioid-users/opioidusers';
 
-//import { Menu } from '../pages/menu/menu';
-//import { MenuItem } from '../pages/menu/menu-item';
 
 
 @Component({
@@ -13,7 +11,8 @@ import { OpioidUsers } from '../pages/opioid-users/opioidusers';
 })
 export class MyApp {
   @ViewChild('myNav') nav: NavController;
-  rootPage = OpioidUsers;
+
+  rootPage:any = Dashboard;
   menu: Array<DeepLinkMetadata>;
 
   constructor(platform: Platform, /*private menuService : Menu*/) {
