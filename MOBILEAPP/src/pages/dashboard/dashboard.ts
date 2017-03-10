@@ -5,9 +5,11 @@ import {NavController} from "ionic-angular";
     templateUrl: 'dashboard.html'
 })
 export class Dashboard {
+
     constructor(public navCtrl:NavController) {
     }
-    
+
+
     open(url){
         this.navCtrl.push(url);
     }
