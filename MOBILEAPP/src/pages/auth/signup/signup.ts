@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {NgForm} from "@angular/forms";
-import {NavController} from "ionic-angular";
-
+import {AlertController} from 'ionic-angular';
 
 @Component({
     templateUrl: 'signup.html'
@@ -12,8 +11,6 @@ export class SignUpPage {
     submitted = false;
     modelOk = false;
 
-    constructor(public navCtrl:NavController) {
-    }
 
     onLogin(form:NgForm) {
         this.submitted = true;
@@ -27,5 +24,17 @@ export class SignUpPage {
     activateButton() {
         this.modelOk = (this.login.username && this.login.password) ? true : false;
         ;
-    }
-}
+        }
+
+    constructor(public alerCtrl: AlertController) { }
+    
+    sendVerif(){
+        let alert = this.alerCtrl.create({
+        title: 'Phone Number Accepted!',
+        message: 'Please enter the verification code sent to you to continue.',
+        buttons: [{
+            text: 'Ok',
+            handler: () => console.log('')}]});
+        alert.present();
+        }
+}   
