@@ -39,6 +39,6 @@ export class SignUpPage {
         }
 
     nextPage(){
-      this.navCtrl.push('verification');
+      this.navCtrl.push('verificationpage');
     }
 }

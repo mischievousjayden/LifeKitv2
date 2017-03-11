@@ -3,7 +3,6 @@ import {IonicApp, IonicModule, IonicErrorHandler, DeepLinkConfig} from "ionic-an
 import {MyApp} from "./app.component";
 import {AboutPage} from "../pages/about/about";
 import {ContactPage} from "../pages/contacts/contact";
-//import {Menu} from "../pages/menu/menu";
 import {Dashboard} from "../pages/dashboard/dashboard";
 import {VerificationPage} from "../pages/auth/verification/verification";
 import {SignUpPage} from "../pages/auth/signup/signup";
@@ -31,8 +30,11 @@ import {
 
 export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
-         {component: Start, name: "start", segment: "start"},
-         {component: ContactPage, name: "contact", segment: "contact"},
+        {component: Home, name: "home", segment: "home"},
+        {component: VerificationPage, name: "verificationpage", segment: "verificationpage"},
+        {component: SignUpPage, name: "signuppage", segment: "signuppage"},
+        {component: Start, name: "start", segment: "start"},
+        {component: ContactPage, name: "contact", segment: "contact"},
         {component: AboutPage, name: "about", segment: "about"},
         {component: VerificationPage, name: "verification", segment: "verification"},
         {component: SignUpPage, name: "signup", segment: "signup"},
@@ -44,11 +46,17 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         {component: OpioidTool, name: "opioidtool", segment: "opioidtool"},
         {component: SettingsEdit, name: "settingsedit", segment: "settingsedit"},
         {component: OpioidUsers, name: "opioidusers", segment: "opioidusers"},
-        {component: Dashboard, name: "dashboard", segment: "dashboard"},
-        {component: Home, name: "home", segment: "home"}
-
     ]
 };
+//need to add naloxonelocator
+export const menuLinks = [
+  {label:'Emergency Contact', name:'contact'},
+  {label:'Naloxone Locator', name:'naloxonelocator'},
+  {label:'Manage Device', name:'devices'},
+  {label:'User Settings', name:'settingsedit'},
+  {label:'Opiod Quiz', name:'opioidtool'},
+  {label:'Help and Information', name:'about'}
+];
 
 @NgModule({
     declarations: [

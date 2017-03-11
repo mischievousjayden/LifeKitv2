@@ -10,4 +10,8 @@ export class Start {
   constructor(public alerCtrl: AlertController, public navCtrl: NavController) {
   }
 
+  goNextPage(){
+    this.navCtrl.push('signuppage');
+  }
+
 }

@@ -30,7 +30,7 @@ export class VerificationPage {
     clickSendVeriCode(veriCode:String){
       //Do that post and get thing and then epending on the promised response then do the following
       //for now we are just going to go to the next page on a success....
-      alert('This is the verification code: ' + this.veriCode);
-      this.navCtrl.push('home');
+      //GET BAKC IF THE PERSON IS A NALOXONE CARRIER OR A PATIENT then figure out which to set as root.
+      this.navCtrl.setRoot('home');
     }
 }
