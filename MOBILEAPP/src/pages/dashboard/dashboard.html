@@ -13,23 +13,7 @@
            <ion-list-header>
             Page Listings
            </ion-list-header>
-           <ion-item (click)="open('about')">About Page - /#/about</ion-item>
-           <ion-item (click)="open('contact')">Contact Page - /#/contact</ion-item>
-           <ion-item (click)="open('contactadd')">ContactAddPage - /#contactadd</ion-item>
-           <ion-item (click)="open('verification')">Verification Page - /#/verification</ion-item>
-           <ion-item (click)="open('signup')">SignUpPage - /#/signup</ion-item>
-           <ion-item (click)="open('devicesedit')">DevicesEdit - /#/devices-edit</ion-item>
-           <ion-item (click)="open('devices')">Devices - /#/devices</ion-item>
-           <ion-item (click)="open('emergency')">Emergency - /#/emergency</ion-item>
-           <ion-item (click)="open('help')">Help - /#/help</ion-item>
-           <ion-item (click)="open('carriers')">Carriers - /#/carriers</ion-item>
-           <ion-item (click)="open('profile')">Profile - /#/profile</ion-item>
-           <ion-item (click)="open('settings')">Settings - /#/settings</ion-item>
-           <ion-item (click)="open('settingedit')">SettingsEdit - /#/setting-edit</ion-item>
-           <ion-item (click)="open('vitals')">Vitals - /#/vitals</ion-item>
-           <ion-item (click)="open('opioidtool')">OpioidTool - /#/opioid</ion-item>
-           <ion-item (click)="open('opioidusers')">OpioidUser - /#/opioidusers</ion-item>
-
+           <ion-item *ngFor="let p of allPages" (click)="open(p.name)">{{p.name}}</ion-item>
 
        </ion-list>
 </ion-content>

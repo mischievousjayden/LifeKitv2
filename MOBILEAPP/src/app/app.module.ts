@@ -48,6 +48,8 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         {component: OpioidTool, name: "opioidtool", segment: "opioidtool"},
         {component: SettingsEdit, name: "settingsedit", segment: "settingsedit"},
         {component: OpioidUsers, name: "opioidusers", segment: "opioidusers"},
+        {component: Dashboard, name: "dashboard", segment: "dashboard"},
+
     ]
 };
 //need to add naloxonelocator
@@ -57,7 +59,8 @@ export const menuLinks = [
   {label:'Manage Device', name:'devices'},
   {label:'User Settings', name:'settingsedit'},
   {label:'Opiod Quiz', name:'opioidtool'},
-  {label:'Help and Information', name:'about'}
+  {label:'Help and Information', name:'about'},
+  {label:'TESTING-DASHBOARD',name:'dashboard'}
 ];
 
 @NgModule({
