@@ -1,6 +1,7 @@
 import {Component, ChangeDetectorRef} from "@angular/core";
 import {BluetoothSerial} from 'ionic-native';
 import { Platform } from 'ionic-angular';
+import {BluetoothService} from "../../shared/services/bluetooth.service";
 @Component({
     templateUrl: 'devices.html'
 })
@@ -9,14 +10,14 @@ export class Devices {
   public bluetoothData: any;
     constructor(public platform: Platform, public ref: ChangeDetectorRef) {
 		if(this.platform.is('android')){
-			alert("I am android!")
+			//alert("I am android!")
 			//Call get list of connectable devices
       BluetoothSerial.isEnabled().then(res => this.bluetoothOn()).catch(res => this.bluetoothOff());
 		}
     }
 
     public bluetoothOn(){
-      alert('Bluetooth is on...');
+      //alert('Bluetooth is on...');
       this.discoverUnpairedDevices();
     }
 
@@ -47,10 +48,11 @@ export class Devices {
         alert('connection failed, continuing discovery');
         this.discoverUnpairedDevices();
       });
-      BluetoothSerial.subscribe('\n').subscribe(data => {
-        this.bluetoothData = data;
-        this.ref.detectChanges();
-      });
+      
+      //BluetoothSerial.subscribe('\n').subscribe(data => {
+      //  this.bluetoothData = data;
+      //  this.ref.detectChanges();
+      //});
     }
 
 
