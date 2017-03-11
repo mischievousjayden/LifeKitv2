@@ -1,0 +1,23 @@
+@import "ionic.globals";
+
+carrier-settings {
+
+  .text-margin {
+      display: block;
+      margin-left: 12px;
+      padding: 0px 16px;
+  }
+
+  .text-label {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #333;
+  }
+
+  .center-toggle {
+      ion-toggle .toggle-icon {
+          margin: auto;
+      }
+  }
+
+}
