@@ -17,6 +17,7 @@ import {OpioidUsers} from "../pages/opioid-users/opioidusers";
 import {Home} from "../pages/home/home";
 import {Start } from "../pages/start/start";
 import {CarrierSettingsModel} from "../shared/models/carrier-settings/carrier-settings.model";
+import {NaloxoneLocator} from "../pages/naloxone-locator/naloxone-locator"
 
 import {
     ApiService,
@@ -30,7 +31,8 @@ import {
 
 export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
-        {component: Home, name: "home", segment: "home"},
+      {component: NaloxoneLocator, name: "naloxonelocator", segment: "naloxonelocator"},
+      {component: Home, name: "home", segment: "home"},
         {component: VerificationPage, name: "verificationpage", segment: "verificationpage"},
         {component: SignUpPage, name: "signuppage", segment: "signuppage"},
         {component: Start, name: "start", segment: "start"},
@@ -60,6 +62,7 @@ export const menuLinks = [
 
 @NgModule({
     declarations: [
+        NaloxoneLocator,
         Start,
         MyApp,
         AboutPage,
@@ -84,6 +87,7 @@ export const menuLinks = [
     ],
     bootstrap: [IonicApp],
     entryComponents: [
+        NaloxoneLocator,
         Start,
         MyApp,
         AboutPage,
