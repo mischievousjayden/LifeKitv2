@@ -18,20 +18,20 @@ public bluetoothData: any;
 			//Call get list of connectable devices
       BluetoothService.discoveredBluetoothDevices.subscribe(list =>{
         this.discoveredBluetoothDevices = list;
-        this.ref.detectChanges();
+        //this.ref.detectChanges();
       });
 
       BluetoothService.pairedBluetoothDevices.subscribe(list=>{
         this.pairedBluetoothDevices = list;
-        this.ref.detectChanges();
+        //this.ref.detectChanges();
       });
 
       BluetoothService.connectedDevice.subscribe(device=>{
         this.connectedDevice = device;
-        this.ref.detectChanges();
+        //this.ref.detectChanges();
       });
 
-      app.viewDidLoad.subscribe(()=>{
+      BluetoothSerial.isConnected().catch(()=>{
         BluetoothService.bluetoothStart();
       });
 		}

@@ -16,7 +16,7 @@ export class OpioidUsers {
 
   @ViewChild('lineCanvas') lineCanvas;
 
-  lineChart: Chart;
+  lineChart: any;
 
   carrierSetting = {
     onDuty: false,
@@ -27,7 +27,7 @@ export class OpioidUsers {
   constructor(public navCtrl:NavController) {
     //this.startBluetoothService();
     BluetoothService.bluetoothData.subscribe(data=>{
-      this.updateChart(data);
+      //this.updateChart(data);
     });
   }
   open(url){
@@ -50,7 +50,7 @@ export class OpioidUsers {
                   pointColor: "rgba(220,220,220,1)",
                   pointStrokeColor: "#fff",
                   label: 'Respiratory Rate',
-                  data: [0,0,0,0]
+                  data: [10,0,30,80]
               }]
           },
           options: {

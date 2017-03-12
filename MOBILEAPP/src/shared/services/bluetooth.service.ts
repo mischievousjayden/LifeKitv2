@@ -51,7 +51,7 @@ export class BluetoothService{
 
     //connects and subscribes to the status of the connection
     BluetoothSerial.connect(device.id).subscribe(function(){
-      alert('connection success');
+      //alert('connection success');
       BluetoothService.connectedDevice.next(device);
     },function(){
       //If disconnect then continue with discovery.
