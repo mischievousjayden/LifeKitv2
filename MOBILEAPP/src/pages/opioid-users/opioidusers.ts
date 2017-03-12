@@ -16,7 +16,7 @@ export class OpioidUsers {
 
   @ViewChild('lineCanvas') lineCanvas;
 
-  lineChart: any;
+  lineChart: Chart;
 
   carrierSetting = {
     onDuty: false,
@@ -27,7 +27,7 @@ export class OpioidUsers {
   constructor(public navCtrl:NavController) {
     //this.startBluetoothService();
     BluetoothService.bluetoothData.subscribe(data=>{
-      updateChart(data);
+      this.updateChart(data);
     });
   }
   open(url){
@@ -35,7 +35,8 @@ export class OpioidUsers {
   }
 
   updateChart(data) {
-      this.lineChart.data.datasets[0].data[4] = data.respirPulse;
+      document.getElementById('hello').innerHTML = data.respirPulse;
+      this.lineChart.data.datasets[0].data.push(data.respirPulse);
       this.lineChart.update();
   }
 
@@ -44,6 +45,10 @@ export class OpioidUsers {
           type: 'line',
           data: {
               datasets: [{
+                  fillColor: "rgba(220,220,220,0.2)",
+                  strokeColor: "rgba(220,220,220,1)",
+                  pointColor: "rgba(220,220,220,1)",
+                  pointStrokeColor: "#fff",
                   label: 'Respiratory Rate',
                   data: [0,0,0,0]
               }]
