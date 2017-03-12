@@ -7,7 +7,7 @@ import { Carrier, Device, Reading, EmergencyContact, User } from "../models";
 export class DeviceService {
 
     emergencyContacts: Array<EmergencyContact> = [];
-    allContacts: Array<Contact> = [];  
+    allContacts: Array<Contact> = [];
     devices: Array<Device> = [];
     carriers: Array<Carrier> = [];
 
@@ -15,16 +15,16 @@ export class DeviceService {
 
     }
 
-    getNaxloneCarriers(): Array<Carrier> { 
-        // first refresh carrier cache from google then return. 
-        return this.carriers;      
+    getNaxloneCarriers(): Array<Carrier> {
+        // first refresh carrier cache from google then return.
+        return this.carriers;
     }
 
     getEmergencyContacts(): Array<EmergencyContact> {
         return this.emergencyContacts;
     }
-    addEmergencyContact(contact: Contact) {    
-        let emerg = EmergencyContact.fromContact(contact);    
+    addEmergencyContact(contact: Contact) {
+        let emerg = EmergencyContact.fromContact(contact);
         this.emergencyContacts.push(emerg);
         return contact;
     }
@@ -32,17 +32,6 @@ export class DeviceService {
         let contact: Contact = Contacts.create();
         contact.name = new ContactName(null, lastName, firstName);
         contact.phoneNumbers = [new ContactField("phone", phone)];
-        return this.addEmergencyContact(contact);         
-    }
-
-    // devices
-    getDevices(): Array<Device> {
-        return this.devices;
-    }
-    getConnectedDevices(): Array<Device> {
-        return this.devices.filter(d => d.connected);
-    }
-    getReadings(): Array<Reading> {
-        return this.getConnectedDevices().map(d => d.reading);
+        return this.addEmergencyContact(contact);
     }
 }

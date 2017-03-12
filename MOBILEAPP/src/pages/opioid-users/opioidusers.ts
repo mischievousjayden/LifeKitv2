@@ -3,6 +3,7 @@ import {NavController} from "ionic-angular";
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
 import {BluetoothSerial} from "ionic-native";
 import {Devices} from "../devices/devices";
+import {BluetoothService} from "../../shared/services/bluetooth.service";
 
 @Component({
     templateUrl: 'opioidusers.html'
@@ -16,19 +17,13 @@ bluetoothData = "";
 
 
     constructor(public navCtrl:NavController) {
-      this.startBluetoothService();
+      //this.startBluetoothService();
+      BluetoothService.bluetoothData.subscribe(data=>{
+        document.getElementById('hello').innerHTML = data.toString();
+      });
     }
     open(url){
       this.navCtrl.push(url);
-    }
-
-    startBluetoothService(){
-      var id = setInterval(function (){
-            BluetoothSerial.subscribe('\n').subscribe(data=>{
-              document.getElementById('hello').innerHTML = data;
-              clearInterval(id);
-            });
-      },1000);
     }
 }
 

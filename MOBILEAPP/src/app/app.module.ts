@@ -25,6 +25,7 @@ import {
     JwtService,
     DeviceService
 } from "../shared";
+import {BluetoothService} from "../shared/services/bluetooth.service";
 
 //import { Auth } from '../pages/auth/auth.module';
 
@@ -108,7 +109,7 @@ export const menuLinks = [
         OpioidUsers,
         Home
     ],
-    providers: [ {provide: ErrorHandler, useClass: IonicErrorHandler}]
+    providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {
 
