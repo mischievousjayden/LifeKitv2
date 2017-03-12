@@ -1,3 +1,4 @@
 export const environment = {
-  api_url: "https://lifekit.cci.drexel.edu"
+  host_Url: "https://lifekit.cci.drexel.edu",
+  api_url: "https://lifekit.cci.drexel.edu/api"
 };

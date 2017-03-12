@@ -63,7 +63,7 @@ export class UserService {
   signup(phone: string): Observable<any> {
     let path = `/signup?phone=${phone}`;
     this.currentUserSubject.value.phone = phone;
-    return this.apiService.get(`${environment.api_url}${path}`);
+    return this.apiService.get(path);
   }
 
   validate(code: number): Observable<boolean> {
@@ -72,7 +72,7 @@ export class UserService {
 
   _validate(phone: string, code: number): Observable<boolean> {
     let path = `/validate?phone=${phone}&code=${code}`
-    return this.apiService.get(`${environment.api_url}${path}`)
+    return this.apiService.get(path)
       .map(
         refreshToken => {
           // save the refresh token for use in acquiring access token
@@ -89,7 +89,7 @@ export class UserService {
 
   _signin(phone: string, token: string) {
     let path = `/signin?phone=${phone}&refreshToken=${token}`
-    return this.apiService.get(`${environment.api_url}${path}`)
+    return this.apiService.get(path)
       .map(
         accessToken => {
           // Save the access token
