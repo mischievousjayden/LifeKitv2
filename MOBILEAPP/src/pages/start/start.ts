@@ -8,10 +8,13 @@ import {AlertController, NavController} from 'ionic-angular';
 
 export class Start {
   constructor(public alerCtrl: AlertController, public navCtrl: NavController) {
+    setTimeout(() => {
+      this.goNextPage();
+    }, 3000);
   }
 
   goNextPage(){
-    this.navCtrl.push('signuppage');
+    this.navCtrl.setRoot('signuppage');
   }
 
 }
