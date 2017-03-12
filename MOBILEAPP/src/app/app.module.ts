@@ -109,7 +109,7 @@ export const menuLinks = [
         OpioidUsers,
         Home
     ],
-    providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+    providers: [JwtService,ApiService,UserService,{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {
 
