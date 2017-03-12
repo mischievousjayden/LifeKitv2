@@ -18,6 +18,8 @@ export class OpioidUsers {
 
   lineChart: any;
 
+  count = 3;
+
   carrierSetting = {
     onDuty: false,
     hasNaloxone: false
@@ -27,7 +29,10 @@ export class OpioidUsers {
   constructor(public navCtrl:NavController) {
     //this.startBluetoothService();
     BluetoothService.bluetoothData.subscribe(data=>{
-      //this.updateChart(data);
+        if(data.respirPulse > 0) {
+          this.updateChart(data);
+        }
+
     });
   }
   open(url){
@@ -36,7 +41,7 @@ export class OpioidUsers {
 
   updateChart(data) {
       document.getElementById('hello').innerHTML = data.respirPulse;
-      this.lineChart.data.datasets[0].data.push(data.respirPulse);
+      this.lineChart.data.datasets[0].data.push([{ x: ++this.count, y: data.respirPulse}, {x: ++this.count, y: 0}]);
       this.lineChart.update();
   }
 
@@ -45,12 +50,21 @@ export class OpioidUsers {
           type: 'line',
           data: {
               datasets: [{
-                  fillColor: "rgba(220,220,220,0.2)",
-                  strokeColor: "rgba(220,220,220,1)",
-                  pointColor: "rgba(220,220,220,1)",
+                  fillColor: "rgba(151,187,205,0.2)",
+                  strokeColor: "rgba(151,187,205,1)",
+                  pointColor: "rgba(151,187,205,1)",
                   pointStrokeColor: "#fff",
                   label: 'Respiratory Rate',
-                  data: [10,0,30,80]
+                  data: [{
+                    x: 0,
+                    y: 0
+                  }, {
+                    x: 1,
+                    y: 10
+                  }, {
+                    x: 2,
+                    y: 5
+                  }]
               }]
           },
           options: {
