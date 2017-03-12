@@ -61,7 +61,7 @@ export class UserService {
   }
 
   signup(phone: string): Observable<any> {
-    let path = `/signup?phone=${phone}`;
+    let path = `/user/signup?phone=${phone}`;
     this.currentUserSubject.value.phone = phone;
     return this.apiService.get(path);
   }
@@ -71,7 +71,7 @@ export class UserService {
   }
 
   _validate(phone: string, code: number): Observable<boolean> {
-    let path = `/validate?phone=${phone}&code=${code}`
+    let path = `/user/validate?phone=${phone}&code=${code}`
     return this.apiService.get(path)
       .map(
         refreshToken => {
@@ -88,7 +88,7 @@ export class UserService {
   }
 
   _signin(phone: string, token: string) {
-    let path = `/signin?phone=${phone}&refreshToken=${token}`
+    let path = `/user/signin?phone=${phone}&refreshToken=${token}`
     return this.apiService.get(path)
       .map(
         accessToken => {
