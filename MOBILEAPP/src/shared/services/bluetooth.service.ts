@@ -56,6 +56,7 @@ export class BluetoothService{
     },function(){
       //If disconnect then continue with discovery.
       alert('connection failed, continuing discovery');
+      BluetoothService.connectedDevice.next(null);
       BluetoothService.discoverUnpairedDevices();
     });
     BluetoothSerial.subscribe('\n').subscribe(data => {

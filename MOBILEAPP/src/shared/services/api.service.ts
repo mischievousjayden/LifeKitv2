@@ -36,6 +36,12 @@ export class ApiService {
     .map((res:Response) => res.json());
   }
 
+  server_get(path: string): Observable<any> {
+    return this.http.get(`${environment.server_url}${path}`, { headers: this.setHeaders()})
+    .catch(this.formatErrors)
+    .map((res:Response) => res.json());
+  }
+
   put(path: string, body: Object = {}): Observable<any> {
     return this.http.put(
       `${environment.api_url}${path}`,

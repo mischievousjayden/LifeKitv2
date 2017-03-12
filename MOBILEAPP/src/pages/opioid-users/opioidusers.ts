@@ -1,5 +1,4 @@
 import {Component} from "@angular/core";
-import {Segment} from 'ionic-angular';
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
 
 import {BluetoothService} from "../../shared/services/bluetooth.service";
@@ -42,8 +41,11 @@ export class OpioidUsers {
 
 
   updateChart(data) {
-      //document.getElementById('hello').innerHTML = data.respirPulse;
-      this.lineChart.data.datasets[0].data.push([{ x: ++this.count, y: data.respirPulse}, {x: ++this.count, y: 0}]);
+
+      document.getElementById('hello').innerHTML = data.respirPulse;
+      this.lineChart.data.datasets[0].data.push({ x: ++this.count, y: data.respirPulse});
+      this.lineChart.data.datasets[0].data.push( {x: ++this.count, y: 0});
+
       this.lineChart.update();
   }
 
