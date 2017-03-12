@@ -58,7 +58,7 @@ export const menuLinks = [
   {label:'Emergency Contact', name:'contact'},
   {label:'Naloxone Locator', name:'naloxonelocator'},
   {label:'Manage Device', name:'devices'},
-  {label:'User Settings', name:'settingsedit'},
+  {label:'User Settings', name:'settings'},
   {label:'Opiod Quiz', name:'opioidtool'},
   {label:'Help and Information', name:'about'},
   {label:'TESTING-DASHBOARD',name:'dashboard'}
