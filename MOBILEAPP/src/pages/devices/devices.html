@@ -6,14 +6,19 @@
 </ion-header>
 <ion-content>
     <ion-item-group>
-        <ion-item-divider color="light">My Devices:</ion-item-divider>
-            <ion-item (click) = "this.connectDevice(device)" *ngFor="let device of this.discoveredBluetoothDevices">
-                <ion-label>{{device.id}} </ion-label>
-                <ion-note item-right> Connected </ion-note>
-            </ion-item>
+        <ion-item-divider color="light">Connected Device:</ion-item-divider>
+        <ion-item>
+          <ion-label>{{this.connectedDevice?.name}}</ion-label>
+          <ion-note item-right> {{this.connectedDevice?.id}} </ion-note>
+        </ion-item>
+
+      <ion-item-divider color="light">Newly Discovered Devices:</ion-item-divider>
+          <ion-item (click) = "this.connectDevice(device)" *ngFor="let device of this.discoveredBluetoothDevices">
+            <ion-label>{{device.name}} </ion-label>
+            <ion-note item-right> Unpaired </ion-note>
+          </ion-item>
     </ion-item-group>
     <p align = "center">
         <button ion-button color ="secondary" round outline>Edit</button>
     </p>
-    <div id ='bluetooth'>{{this.bluetoothData}}</div>
 </ion-content>

@@ -7,16 +7,32 @@ import {Observable} from "rxjs";
     templateUrl: 'devices.html'
 })
 export class Devices {
+public connectedDevice:any;
 public discoveredBluetoothDevices: any;
+public pairedBluetoothDevices: any;
 public bluetoothData: any;
 
     constructor(public app:App,public platform: Platform, public ref: ChangeDetectorRef) {
 		if(this.platform.is('android')){
 			//alert("I am android!")
 			//Call get list of connectable devices
-      BluetoothService.bluetoothStart();
       BluetoothService.discoveredBluetoothDevices.subscribe(list =>{
         this.discoveredBluetoothDevices = list;
+        this.ref.detectChanges();
+      });
+
+      BluetoothService.pairedBluetoothDevices.subscribe(list=>{
+        this.pairedBluetoothDevices = list;
+        this.ref.detectChanges();
+      });
+
+      BluetoothService.connectedDevice.subscribe(device=>{
+        this.connectedDevice = device;
+        this.ref.detectChanges();
+      });
+
+      app.viewDidLoad.subscribe(()=>{
+        BluetoothService.bluetoothStart();
       });
 		}
     }

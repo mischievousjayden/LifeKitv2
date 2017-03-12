@@ -10,6 +10,7 @@ export class BluetoothService{
 
   public static connectedDevice: ReplaySubject<any> = new ReplaySubject(1);
   public static discoveredBluetoothDevices: ReplaySubject<any> = new ReplaySubject(2);
+  public static pairedBluetoothDevices: ReplaySubject<any> = new ReplaySubject(2);
   public static bluetoothData:ReplaySubject<Reading> = new ReplaySubject<Reading>(2);
   constructor(){
 
@@ -21,7 +22,14 @@ export class BluetoothService{
 
   public static bluetoothOn(){
     //alert('Bluetooth is on...');
+    BluetoothService.discoverPairedDevices();
     BluetoothService.discoverUnpairedDevices();
+  }
+
+  public static discoverPairedDevices(){
+    BluetoothSerial.list().then(list =>{
+      BluetoothService.pairedBluetoothDevices = list;
+    });
   }
 
   public static discoverUnpairedDevices(){
@@ -44,7 +52,7 @@ export class BluetoothService{
     //connects and subscribes to the status of the connection
     BluetoothSerial.connect(device.id).subscribe(function(){
       alert('connection success');
-
+      BluetoothService.connectedDevice.next(device);
     },function(){
       //If disconnect then continue with discovery.
       alert('connection failed, continuing discovery');
