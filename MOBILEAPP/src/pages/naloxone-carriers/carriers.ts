@@ -1,8 +1,9 @@
 import {Component} from "@angular/core";
-import {NavController} from "ionic-angular";
+//import {NavController} from "ionic-angular";
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
 
 @Component({
+    selector: 'carrier',
     templateUrl: 'carriers.html'
 })
 export class Carriers {
@@ -25,11 +26,8 @@ export class Carriers {
 
 
 
-  constructor(public navCtrl:NavController) {
+  constructor() {
 
   }
 
-  open(url){
-    this.navCtrl.push(url);
-  }
 }

@@ -1,5 +1,5 @@
-import {Component, ViewChild} from "@angular/core";
-import {NavController} from "ionic-angular";
+import {Component} from "@angular/core";
+import {Segment} from 'ionic-angular';
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
 
 import {BluetoothService} from "../../shared/services/bluetooth.service";
@@ -14,20 +14,19 @@ import { Chart } from "chart.js";
 export class OpioidUsers {
   bluetoothData = "";
 
-  @ViewChild('lineCanvas') lineCanvas;
-
+  lineCanvas : any;
   lineChart: any;
 
   count = 3;
 
   carrierSetting = {
     onDuty: false,
+
     hasNaloxone: false
   };
 
+  constructor() {
 
-  constructor(public navCtrl:NavController) {
-    //this.startBluetoothService();
     BluetoothService.bluetoothData.subscribe(data=>{
         if(data.respirPulse > 0) {
           this.updateChart(data);
@@ -35,18 +34,21 @@ export class OpioidUsers {
 
     });
   }
-  open(url){
-    this.navCtrl.push(url);
+
+  ngAfterViewInit() {
+    this.lineCanvas = document.getElementById('lineCanvas');
+    this.loadChart();
   }
 
+
   updateChart(data) {
-      document.getElementById('hello').innerHTML = data.respirPulse;
+      //document.getElementById('hello').innerHTML = data.respirPulse;
       this.lineChart.data.datasets[0].data.push([{ x: ++this.count, y: data.respirPulse}, {x: ++this.count, y: 0}]);
       this.lineChart.update();
   }
 
-  ionViewDidLoad() {
-      this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+  loadChart() {
+      this.lineChart = new Chart(this.lineCanvas, {
           type: 'line',
           data: {
               datasets: [{

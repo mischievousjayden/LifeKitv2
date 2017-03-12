@@ -1,19 +1,11 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Opiod Users</ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content>
+<div>
   <ion-card>
 
     <ion-card-header>
       Respiratory Rate Line Chart
     </ion-card-header>
     <ion-card-content>
-      <canvas #lineCanvas></canvas>
+      <canvas id="lineCanvas"></canvas>
     </ion-card-content>
 
   </ion-card>
@@ -29,6 +21,5 @@
     </ion-card-content>
 
   </ion-card>
-  <carrier-settings [carrierSetting]="carrierSetting"></carrier-settings>
   <div id = 'hello'></div>
-</ion-content>
+</div>

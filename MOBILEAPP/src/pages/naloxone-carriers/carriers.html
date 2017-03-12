@@ -1,12 +1,6 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Naloxone Carrier</ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content>
+
+
+<div>
   <div *ngIf="opiodData">
       <ion-card>
 
@@ -34,6 +28,5 @@
       </ion-card>
   </div>
 
-  <carrier-settings [carrierSetting]="carrierSetting"></carrier-settings>
-</ion-content>
+</div>
 

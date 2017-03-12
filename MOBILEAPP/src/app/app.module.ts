@@ -26,12 +26,14 @@ import {
     DeviceService
 } from "../shared";
 import {BluetoothService} from "../shared/services/bluetooth.service";
+import {TypeUser} from "../pages/type-user/typeuser";
 
 //import { Auth } from '../pages/auth/auth.module';
 
 
 export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
+      {component: TypeUser, name: "usertype", segment: "usertype"},
       {component: NaloxoneLocator, name: "naloxonelocator", segment: "naloxonelocator"},
       {component: Home, name: "home", segment: "home"},
         {component: VerificationPage, name: "verificationpage", segment: "verificationpage"},
@@ -66,6 +68,7 @@ export const menuLinks = [
 
 @NgModule({
     declarations: [
+        TypeUser,
         NaloxoneLocator,
         Start,
         MyApp,
@@ -91,6 +94,7 @@ export const menuLinks = [
     ],
     bootstrap: [IonicApp],
     entryComponents: [
+        TypeUser,
         NaloxoneLocator,
         Start,
         MyApp,

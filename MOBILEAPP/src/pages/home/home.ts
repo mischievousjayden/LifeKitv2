@@ -1,8 +1,8 @@
 import {Component, ChangeDetectorRef, ViewChild} from "@angular/core";
 import {BluetoothSerial} from 'ionic-native';
-import {Platform, DeepLinkMetadata, NavController} from 'ionic-angular';
+import {Platform, NavController} from 'ionic-angular';
 import {deepLinkConfig, menuLinks} from "../../app/app.module";
-import {OpioidUsers}from '../opioid-users/opioidusers'
+import {TypeUser} from "../type-user/typeuser";
 
 //need to add naloxonelocator
 
@@ -11,11 +11,32 @@ import {OpioidUsers}from '../opioid-users/opioidusers'
 })
 
 export class Home {
-  rootPage = OpioidUsers;
+  @ViewChild('myNav') navCtrl: NavController;
+
+  rootPage: any;
   menu = menuLinks;
+
+
   public discoveredBluetoothDevices: any [];
   public bluetoothData: any;
-    constructor(public navCtrl: NavController, public platform: Platform, public ref: ChangeDetectorRef) {
 
-    }
+  constructor(public platform: Platform, public ref: ChangeDetectorRef) {
+    this.rootPage = TypeUser;
+  }
+
+
+
+  open(url){
+    this.navCtrl.push(url).then(
+      response => {
+        console.log('Response ' + response);
+      },
+      error => {
+        console.log('Error: ' + error);
+      }
+    ).catch(exception => {
+      console.log('Exception ' + exception);
+    });
+  }
+
 }

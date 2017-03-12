@@ -1,8 +1,6 @@
 import { Component , ViewChild} from '@angular/core';
 import {Platform, NavController, DeepLinkMetadata} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-import { deepLinkConfig } from './app.module';
-import { OpioidUsers } from '../pages/opioid-users/opioidusers';
 import {Start} from '../pages/start/start';
 
 
