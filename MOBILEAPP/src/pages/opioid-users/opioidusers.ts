@@ -41,8 +41,10 @@ export class OpioidUsers {
 
   updateChart(data) {
       document.getElementById('hello').innerHTML = data.respirPulse;
-      this.lineChart.data.datasets[0].data.push([{ x: ++this.count, y: data.respirPulse}, {x: ++this.count, y: 0}]);
-      this.lineChart.update();
+      this.lineChart.data.datasets[0].data.push({ x: ++this.count, y: data.respirPulse});
+      this.lineChart.data.datasets[0].data.push( {x: ++this.count, y: 0});
+
+    this.lineChart.update();
   }
 
   ionViewDidLoad() {
