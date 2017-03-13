@@ -8,3 +8,5 @@ if vibrate required
 --->ionic plugin add cordova-plugin-vibration
 if need native audio
 --->ionic plugin add cordova-plugin-nativeaudio
+if need geolocation
+--->ionic plugin add cordova-plugin-geolocation
