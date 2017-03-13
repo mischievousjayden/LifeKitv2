@@ -1,0 +1,7 @@
+<on-header>
+    <ion-navbar no-border-bottom>
+        <ion-title>
+           Emergency 
+        </ion-title>
+    </ion-navbar>
+</ion-header>

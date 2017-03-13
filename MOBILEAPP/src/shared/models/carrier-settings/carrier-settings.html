@@ -1,5 +1,26 @@
 <ion-content>
+  <div>
+    <ion-label class="text-margin text-label">For Carriers</ion-label>
+  </div>
+
+  <div *ngIf="carrierSetting">
+
+    <ion-row center>
+      <ion-col col-6>
+        <div class="center-toggle">
+          <ion-label text-center> On Duty</ion-label>
+          <ion-toggle color = "teal" checked="{{carrierSetting.onDuty}}"></ion-toggle>
+        </div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="center-toggle">
+          <ion-label text-center> Has Naloxone</ion-label>
+          <ion-toggle color = "teal" checked="{{carrierSetting.hasNaloxone}}"></ion-toggle>
+        </div>
+      </ion-col>
+    </ion-row>
 
 
+  </div>
 
 </ion-content>

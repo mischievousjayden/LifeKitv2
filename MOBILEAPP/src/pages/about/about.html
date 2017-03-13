@@ -20,12 +20,15 @@
 </ion-toolbar>
 </ion-header>
 
+<div class = "item item-text-wrap">
 <ion-content>
     <div [ngSwitch]="about">
         <ion-list *ngSwitchCase="'naloxone-about'">
-            <ion-item>
-                <p> Naloxone Info here </p>
-            </ion-item>
+     <div class = "item item-text-wrap">           
+         <ion-item>
+                <p class> Naloxone Info here test test esttest test est test sets et set et est st set estst </p>
+        </ion-item>
+     </div>
         </ion-list>
         <ion-list *ngSwitchCase="'opioid-about'">
             <ion-item>
@@ -38,5 +41,4 @@
             </ion-item>
         </ion-list>
     </div>
-
 </ion-content>
