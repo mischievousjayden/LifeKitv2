@@ -28,6 +28,7 @@ import {
 } from "../shared";
 import { BluetoothService } from "../shared/services/bluetooth.service";
 import { TypeUser } from "../pages/type-user/typeuser";
+import { LaunchNavigator } from 'ionic-native';
 
 //import { Auth } from '../pages/auth/auth.module';
 
@@ -123,7 +124,9 @@ export const menuLinks = [
         ApiService,
         UserService,
         JwtService,
-        DeviceService]
+        DeviceService,
+        LaunchNavigator
+    ]
 })
 export class AppModule {
 
