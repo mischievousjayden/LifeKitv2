@@ -56,18 +56,17 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: Dashboard, name: "dashboard", segment: "dashboard" },
         { component: Elocator, name: "elocator", segment: "elocator" },
 
-
     ]
 };
 //need to add naloxonelocator
 export const menuLinks = [
-    { label: 'Emergency Contact', name: 'contact' },
-    { label: 'Naloxone Locator', name: 'naloxonelocator' },
-    { label: 'Manage Device', name: 'devices' },
-    { label: 'User Settings', name: 'settings' },
-    { label: 'Opiod Quiz', name: 'opioidtool' },
-    { label: 'Help and Information', name: 'about' },
-    { label: 'TESTING-DASHBOARD', name: 'dashboard' }
+  {label:'Emergency Contact', name:'contact'},
+  {label:'Naloxone Locator', name:'naloxonelocator'},
+  {label:'Manage Device', name:'devices'},
+  {label:'User Settings', name:'settings'},
+  {label:'Opioid Quiz', name:'opioidtool'},
+  {label:'Help and Information', name:'about'},
+  {label:'TESTING-DASHBOARD',name:'dashboard'}
 ];
 
 @NgModule({

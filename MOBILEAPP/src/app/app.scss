@@ -16,6 +16,7 @@
 // automatically applied to the <body> element in the app.
 
 
+
 .alert-header {
   color: #f07190;
   font-weight: bold;
@@ -34,3 +35,17 @@
   padding: 5px 5px;
 }
 
+
+.menuBg{
+    background-color: #49c7b5;
+}
+
+.h3{
+    font-size: 12px;
+}
+
+.item{
+	overflow: inherit;
+	text-overflow:inherit;
+	white-space: wrap;
+}

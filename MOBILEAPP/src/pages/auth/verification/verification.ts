@@ -36,8 +36,7 @@ export class VerificationPage {
 
       //After post, we should get an refresh token so just save it in the computer manually for now
       //this.userService.validate(veriCode).subscribe(res=>{
-
+        this.navCtrl.setRoot('home');
       //});
-      this.navCtrl.setRoot('home');
     }
 }

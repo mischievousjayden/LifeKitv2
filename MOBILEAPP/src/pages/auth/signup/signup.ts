@@ -44,17 +44,18 @@ export class SignUpPage {
     }
 
     requestVerify(phone) {
-      this.nextPage();
-        //this.userService.signup(phone).subscribe(
-         //   res => {
-         //       console.log("verification code", res);
+        this.userService.signup(phone).subscribe(
+            res => {
+                console.log("verification code", res);
                 //NEXT PAGE HERE AFTER COR FIXED
-         //   },
+
+              this.nextPage();
+            },
             // if you wish to intercept the error
-         //   error => {
-          //      console.log("something went wrong: ", error);
-          //  }
-       // );
+            error => {
+                console.log("something went wrong: ", error);
+            }
+        );
     }
     nextPage() {
         this.navCtrl.push('verificationpage');
