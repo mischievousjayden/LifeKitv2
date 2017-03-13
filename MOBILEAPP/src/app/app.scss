@@ -14,3 +14,23 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.alert-header {
+  color: #f07190;
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.title-text {
+  color: #8a8888;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.side-margin-div {
+  margin: auto 25px;
+  padding: 5px 5px;
+}
+

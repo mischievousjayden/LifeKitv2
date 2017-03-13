@@ -18,6 +18,7 @@ import { Home } from "../pages/home/home";
 import { Start } from "../pages/start/start";
 import { CarrierSettingsModel } from "../shared/models/carrier-settings/carrier-settings.model";
 import { NaloxoneLocator } from "../pages/naloxone-locator/naloxone-locator"
+import {Elocator} from '../pages/emergency/E-locator/elocator';
 
 import {
     ApiService,
@@ -52,6 +53,8 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: SettingsEdit, name: "settingsedit", segment: "settingsedit" },
         { component: OpioidUsers, name: "opioidusers", segment: "opioidusers" },
         { component: Dashboard, name: "dashboard", segment: "dashboard" },
+        { component: Elocator, name: "elocator", segment: "elocator" },
+
 
     ]
 };
@@ -86,7 +89,8 @@ export const menuLinks = [
         OpioidUsers,
         Dashboard,
         Home,
-        CarrierSettingsModel
+        CarrierSettingsModel,
+        Elocator
     ],
     imports: [
         //Auth,
@@ -111,7 +115,8 @@ export const menuLinks = [
         OpioidTool,
         ContactAddPage,
         OpioidUsers,
-        Home
+        Home,
+        Elocator
     ],
     providers: [
         JwtService, ApiService, UserService, { provide: ErrorHandler, useClass: IonicErrorHandler },
