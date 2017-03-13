@@ -1,10 +1,9 @@
 import {Component} from "@angular/core";
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavController } from 'ionic-angular';
 import {BluetoothService} from "../../shared/services/bluetooth.service";
 
 import { Chart } from "chart.js";
-import {App} from "ionic-angular";
 
 @Component({
     selector: 'opioid-users',
@@ -17,6 +16,7 @@ export class OpioidUsers {
   updateFreq: number = 0;
   lineCanvas : any;
   lineChart: any;
+  connected = false;
 
   count = 3;
 
@@ -26,9 +26,10 @@ export class OpioidUsers {
     hasNaloxone: false
   };
 
-  constructor(public viewCtrl: ViewController) {
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController) {
 
     BluetoothService.bluetoothData.subscribe(data=>{
+        this.connected = true;
         if(data.respirPulse > 0) {
            this.updateChart(data);
          }else{
@@ -41,6 +42,10 @@ export class OpioidUsers {
     });
   }
 
+  open(url){
+    this.navCtrl.push(url);
+  }
+
   ngAfterViewInit() {
     this.lineCanvas = document.getElementById('lineCanvas');
     this.loadChart();
@@ -49,7 +54,7 @@ export class OpioidUsers {
 
   updateChart(data) {
 
-      document.getElementById('hello').innerHTML = data.respirPulse;
+      document.getElementById('respiratoryRate').innerHTML = data.respirRate;
       this.lineChart.data.datasets[0].data.splice(0,2);
       this.lineChart.data.labels.splice(0,2);
       this.lineChart.data.datasets[0].data.push({ x: ++this.count, y: data.respirPulse});
@@ -66,7 +71,8 @@ export class OpioidUsers {
           datasets: [{
             data: [0,1,0,1,0,1,0,1,0,1,0,1],
             strokeColor: "rgba(151,187,205,1)",
-            fill: false
+            fill: false,
+            radius: 0
           }]
 
         },

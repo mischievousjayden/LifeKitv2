@@ -27,16 +27,7 @@ export class Home {
 
 
   open(url){
-    this.navCtrl.push(url).then(
-      response => {
-        console.log('Response ' + response);
-      },
-      error => {
-        console.log('Error: ' + error);
-      }
-    ).catch(exception => {
-      console.log('Exception ' + exception);
-    });
+    this.navCtrl.push(url);
   }
 
 }

@@ -1,24 +1,26 @@
 <div>
   <ion-card>
 
-    <ion-card-header>
-      Respiratory Rate Line Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas id="lineCanvas"></canvas>
-    </ion-card-content>
+    <div [hidden]="connected">
+      <ion-card-header text-center >
+        <h3 id="respiratoryRate"></h3>
+        <p>Respiratory Rate</p>
+      </ion-card-header>
+      <ion-card-content>
+        <canvas id="lineCanvas"></canvas>
+      </ion-card-content>
+    </div>
 
-  </ion-card>
-  <ion-card>
+    <div [hidden]="!connected">
+      <ion-card-content>
+        There is no connected device. Please connect to a device now.
+        <button (click) ="open('devices')" ion-button background-color =#49C7B5  round outline>Find Device</button>
 
-    <ion-card-header>
-      respiratory Graph Placeholder
-    </ion-card-header>
+      </ion-card-content>
+    </div>
 
-    <ion-card-content>
-      <!-- Add card content here! -->
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </ion-card-content>
+
+
 
   </ion-card>
   <div id = 'hello'></div>
