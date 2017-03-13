@@ -37,23 +37,24 @@ export class SignUpPage {
             message: `Please enter the verification code sent to ${this.phoneNumber} to continue.`,
             buttons: [{
                 text: 'Ok' ,
-                handler: () => this.requestVerify(this.phoneNumber)                
+                handler: () => this.requestVerify(this.phoneNumber)
             }]
         });
         alert.present();
     }
 
     requestVerify(phone) {
-        this.userService.signup(phone).subscribe(
-            res => {
-                console.log("verification code", res);
-                this.nextPage();
-            },
+      this.nextPage();
+        //this.userService.signup(phone).subscribe(
+         //   res => {
+         //       console.log("verification code", res);
+                //NEXT PAGE HERE AFTER COR FIXED
+         //   },
             // if you wish to intercept the error
-            error => {                
-                console.log("something went wrong: ", error);
-            }
-        );
+         //   error => {
+          //      console.log("something went wrong: ", error);
+          //  }
+       // );
     }
     nextPage() {
         this.navCtrl.push('verificationpage');

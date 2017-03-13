@@ -35,9 +35,9 @@ export class VerificationPage {
       //GET BAKC IF THE PERSON IS A NALOXONE CARRIER OR A PATIENT then figure out which to set as root.
 
       //After post, we should get an refresh token so just save it in the computer manually for now
-      this.userService.validate(veriCode).subscribe(res=>{
+      //this.userService.validate(veriCode).subscribe(res=>{
 
-      });
+      //});
       this.navCtrl.setRoot('home');
     }
 }
