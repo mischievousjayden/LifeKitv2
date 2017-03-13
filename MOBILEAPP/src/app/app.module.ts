@@ -49,7 +49,6 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         {component: SettingsEdit, name: "settingsedit", segment: "settingsedit"},
         {component: OpioidUsers, name: "opioidusers", segment: "opioidusers"},
         {component: Dashboard, name: "dashboard", segment: "dashboard"},
-
     ]
 };
 //need to add naloxonelocator
@@ -57,8 +56,8 @@ export const menuLinks = [
   {label:'Emergency Contact', name:'contact'},
   {label:'Naloxone Locator', name:'naloxonelocator'},
   {label:'Manage Device', name:'devices'},
-  {label:'User Settings', name:'settingsedit'},
-  {label:'Opiod Quiz', name:'opioidtool'},
+  {label:'User Settings', name:'settings'},
+  {label:'Opioid Quiz', name:'opioidtool'},
   {label:'Help and Information', name:'about'},
   {label:'TESTING-DASHBOARD',name:'dashboard'}
 ];
@@ -82,7 +81,7 @@ export const menuLinks = [
         OpioidUsers,
         Dashboard,
         Home,
-        CarrierSettingsModel
+        CarrierSettingsModel,
         ],
     imports: [
         //Auth,
@@ -106,7 +105,7 @@ export const menuLinks = [
         OpioidTool,
         ContactAddPage,
         OpioidUsers,
-        Home
+        Home,
     ],
     providers: [ {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

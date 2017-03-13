@@ -1,19 +1,16 @@
-
 <ion-header>
-    <ion-navbar>
-        <h1 color = "teal" align = "center">Manage Devices</h1>
+    <ion-navbar no-border-bottom>
+        <h1 color = "teal" align = "center">Emergency Subsided</h1>
     </ion-navbar>
 </ion-header>
 <ion-content>
     <ion-item-group>
         <ion-item-divider color="light">My Devices:</ion-item-divider>
-            <ion-item (click) = "this.connectDevice(device)" *ngFor="let device of this.discoveredBluetoothDevices">
-                <ion-label>{{device.id}} </ion-label>
+            <ion-item>
                 <ion-note item-right> Connected </ion-note>
             </ion-item>
     </ion-item-group>
     <p align = "center">
         <button ion-button color ="teal" round outline>Edit</button>
     </p>
-    <div id ='bluetooth'>{{bluetoothData}}</div>
 </ion-content>
