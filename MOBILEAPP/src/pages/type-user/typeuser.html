@@ -8,19 +8,8 @@
 </ion-header>
 
 <ion-content>
-
-  <div [ngSwitch]="onDutyToggled">
-
-
-    <div *ngSwitchCase="false">
-      <opioid-users></opioid-users>
-
-    </div>
-    <div *ngSwitchCase="true">
-      <carrier></carrier>
-
-    </div>
-
+    <opioid-users [hidden]="onDutyToggled"></opioid-users>
+    <carrier [hidden] = "!onDutyToggled"></carrier>
     <div class="carrier-settings">
       <div>
         <ion-label class="text-margin text-label">For Carrier</ion-label>
@@ -47,5 +36,4 @@
       </div>
     </div>
 
-  </div>
 </ion-content>

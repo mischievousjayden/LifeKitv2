@@ -13,7 +13,7 @@ import {App} from "ionic-angular";
 
 export class OpioidUsers {
   bluetoothData = "";
-
+  updateFreq: number = 0;
   lineCanvas : any;
   lineChart: any;
 
@@ -29,16 +29,16 @@ export class OpioidUsers {
 
     BluetoothService.bluetoothData.subscribe(data=>{
         if(data.respirPulse > 0) {
-          this.updateChart(data);
+           this.updateChart(data);
+           this.updateFreq++;
+         }else{
+          if(this.updateFreq==50){
+            this.updateChart(data);
+            this.updateFreq = 0;
+          }
+           this.updateFreq++;
         }
-
     });
-    this.viewCtrl.didLeave.subscribe(res=>{
-        BluetoothService.bluetoothData.unsubscribe();
-        alert('bluetoothdata unsubscribed');
-    });
-
-
   }
 
   ngAfterViewInit() {
@@ -50,6 +50,8 @@ export class OpioidUsers {
   updateChart(data) {
 
       document.getElementById('hello').innerHTML = data.respirPulse;
+      this.lineChart.data.datasets[0].data.splice(0,2);
+    this.lineChart.data.labels.splice(0,2);
       this.lineChart.data.datasets[0].data.push({ x: ++this.count, y: data.respirPulse});
       this.lineChart.data.datasets[0].data.push( {x: ++this.count, y: 0});
 
@@ -59,6 +61,7 @@ export class OpioidUsers {
   loadChart() {
       this.lineChart = new Chart(this.lineCanvas, {
           type: 'line',
+          labels: [0,1,2,3,4,5,6,7],
           data: {
               datasets: [{
                   fillColor: "rgba(151,187,205,0.2)",
@@ -66,16 +69,7 @@ export class OpioidUsers {
                   pointColor: "rgba(151,187,205,1)",
                   pointStrokeColor: "#fff",
                   label: 'Respiratory Rate',
-                  data: [{
-                    x: 0,
-                    y: 0
-                  }, {
-                    x: 1,
-                    y: 10
-                  }, {
-                    x: 2,
-                    y: 5
-                  }]
+                  data: [0,10,0,10,0,10,0]
               }]
           },
           options: {

@@ -40,7 +40,7 @@ export class DeviceService {
         contact.phoneNumbers = [new ContactField("phone", phone)];
         return this.addEmergencyContact(contact);
     }
-    
+
     // devices
     getDevices(): Array<Device> {
         return this.devices;
@@ -52,7 +52,7 @@ export class DeviceService {
         return this.getConnectedDevices().map(d => d.reading);
     }
 
-    // geolocation and maps    
+    // geolocation and maps
     getCurrentPosition(): Observable<SimpleMarker> {
         if (this.currentLocation) {
             return Observable.of(this.currentLocation);
@@ -73,7 +73,7 @@ export class DeviceService {
         }
     }
 
-    
+
     getCarrierLocations(): Observable<SimpleMarker[]> {
         if (this.currentLocation) { // we hope this is the case 99.99% of the time
             return this.apiService.getGooglePlaces({ keyword: "pharmacy", type: "store" }, this.currentLocation)
@@ -90,11 +90,12 @@ export class DeviceService {
 
         // load some sample locations (synonymous to carriers)
         /*return this.load().map((data: any) => {
-            return data.map;            
+            return data.map;
         });*/
     }
 
     processGooglePlaces(data): Array<SimpleMarker> {
+        console.log(data);
         let accum: Array<SimpleMarker> = [];
         data.result.forEach(p => {
             accum.push({
@@ -115,9 +116,9 @@ export class DeviceService {
         }
     }
 
-    // this function is not "owned" by this class, but by the load function above. 
+    // this function is not "owned" by this class, but by the load function above.
     processData(data: any) {
-        this.data = data.json();        
+        this.data = data.json();
         // do any further preprocessing here, don't forget this function is not owned by this class.
         return this.data;
     }

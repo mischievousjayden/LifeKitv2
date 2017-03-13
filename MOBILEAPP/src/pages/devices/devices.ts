@@ -23,11 +23,11 @@ public bluetoothData: any;
 
       BluetoothService.discoveredBluetoothDevices.subscribe(list =>{
         this.discoveredBluetoothDevices = list;
-        //this.ref.detectChanges();
+        this.ref.detectChanges();
       });
       BluetoothService.connectedDevice.subscribe(device=>{
         this.connectedDevice = device;
-        //this.ref.detectChanges();
+        this.ref.detectChanges();
       });
 
       BluetoothService.bluetoothStart();
