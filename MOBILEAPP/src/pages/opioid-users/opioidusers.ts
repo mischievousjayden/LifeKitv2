@@ -12,6 +12,7 @@ import {App} from "ionic-angular";
 })
 
 export class OpioidUsers {
+  public static UPDATE_FREQ:number = 5;
   bluetoothData = "";
   updateFreq: number = 0;
   lineCanvas : any;
@@ -30,9 +31,8 @@ export class OpioidUsers {
     BluetoothService.bluetoothData.subscribe(data=>{
         if(data.respirPulse > 0) {
            this.updateChart(data);
-           this.updateFreq++;
          }else{
-          if(this.updateFreq==50){
+          if(this.updateFreq>=OpioidUsers.UPDATE_FREQ){
             this.updateChart(data);
             this.updateFreq = 0;
           }
