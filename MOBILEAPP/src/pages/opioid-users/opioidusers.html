@@ -1,17 +1,17 @@
 <div>
   <ion-card>
 
-    <div [hidden]="connected">
+    <div [hidden]="!connected">
       <ion-card-header text-center >
         <h3 id="respiratoryRate"></h3>
-        <p>Respiratory Rate</p>
+        <p>Breathing Pulse</p>
       </ion-card-header>
       <ion-card-content>
         <canvas id="lineCanvas"></canvas>
       </ion-card-content>
     </div>
 
-    <div [hidden]="!connected">
+    <div [hidden]="connected">
       <ion-card-content>
         There is no connected device. Please connect to a device now.
         <button (click) ="open('devices')" ion-button background-color =#49C7B5  round outline>Find Device</button>

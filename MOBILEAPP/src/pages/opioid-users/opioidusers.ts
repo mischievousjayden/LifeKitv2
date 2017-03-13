@@ -59,18 +59,17 @@ export class OpioidUsers {
       this.lineChart.data.labels.splice(0,2);
       this.lineChart.data.datasets[0].data.push({ x: ++this.count, y: data.respirPulse});
       this.lineChart.data.datasets[0].data.push( {x: ++this.count, y: 0});
-
       this.lineChart.update();
   }
 
   loadChart() {
       this.lineChart = new Chart(this.lineCanvas, {
         type: 'line',
-        labels: [0,1,2,3,4,5,6,7,8,9,10,11,12],
+        labels: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
         data: {
           datasets: [{
-            data: [0,1,0,1,0,1,0,1,0,1,0,1],
-            strokeColor: "rgba(151,187,205,1)",
+            data: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],
+            strokeColor: "rgba(168,0,0,1)",
             fill: false,
             radius: 0
           }]
@@ -83,23 +82,27 @@ export class OpioidUsers {
           },
           scales: {
             xAxes: [{
-              display: false,
+              display: true,
               scaleLabel: {
                 display: false
               },
               type: 'linear',
-              position: 'bottom'
-            }],
+              position: 'bottom',
+              ticks: {
+
+                stepValue:0.2,
+
+              }
+            },
+            ],
             yAxes: [{
-              display: false,
+              display: true,
               scaleLabel: {
                 display: false
               },
               ticks: {
                 beginAtZero: true,
-                steps: 5,
-                stepValue: 0.4,
-                max: 2
+                max: 1
               }
             }]
           },
