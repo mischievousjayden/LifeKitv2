@@ -5,4 +5,5 @@ export class Device {
     name: string;
     id: string;
     connected: boolean;
+    reading: Reading;
 }
