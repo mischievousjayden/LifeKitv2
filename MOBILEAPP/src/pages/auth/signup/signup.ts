@@ -48,8 +48,8 @@ export class SignUpPage {
             res => {
                 console.log("verification code", res);
                 //NEXT PAGE HERE AFTER COR FIXED
-              this.nextPage();
 
+              this.nextPage();
             },
             // if you wish to intercept the error
             error => {
