@@ -1,9 +1,10 @@
 import {Component} from "@angular/core";
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
-
+import { ViewController } from 'ionic-angular';
 import {BluetoothService} from "../../shared/services/bluetooth.service";
 
 import { Chart } from "chart.js";
+import {App} from "ionic-angular";
 
 @Component({
     selector: 'opioid-users',
@@ -24,7 +25,7 @@ export class OpioidUsers {
     hasNaloxone: false
   };
 
-  constructor() {
+  constructor(public viewCtrl: ViewController) {
 
     BluetoothService.bluetoothData.subscribe(data=>{
         if(data.respirPulse > 0) {
@@ -32,6 +33,12 @@ export class OpioidUsers {
         }
 
     });
+    this.viewCtrl.didLeave.subscribe(res=>{
+        BluetoothService.bluetoothData.unsubscribe();
+        alert('bluetoothdata unsubscribed');
+    });
+
+
   }
 
   ngAfterViewInit() {
@@ -83,5 +90,7 @@ export class OpioidUsers {
       });
 
   }
+
+
 }
 
