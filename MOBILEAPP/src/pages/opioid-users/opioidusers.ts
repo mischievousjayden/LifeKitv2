@@ -51,7 +51,7 @@ export class OpioidUsers {
 
       document.getElementById('hello').innerHTML = data.respirPulse;
       this.lineChart.data.datasets[0].data.splice(0,2);
-    this.lineChart.data.labels.splice(0,2);
+      this.lineChart.data.labels.splice(0,2);
       this.lineChart.data.datasets[0].data.push({ x: ++this.count, y: data.respirPulse});
       this.lineChart.data.datasets[0].data.push( {x: ++this.count, y: 0});
 
@@ -60,26 +60,44 @@ export class OpioidUsers {
 
   loadChart() {
       this.lineChart = new Chart(this.lineCanvas, {
-          type: 'line',
-          labels: [0,1,2,3,4,5,6,7],
-          data: {
-              datasets: [{
-                  fillColor: "rgba(151,187,205,0.2)",
-                  strokeColor: "rgba(151,187,205,1)",
-                  pointColor: "rgba(151,187,205,1)",
-                  pointStrokeColor: "#fff",
-                  label: 'Respiratory Rate',
-                  data: [0,10,0,10,0,10,0]
-              }]
+        type: 'line',
+        labels: [0,1,2,3,4,5,6,7,8,9,10,11,12],
+        data: {
+          datasets: [{
+            data: [0,1,0,1,0,1,0,1,0,1,0,1],
+            strokeColor: "rgba(151,187,205,1)",
+            fill: false
+          }]
+
+        },
+        options: {
+          responsive: true,
+          legend: {
+            display: false
           },
-          options: {
-              scales: {
-                xAxes: [{
-                  type: 'linear',
-                  position: 'bottom'
-                }]
+          scales: {
+            xAxes: [{
+              display: false,
+              scaleLabel: {
+                display: false
+              },
+              type: 'linear',
+              position: 'bottom'
+            }],
+            yAxes: [{
+              display: false,
+              scaleLabel: {
+                display: false
+              },
+              ticks: {
+                beginAtZero: true,
+                steps: 5,
+                stepValue: 0.4,
+                max: 2
               }
-          }
+            }]
+          },
+        }
 
       });
 
