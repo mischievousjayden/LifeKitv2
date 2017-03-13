@@ -82,7 +82,7 @@ export class OpioidUsers {
           },
           scales: {
             xAxes: [{
-              display: true,
+              display: false,
               scaleLabel: {
                 display: false
               },
@@ -96,7 +96,7 @@ export class OpioidUsers {
             },
             ],
             yAxes: [{
-              display: true,
+              display: false,
               scaleLabel: {
                 display: false
               },
