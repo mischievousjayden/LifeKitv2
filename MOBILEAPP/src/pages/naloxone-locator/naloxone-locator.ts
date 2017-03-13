@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from "@angular/core";
 import { Platform } from "ionic-angular";
 import { DeviceService } from "../../shared";
 import { Geoposition } from "ionic-native";
+import { SimpleMarker } from "../../shared/models";
 
 declare var google: any;
 
@@ -20,8 +21,7 @@ export class NaloxoneLocator {
         let map;
         
         this.deviceService.getCurrentPosition().subscribe(
-            geoPosition => {
-                let userPosition = this.flattenGeoposition(geoPosition);
+            userPosition => {
                 // center map on user's location
                 map = new google.maps.Map(mapEle, {
                     center: userPosition,
@@ -39,15 +39,6 @@ export class NaloxoneLocator {
                 });
 
             })
-    }
-
-    flattenGeoposition(geoPos: Geoposition) {
-        return {
-            lat: geoPos.coords.latitude,
-            lng: geoPos.coords.longitude,
-            timestamp: geoPos.timestamp,
-            name: "Your location"
-        }
     }
 
     addToMap(markerData, map) {
