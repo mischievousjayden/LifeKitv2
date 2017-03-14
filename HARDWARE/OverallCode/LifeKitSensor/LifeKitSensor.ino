@@ -114,7 +114,7 @@ void readAccel(){
     filteredZ.Filter(az);
 }
 //Latest change nose from 100 to 120
-#define NOISE 100
+#define NOISE 80
 #define NUM_CUR_READING 3
 #define RESPIRATORY_SIGNAL_STRENGTH 1
 #define RESPIR_TIME_BUFF 10
