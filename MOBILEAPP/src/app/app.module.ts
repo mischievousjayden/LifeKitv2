@@ -15,9 +15,10 @@ import { SettingsEdit } from "../pages/setting-edit/setting-edit";
 import { OpioidUsers } from "../pages/opioid-users/opioidusers";
 import { Home } from "../pages/home/home";
 import { Start } from "../pages/start/start";
-import { CarrierSettingsModel } from "../shared/models/carrier-settings/carrier-settings.model";
 import { NaloxoneLocator } from "../pages/naloxone-locator/naloxone-locator"
-import {Elocator} from '../pages/emergency/E-locator/elocator';
+import { Elocator } from '../pages/emergency/locator/elocator';
+import { Einstruction } from '../pages/emergency/instruction/instruction';
+import { EndScreen } from '../pages/emergency/end/endscreen';
 
 import {
     ApiService,
@@ -57,6 +58,8 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: OpioidUsers, name: "opioidusers", segment: "opioidusers" },
         { component: Dashboard, name: "dashboard", segment: "dashboard" },
         { component: Elocator, name: "elocator", segment: "elocator" },
+        { component: Einstruction, name: "einstruction", segment: "einstruction" },
+        { component: EndScreen, name: "endscreen", segment: "endscreen" }
 
     ]
 };
@@ -92,8 +95,9 @@ export const menuLinks = [
         OpioidUsers,
         Dashboard,
         Home,
-        CarrierSettingsModel,
-        Elocator
+        Elocator,
+        Einstruction,
+        EndScreen
     ],
     imports: [
         //Auth,
@@ -120,7 +124,9 @@ export const menuLinks = [
         OpioidTool,
         OpioidUsers,
         Home,
-        Elocator
+        Elocator,
+        Einstruction,
+        EndScreen
     ],
     providers: [
         JwtService, ApiService, UserService, { provide: ErrorHandler, useClass: IonicErrorHandler },
