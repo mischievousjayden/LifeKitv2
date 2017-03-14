@@ -43,8 +43,7 @@ export class Elocator {
   }
 
   openMap(address){
-
-    LaunchNavigator.isAppAvailable(LaunchNavigator.APP.GOOGLE_MAPS, function(isAvailable){
+    LaunchNavigator.isAppAvailable(LaunchNavigator.APP.GOOGLE_MAPS).then(isAvailable=>{
       var app;
       if(isAvailable){
         app = LaunchNavigator.APP.GOOGLE_MAPS;
@@ -63,7 +62,6 @@ export class Elocator {
         error => console.log('Error launching navigator', error)
       );
     });
-
   }
 
 
