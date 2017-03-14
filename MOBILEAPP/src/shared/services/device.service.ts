@@ -20,6 +20,8 @@ export class DeviceService {
     data: any;
     currentLocation: SimpleMarker;
 
+
+
     constructor(public http: Http, private apiService: ApiService) {
 
     }
@@ -40,31 +42,22 @@ export class DeviceService {
     getEmergencyContacts(): Array<EmergencyContact> {
         return this.emergencyContacts;
     }
-
+    //use when deleting an emergency contact from the page
     removeEmergencyContact(contact:EmergencyContact){
       this.emergencyContacts.splice(this.emergencyContacts.indexOf(contact),1);
     }
+    //use when adding emergency contact from the phone list
     addEmergencyContact(contact: Contact) {
         let emerg = EmergencyContact.fromContact(contact);
         this.emergencyContacts.push(emerg);
         return                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ;
     }
+    //use when creating then adding the emergency contact
     createEmergencyContact(lastName, firstName, phone) {
         let contact: Contact = Contacts.create();
         contact.name = new ContactName(null, lastName, firstName);
         contact.phoneNumbers = [new ContactField("phone", phone)];
         return this.addEmergencyContact(contact);
-    }
-
-    // devices
-    getDevices(): Array<Device> {
-        return this.devices;
-    }
-    getConnectedDevices(): Array<Device> {
-        return this.devices.filter(d => d.connected);
-    }
-    getReadings(): Array<Reading> {
-        return this.getConnectedDevices().map(d => d.reading);
     }
 
     // geolocation and maps
