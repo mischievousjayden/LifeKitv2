@@ -43,6 +43,14 @@ export class UserService {
     }
   }
 
+  isRegistered(){
+    if(this.jwtService.getRefreshToken()){
+      return(true);
+    }else{
+      return(false);
+    }
+  }
+
   setAuth(accessToken: string) {
     // Save JWT sent from server in localstorage
     this.jwtService.saveAccessToken(accessToken);
