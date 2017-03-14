@@ -46,9 +46,9 @@ export class SignUpPage {
     requestVerify(phone) {
         this.userService.signup(phone).subscribe(
             res => {
-                console.log("verification code", res);
+              //console.log("verification code", res);
                 //NEXT PAGE HERE AFTER COR FIXED
-
+              console.log(res);
               this.nextPage();
             },
             // if you wish to intercept the error

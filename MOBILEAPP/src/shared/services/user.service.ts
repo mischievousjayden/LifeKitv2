@@ -74,9 +74,9 @@ export class UserService {
     let path = `/user/validate?phone=${phone}&code=${code}`
     return this.apiService.get(path)
       .map(
-        refreshToken => {
+        res => {
           // save the refresh token for use in acquiring access token
-          this.jwtService.saveRefreshToken(refreshToken);
+          this.jwtService.saveRefreshToken(res.result);
           return true;
         },
         err => { return false;}

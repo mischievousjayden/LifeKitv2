@@ -34,7 +34,7 @@ export class ApiService {
   get(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {
     return this.http.get(`${environment.api_url}${path}`, { headers: this.setHeaders(), search: params })
     .catch(this.formatErrors)
-    .map((res:Response) => res.json());
+    .map((res:Response) => {console.log(res.json().result); return(res.json());});
   }
 
   server_get(path: string): Observable<any> {
@@ -72,7 +72,7 @@ export class ApiService {
     .map((res:Response) => res.json());
   }
 
-  
+
   // absolute get, bascially you determine the fqdn and optional cors
   abs_get(path: string, params: URLSearchParams = new URLSearchParams(), cors: boolean): Observable<any> {
     let headers = this.setHeaders();
