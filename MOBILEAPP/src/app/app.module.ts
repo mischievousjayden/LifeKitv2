@@ -18,6 +18,9 @@ import { Start } from "../pages/start/start";
 import { CarrierSettingsModel } from "../shared/models/carrier-settings/carrier-settings.model";
 import { NaloxoneLocator } from "../pages/naloxone-locator/naloxone-locator"
 import {Elocator} from '../pages/emergency/E-locator/elocator';
+import {EndScreen} from '../pages/emergency/endscreen/endscreen';
+import {EmergencyRequest} from '../pages/emergency/request/request';
+import {EmergencyTimer} from '../pages/emergency/timer/timer';
 
 import {
     ApiService,
@@ -57,6 +60,9 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: OpioidUsers, name: "opioidusers", segment: "opioidusers" },
         { component: Dashboard, name: "dashboard", segment: "dashboard" },
         { component: Elocator, name: "elocator", segment: "elocator" },
+        { component: EndScreen, name: "endscreen", segment:"endscreen"},
+        { component: EmergencyRequest, name: "emergencyrequest", segment:"emergencyrequest"},
+        { component: EmergencyTimer, name: "emergencytimer", segment:"emergencytimer"},
 
     ]
 };
@@ -93,7 +99,10 @@ export const menuLinks = [
         Dashboard,
         Home,
         CarrierSettingsModel,
-        Elocator
+        Elocator,
+        EndScreen,
+        EmergencyRequest,
+        EmergencyTimer
     ],
     imports: [
         //Auth,
@@ -120,7 +129,10 @@ export const menuLinks = [
         OpioidTool,
         OpioidUsers,
         Home,
-        Elocator
+        Elocator,
+        EndScreen,
+        EmergencyRequest,
+        EmergencyTimer
     ],
     providers: [
         JwtService, ApiService, UserService, { provide: ErrorHandler, useClass: IonicErrorHandler },
