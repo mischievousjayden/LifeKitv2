@@ -2,7 +2,7 @@
   <ion-card [hidden]="!connected">
     <div>
       <ion-card-header text-center >
-        <h3 id="respiratoryRate"></h3>
+        <h3 id="respiratoryRate" class="alert-header"></h3>
         <p>Breathing Pulse</p>
       </ion-card-header>
       <ion-card-content>
@@ -19,6 +19,15 @@
 
       <button (click) ="open('devices')" ion-button background-color =#49C7B5  round outline>Find Device</button>
     </div>
+  </div>
+
+  <div align="center">
+    <h5>Or</h5>
+  </div>
+
+  <div align="center">
+    <button (click) ="open('emergencyrequest')" ion-button round class="emergency-button alert-button">Request Emergency Help</button>
+
   </div>
   <div id = 'hello'></div>
 </div>

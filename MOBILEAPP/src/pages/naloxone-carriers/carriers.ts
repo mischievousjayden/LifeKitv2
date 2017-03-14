@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-//import {NavController} from "ionic-angular";
+import {NavController} from "ionic-angular";
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
 
 @Component({
@@ -13,8 +13,8 @@ export class Carriers {
       hasNaloxone: true
   };
 
-  opiodData = {
-      opiod : {
+  opioidData = {
+      opioid : {
           total: 8,
           radius: 0.9
       },
@@ -26,8 +26,12 @@ export class Carriers {
 
 
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
 
+  }
+
+  open(url){
+    this.navCtrl.push(url);
   }
 
 }

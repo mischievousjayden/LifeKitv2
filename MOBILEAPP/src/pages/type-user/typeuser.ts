@@ -15,9 +15,12 @@ export class TypeUser {
   }
 
 
-
+  // toDo: implement to send data to server
   notifyOnDuty() {
     console.log(this.onDutyToggled);
+  }
+  notifyHasNaloxone(){
+
   }
 
 }

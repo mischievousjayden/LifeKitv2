@@ -1,31 +1,27 @@
 
 
 <div>
-  <div *ngIf="opiodData">
-      <ion-card>
+  <div *ngIf="opioidData" id="carrierp">
+      <div align="center">
+          <h5 class="opioid-color">
+            {{opioidData.opioid.total}}
+          </h5>
+          <p>opioid users are within <span class="indicate-text opioid-color">{{opioidData.opioid.radius}}</span> mile near you</p>
 
-          <ion-card-header>
-              {{opiodData.opiod.total}}
-          </ion-card-header>
+      </div>
+      <div align="center">
+        <h5 class="naloxone-color">
+          {{opioidData.naloxone.total}}
+        </h5>
+        <p>Naloxone locators are within <span class="indicate-text naloxone-color">{{opioidData.naloxone.radius}}</span> mile near you</p>
 
-          <ion-card-content>
-            <!-- Add card content here! -->
-            <p>Opiod users are within {{opiodData.opiod.radius}} mile near you</p>
-          </ion-card-content>
+      </div>
 
-      </ion-card>
-      <ion-card>
+      <div align="center">
+        <button (click) ="open('naloxonelocator')" ion-button  small  outline round >See List</button>
 
-          <ion-card-header>
-              {{opiodData.naloxone.total}}
-          </ion-card-header>
+      </div>
 
-          <ion-card-content>
-            <!-- Add card content here! -->
-            <p>Opiod users are within {{opiodData.naloxone.radius}} mile near you</p>
-          </ion-card-content>
-
-      </ion-card>
   </div>
 
 </div>
