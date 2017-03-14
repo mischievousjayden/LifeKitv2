@@ -14,5 +14,7 @@ if need contact list from phone
 ---> ionic plugin add cordova-plugin-contacts
 if need dialog box 
 -->ionic plugin add cordova-plugin-dialogs
+if need chart.js 
+-->npm install chart.js --save
 
 
