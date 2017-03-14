@@ -22,5 +22,9 @@ export class Einstruction {
   constructor(public navCtrl:NavController){
 
   }
+
+  endEmergency() {
+    this.navCtrl.setRoot('endscreen');
+  }
 }
 

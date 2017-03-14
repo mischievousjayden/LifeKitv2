@@ -18,6 +18,7 @@ import { Start } from "../pages/start/start";
 import { NaloxoneLocator } from "../pages/naloxone-locator/naloxone-locator"
 import { Elocator } from '../pages/emergency/locator/elocator';
 import { Einstruction } from '../pages/emergency/instruction/instruction';
+import { EndScreen } from '../pages/emergency/end/endscreen';
 
 import {
     ApiService,
@@ -57,7 +58,8 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: OpioidUsers, name: "opioidusers", segment: "opioidusers" },
         { component: Dashboard, name: "dashboard", segment: "dashboard" },
         { component: Elocator, name: "elocator", segment: "elocator" },
-        { component: Einstruction, name: "einstruction", segment: "einstruction" }
+        { component: Einstruction, name: "einstruction", segment: "einstruction" },
+        { component: EndScreen, name: "endscreen", segment: "endscreen" }
 
     ]
 };
@@ -94,7 +96,8 @@ export const menuLinks = [
         Dashboard,
         Home,
         Elocator,
-        Einstruction
+        Einstruction,
+        EndScreen
     ],
     imports: [
         //Auth,
@@ -122,7 +125,8 @@ export const menuLinks = [
         OpioidUsers,
         Home,
         Elocator,
-        Einstruction
+        Einstruction,
+        EndScreen
     ],
     providers: [
         JwtService, ApiService, UserService, { provide: ErrorHandler, useClass: IonicErrorHandler },
