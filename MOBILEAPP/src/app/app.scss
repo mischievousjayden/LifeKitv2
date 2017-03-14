@@ -20,6 +20,7 @@ $indicate-color: #7c868a;
 $label-color: #969696;
 $sub-title-color: #8a8888;
 $prime-green-color: #49c7b5;
+$prime-yellow-color: #ffcf75;
 
 .alert-header {
   color: $alert-color;
@@ -57,7 +58,7 @@ $prime-green-color: #49c7b5;
 .indicate-text {
   font-style: italic;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 14px;
   color: $indicate-color;
 }
 
@@ -65,6 +66,16 @@ $prime-green-color: #49c7b5;
   background-color: $alert-color;
 }
 
+.alert-color {
+  color: $alert-color;
+}
+
+
 ion-label {
   color: $label-color;
+}
+
+.yellow-background {
+  background-color: $prime-yellow-color;
+
 }
