@@ -16,5 +16,8 @@ if need dialog box
 -->ionic plugin add cordova-plugin-dialogs
 if need chart.js 
 -->npm install chart.js --save
+if need filesystem
+-->$ ionic plugin add cordova-plugin-file
+
 
 
