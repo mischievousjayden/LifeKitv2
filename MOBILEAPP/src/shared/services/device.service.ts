@@ -1,6 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
-import {Contacts, Contact, ContactName, ContactField } from "ionic-native";
+import {
+  Contacts, Contact, ContactName, ContactField, ContactFieldType,
+  ContactFindOptions
+} from "ionic-native";
 import { Carrier, Device, Reading, EmergencyContact, User, SimpleMarker } from "../models";
 import { Geolocation, Geoposition } from "ionic-native";
 import { Observable } from 'rxjs/Rx';
@@ -21,6 +24,14 @@ export class DeviceService {
 
     }
 
+    getAllPhoneContacts():Promise<any>{
+      let fields:ContactFieldType[] = ['displayName','phoneNumbers'];
+      const options = new ContactFindOptions();
+      options.filter = "";
+      options.multiple = true;
+      return(Contacts.find(fields,options));
+    }
+
     getNaxloneCarriers(): Array<Carrier> {
         // first refresh carrier cache from google then return.
         return this.carriers;
@@ -29,10 +40,14 @@ export class DeviceService {
     getEmergencyContacts(): Array<EmergencyContact> {
         return this.emergencyContacts;
     }
+
+    removeEmergencyContact(contact:EmergencyContact){
+      this.emergencyContacts.splice(this.emergencyContacts.indexOf(contact),1);
+    }
     addEmergencyContact(contact: Contact) {
         let emerg = EmergencyContact.fromContact(contact);
         this.emergencyContacts.push(emerg);
-        return contact;
+        return                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ;
     }
     createEmergencyContact(lastName, firstName, phone) {
         let contact: Contact = Contacts.create();

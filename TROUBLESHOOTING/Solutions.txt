@@ -10,3 +10,11 @@ if need native audio
 --->ionic plugin add cordova-plugin-nativeaudio
 if need geolocation
 --->ionic plugin add cordova-plugin-geolocation
+if need contact list from phone
+---> ionic plugin add cordova-plugin-contacts
+if need dialog box 
+-->ionic plugin add cordova-plugin-dialogs
+if need chart.js 
+-->npm install chart.js --save
+
+

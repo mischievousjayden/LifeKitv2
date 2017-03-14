@@ -10,7 +10,6 @@ import { Devices } from "../pages/devices/devices";
 import { Emergency } from "../pages/emergency/emergency";
 import { Carriers } from "../pages/naloxone-carriers/carriers";
 import { Settings } from "../pages/settings/settings";
-import { ContactAddPage } from "../pages/contact-add/contact-add";
 import { OpioidTool } from "../pages/opioid-tool/opioid";
 import { SettingsEdit } from "../pages/setting-edit/setting-edit";
 import { OpioidUsers } from "../pages/opioid-users/opioidusers";
@@ -28,6 +27,8 @@ import {
 } from "../shared";
 import { BluetoothService } from "../shared/services/bluetooth.service";
 import { TypeUser } from "../pages/type-user/typeuser";
+import {AddFromPhoneEmergencyContact} from "../pages/contacts/add-fromphone-emergency-contact/add-fromphone-emergency-contact";
+import {AddNewEmergencyContact} from "../pages/contacts/add-new-emergency-contact/add-new-emergency-contact";
 import { LaunchNavigator } from 'ionic-native';
 
 //import { Auth } from '../pages/auth/auth.module';
@@ -35,6 +36,8 @@ import { LaunchNavigator } from 'ionic-native';
 
 export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
+        { component: AddFromPhoneEmergencyContact, name: "addfromphoneemergencycontact", segment: "addfromphoneemergencycontact" },
+        { component: AddNewEmergencyContact, name: "addnewemergencycontact", segment: "addnewemergencycontact" },
         { component: TypeUser, name: "usertype", segment: "usertype" },
         { component: NaloxoneLocator, name: "naloxonelocator", segment: "naloxonelocator" },
         { component: Home, name: "home", segment: "home" },
@@ -49,7 +52,6 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: Emergency, name: "emergency", segment: "emergency" },
         { component: Carriers, name: "carriers", segment: "carriers" },
         { component: Settings, name: "settings", segment: "settings" },
-        { component: ContactAddPage, name: "contactadd", segment: "contactadd" },
         { component: OpioidTool, name: "opioidtool", segment: "opioidtool" },
         { component: SettingsEdit, name: "settingsedit", segment: "settingsedit" },
         { component: OpioidUsers, name: "opioidusers", segment: "opioidusers" },
@@ -71,6 +73,8 @@ export const menuLinks = [
 
 @NgModule({
     declarations: [
+      AddNewEmergencyContact,
+      AddFromPhoneEmergencyContact,
         TypeUser,
         NaloxoneLocator,
         Start,
@@ -85,7 +89,6 @@ export const menuLinks = [
         Settings,
         SettingsEdit,
         OpioidTool,
-        ContactAddPage,
         OpioidUsers,
         Dashboard,
         Home,
@@ -98,6 +101,8 @@ export const menuLinks = [
     ],
     bootstrap: [IonicApp],
     entryComponents: [
+      AddNewEmergencyContact,
+      AddFromPhoneEmergencyContact,
         TypeUser,
         NaloxoneLocator,
         Start,
@@ -113,7 +118,6 @@ export const menuLinks = [
         Settings,
         SettingsEdit,
         OpioidTool,
-        ContactAddPage,
         OpioidUsers,
         Home,
         Elocator

@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 
 @Component({
-    templateUrl: 'emergency.html'
+    templateUrl: 'request.html'
 })
 export class Emergency {
 
