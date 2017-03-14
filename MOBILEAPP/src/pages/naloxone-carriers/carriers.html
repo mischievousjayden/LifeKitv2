@@ -2,10 +2,10 @@
 
 <div>
   <div *ngIf="opiodData">
-      <ion-card>
+      <ion-card *ngFor="let em of this.emergencies">
 
           <ion-card-header>
-              {{opiodData.opiod.total}}
+              {{em.emergency_lat}}
           </ion-card-header>
 
           <ion-card-content>
@@ -14,18 +14,7 @@
           </ion-card-content>
 
       </ion-card>
-      <ion-card>
 
-          <ion-card-header>
-              {{opiodData.naloxone.total}}
-          </ion-card-header>
-
-          <ion-card-content>
-            <!-- Add card content here! -->
-            <p>Opiod users are within {{opiodData.naloxone.radius}} mile near you</p>
-          </ion-card-content>
-
-      </ion-card>
   </div>
 
 </div>

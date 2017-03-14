@@ -11,17 +11,29 @@ import {Dialogs} from 'ionic-native'
 export class Start {
   constructor(public userService:UserService, public alerCtrl: AlertController, public navCtrl: NavController) {
     setTimeout(() => {
-      this.goNextPage();
+      this.goNextPageAuth();
     }, 3000);
   }
 
-  goNextPage(){
+  goNextPageAuth(){
     if(this.userService.isRegistered()){
       //if they already have a refresh token why do they ever need one again? Go to the home page! but have to get an access token
-      this.userService.signin();
-      this.navCtrl.setRoot('home');
+      var res = this.userService.signin().subscribe(res=>{
+        console.log("sign in access token: " + res.result);
+        if(res){
+          this.navCtrl.setRoot('home');
+        }else{
+          this.navCtrl.setRoot('signuppage');
+        }
+      });
+
     }else{
       this.navCtrl.setRoot('signuppage');
+    }
+  }
+  goNextPage(){
+    if(this.userService.isRegistered()) {
+      this.navCtrl.setRoot('home');
     }
   }
 

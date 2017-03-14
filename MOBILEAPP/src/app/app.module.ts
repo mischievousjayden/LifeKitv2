@@ -30,7 +30,8 @@ import { BluetoothService } from "../shared/services/bluetooth.service";
 import { TypeUser } from "../pages/type-user/typeuser";
 import {AddFromPhoneEmergencyContact} from "../pages/contacts/add-fromphone-emergency-contact/add-fromphone-emergency-contact";
 import {AddNewEmergencyContact} from "../pages/contacts/add-new-emergency-contact/add-new-emergency-contact";
-import { LaunchNavigator } from 'ionic-native';
+import {LaunchNavigator, Geolocation} from 'ionic-native';
+import {EmergenecyService} from "../shared/services/emergency.service";
 
 //import { Auth } from '../pages/auth/auth.module';
 
@@ -134,7 +135,9 @@ export const menuLinks = [
         UserService,
         JwtService,
         DeviceService,
-        LaunchNavigator
+        LaunchNavigator,
+        EmergenecyService,
+        Geolocation
     ]
 })
 export class AppModule {

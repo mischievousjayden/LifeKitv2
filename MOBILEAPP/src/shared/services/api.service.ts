@@ -50,7 +50,7 @@ export class ApiService {
       { headers: this.setHeaders() }
     )
     .catch(this.formatErrors)
-    .map((res:Response) => res.json());
+    .map((res:Response) => {return res.json()});
   }
 
   post(path: string, body: Object = {}): Observable<any> {

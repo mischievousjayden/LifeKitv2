@@ -1,12 +1,16 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 //import {NavController} from "ionic-angular";
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
+import {Geolocation} from "ionic-native";
+import {EmergenecyService} from "../../shared/services/emergency.service";
+
 
 @Component({
     selector: 'carrier',
     templateUrl: 'carriers.html'
 })
 export class Carriers {
+public emergencies:any;
 
   carrierSetting = {
       onDuty: true,
@@ -25,9 +29,22 @@ export class Carriers {
   };
 
 
-
-  constructor() {
+  constructor(public emergencyService:EmergenecyService) {
+    this.pageReportOnDuty();
 
   }
+
+  pageReportOnDuty(){
+    console.log('reporting on duty!');
+    Geolocation.getCurrentPosition().then(resp=>{
+      this.emergencyService.reportOnDuty(resp.coords.latitude,resp.coords.longitude).subscribe(res=>{
+        console.log(res.result);
+        this.emergencies = res.result;
+        setTimeout(this.pageReportOnDuty(),10000);
+      });
+    });
+  }
+
+  notifyOnDuty(){}
 
 }

@@ -85,6 +85,7 @@ export class UserService {
         res => {
           // save the refresh token for use in acquiring access token
           this.jwtService.saveRefreshToken(res.result);
+          this.jwtService.saveTelephoneNumber(phone);
           return true;
         },
         err => { return false;}
@@ -92,21 +93,21 @@ export class UserService {
   }
 
   signin() {
-    return this._signin(this.currentUserSubject.value.phone, this.jwtService.getRefreshToken());
+    return this._signin(this.jwtService.getTelephoneNumber(), this.jwtService.getRefreshToken());
   }
 
   _signin(phone: string, token: string) {
     let path = `/user/signin?phone=${phone}&refreshToken=${token}`
     return this.apiService.get(path)
       .map(
-        accessToken => {
+        res => {
           // Save the access token
-          this.jwtService.saveAccessToken(accessToken);
+          this.jwtService.saveAccessToken(res.result);
 
           // mark this user as signed in
           this.isAuthenticatedSubject.next(true);
 
-          return accessToken; // in case someone else needs it
+          return res; // in case someone else needs it
         }
       );
   }
