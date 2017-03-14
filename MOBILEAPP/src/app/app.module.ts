@@ -17,6 +17,7 @@ import { Home } from "../pages/home/home";
 import { Start } from "../pages/start/start";
 import { CarrierSettingsModel } from "../shared/models/carrier-settings/carrier-settings.model";
 import { NaloxoneLocator } from "../pages/naloxone-locator/naloxone-locator"
+import {Elocator} from '../pages/emergency/E-locator/elocator';
 
 import {
     ApiService,
@@ -28,6 +29,7 @@ import { BluetoothService } from "../shared/services/bluetooth.service";
 import { TypeUser } from "../pages/type-user/typeuser";
 import {AddFromPhoneEmergencyContact} from "../pages/contacts/add-fromphone-emergency-contact/add-fromphone-emergency-contact";
 import {AddNewEmergencyContact} from "../pages/contacts/add-new-emergency-contact/add-new-emergency-contact";
+import { LaunchNavigator } from 'ionic-native';
 
 //import { Auth } from '../pages/auth/auth.module';
 
@@ -54,6 +56,8 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: SettingsEdit, name: "settingsedit", segment: "settingsedit" },
         { component: OpioidUsers, name: "opioidusers", segment: "opioidusers" },
         { component: Dashboard, name: "dashboard", segment: "dashboard" },
+        { component: Elocator, name: "elocator", segment: "elocator" },
+
     ]
 };
 //need to add naloxonelocator
@@ -88,7 +92,8 @@ export const menuLinks = [
         OpioidUsers,
         Dashboard,
         Home,
-        CarrierSettingsModel
+        CarrierSettingsModel,
+        Elocator
     ],
     imports: [
         //Auth,
@@ -115,13 +120,16 @@ export const menuLinks = [
         OpioidTool,
         OpioidUsers,
         Home,
+        Elocator
     ],
     providers: [
         JwtService, ApiService, UserService, { provide: ErrorHandler, useClass: IonicErrorHandler },
         ApiService,
         UserService,
         JwtService,
-        DeviceService]
+        DeviceService,
+        LaunchNavigator
+    ]
 })
 export class AppModule {
 

@@ -12,11 +12,19 @@
       font-weight: bold;
     }
 
-    .centerDiv {
-      height:400px;
-      padding: 50px auto;
+    .card {
+      height: 400px;
+      margin-top: 50px;
+      width: 100%;
+      text-align: center;
     }
 
+    .card .item-text-wrap {
+      font-weight: bold;
+      height: 80%;
+      display: inline-block;
+      margin: 50px;
+    }
 
 
   }

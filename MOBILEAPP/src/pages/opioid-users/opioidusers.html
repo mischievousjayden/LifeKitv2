@@ -11,14 +11,14 @@
     </div>
   </ion-card>
 
-  <div [hidden]="connected" class="centerDiv">
-    <ion-card-content>
-      <p>There is no connected device.</p>
-      <p>Please connect to a device now.</p>
+
+  <div [hidden]="connected" class="card">
+    <div class="item item-text-wrap">
+      <h5>There is no connected device.</h5>
+      <h5>Please connect to a device now.</h5>
 
       <button (click) ="open('devices')" ion-button background-color =#49C7B5  round outline>Find Device</button>
-
-    </ion-card-content>
+    </div>
   </div>
   <div id = 'hello'></div>
 </div>
