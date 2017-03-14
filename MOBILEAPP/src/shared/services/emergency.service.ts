@@ -28,11 +28,14 @@ export class EmergenecyService {
 
   updateCarrierLocation(lat:number, lng: number): Observable<Emergency> {
     let path = `/update/location?accesstoken=${this.jwtService.getAccessToken()}`;
+
     let body = {
       lat:lat,
       lng:lng
     };
-    return this.apiService.put(path,body);
+    console.log("body:");
+    console.log(body);
+    return this.apiService.post(path,body);
   }
 
   reportOnDuty(lat:number,lng:number):Observable<Array<Emergency>>{

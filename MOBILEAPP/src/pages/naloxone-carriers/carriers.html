@@ -1,21 +1,29 @@
 
 
-<div>
-  <div *ngIf="opiodData">
-      <ion-card *ngFor="let em of this.emergencies">
 
-          <ion-card-header>
-              {{em.emergency_lat}}
-          </ion-card-header>
+    <ion-title text-center>Overdosing Patients!</ion-title>
+    <ion-list>
+      <ion-item  ion-item *ngFor="let e of this.emergencies">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6>
+              <h6 class="title">Patient</h6>
+              <p>{{e.emergency_address}}</p>
+              <p>{{e.started_at}}</p>
+            </ion-col>
+            <ion-col col-6>
+              <button ion-button clear item-right [color] = 'green' [outline] = "true" large class="button-style" (click)="this.acceptTask(e.emergencyid)"></button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item *ngIf="this.emergencies.length==0">
+        <p text-center=""> No emergencies at this time...</p>
+      </ion-item>
+    </ion-list>
 
-          <ion-card-content>
-            <!-- Add card content here! -->
-            <p>Opiod users are within {{opiodData.opiod.radius}} mile near you</p>
-          </ion-card-content>
 
-      </ion-card>
-
-  </div>
-
+<ion-title text-center>Naloxone Providers</ion-title>
+<div align="center">
+  <button ion-button (click)='open("naloxonelocator")' small outline round>See Map</button>
 </div>
-

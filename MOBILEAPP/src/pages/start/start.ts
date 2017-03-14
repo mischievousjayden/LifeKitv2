@@ -16,20 +16,12 @@ export class Start {
   }
 
   goNextPageAuth(){
-    if(this.userService.isRegistered()){
-      //if they already have a refresh token why do they ever need one again? Go to the home page! but have to get an access token
-      var res = this.userService.signin().subscribe(res=>{
-        console.log("sign in access token: " + res.result);
-        if(res){
-          this.navCtrl.setRoot('home');
-        }else{
-          this.navCtrl.setRoot('signuppage');
-        }
-      });
-
-    }else{
+    var res = this.userService.signin().subscribe(res=>{
+      console.log("sign in access token: " + res.result);
+        this.navCtrl.setRoot('home');
+    },res=>{
       this.navCtrl.setRoot('signuppage');
-    }
+    });
   }
   goNextPage(){
     if(this.userService.isRegistered()) {

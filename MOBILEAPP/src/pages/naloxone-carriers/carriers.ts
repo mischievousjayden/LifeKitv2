@@ -1,8 +1,9 @@
 import {Component, Input} from "@angular/core";
-//import {NavController} from "ionic-angular";
+import {NavController} from "ionic-angular";
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
 import {Geolocation} from "ionic-native";
 import {EmergenecyService} from "../../shared/services/emergency.service";
+import {Emergency} from "../../shared/models/emergency.model";
 
 
 @Component({
@@ -10,15 +11,15 @@ import {EmergenecyService} from "../../shared/services/emergency.service";
     templateUrl: 'carriers.html'
 })
 export class Carriers {
-public emergencies:any;
+public emergencies:Array<Emergency> = new Array<Emergency>();
 
   carrierSetting = {
       onDuty: true,
       hasNaloxone: true
   };
 
-  opiodData = {
-      opiod : {
+  opioidData = {
+      opioid : {
           total: 8,
           radius: 0.9
       },
@@ -28,8 +29,7 @@ public emergencies:any;
       }
   };
 
-
-  constructor(public emergencyService:EmergenecyService) {
+  constructor(public emergencyService:EmergenecyService, public navCtrl: NavController) {
     this.pageReportOnDuty();
 
   }
@@ -45,6 +45,8 @@ public emergencies:any;
     });
   }
 
-  notifyOnDuty(){}
+  open(url){
+    this.navCtrl.push(url);
+  }
 
 }

@@ -17,13 +17,14 @@ export class ApiService {
 
   private setHeaders(): Headers {
     let headersConfig = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    };
+      //'Content-Type': 'application/json',
+      //'Accept': 'application/json',
 
-    if (this.jwtService.getAccessToken()) {
-      headersConfig['Authorization'] = `Token ${this.jwtService.getAccessToken()}`;
-    }
+  };
+
+    //if (this.jwtService.getAccessToken()) {
+    //  headersConfig['Authorization'] = `Token ${this.jwtService.getAccessToken()}`;
+    //}
     return new Headers(headersConfig);
   }
 
@@ -53,7 +54,7 @@ export class ApiService {
     .map((res:Response) => {return res.json()});
   }
 
-  post(path: string, body: Object = {}): Observable<any> {
+  post(path: string, body: Object): Observable<any> {
     return this.http.post(
       `${environment.api_url}${path}`,
       JSON.stringify(body),

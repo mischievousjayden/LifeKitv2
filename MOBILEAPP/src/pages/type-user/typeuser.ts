@@ -37,11 +37,14 @@ export class TypeUser {
     });
   }
 
-
+  // toDo: implement to send data to server
   notifyOnDuty() {
     this.sendLocation();
     console.log(this.onDutyToggled);
     this.onDutyToggledObserver.next(this.onDutyToggled);
+  }
+  notifyHasNaloxone(){
+
   }
 
 }
