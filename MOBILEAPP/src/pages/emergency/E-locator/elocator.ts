@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavController} from 'ionic-angular';
+import {NavController, AlertController} from 'ionic-angular';
 import { LaunchNavigator, LaunchNavigatorOptions } from 'ionic-native';
 
 @Component({
@@ -32,7 +32,11 @@ export class Elocator {
 
   currentLocation = 'Philadelphia, PA';
 
-  constructor(public navCtrl: NavController) {
+
+  // toDO: get timer from server?
+  etimer = 123;
+
+  constructor(public navCtrl: NavController, public alertCtrl : AlertController) {
 
   }
 
@@ -44,7 +48,7 @@ export class Elocator {
 
   openMap(address){
 
-    LaunchNavigator.isAppAvailable(LaunchNavigator.APP.GOOGLE_MAPS, function(isAvailable){
+    LaunchNavigator.isAppAvailable(LaunchNavigator.APP.GOOGLE_MAPS).then(isAvailable =>{
       var app;
       if(isAvailable){
         app = LaunchNavigator.APP.GOOGLE_MAPS;
@@ -64,6 +68,28 @@ export class Elocator {
       );
     });
 
+  }
+
+
+  sendVerif() {
+    let alert = this.alertCtrl.create({
+      title: 'Cancel Help Request',
+      message: `Are you sure you want to cancel the patient request for help?`,
+      buttons: [{
+        text: 'Confirm' ,
+        handler: () => {this.cancelRequest()}
+      }, {
+        text : 'Cancel',
+        role: 'cancel'
+      }]
+    });
+    alert.present();
+  }
+
+  // toDO : to cancel the whole emergency.
+  cancelRequest() {
+
+    this.navCtrl.setRoot('home');
   }
 
 
