@@ -38,8 +38,8 @@ public emergencies:any;
     console.log('reporting on duty!');
     Geolocation.getCurrentPosition().then(resp=>{
       this.emergencyService.reportOnDuty(resp.coords.latitude,resp.coords.longitude).subscribe(res=>{
-        console.log(res.result);
-        this.emergencies = res.result;
+        console.log(res);
+        this.emergencies = res;
         setTimeout(this.pageReportOnDuty(),10000);
       });
     });

@@ -14,6 +14,7 @@ import {environment} from "../../environment/environment";
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { User } from '../models';
+import {Emergency} from "../models/emergency.model";
 
 
 @Injectable()
@@ -25,7 +26,7 @@ export class EmergenecyService {
     private jwtService: JwtService
   ) {}
 
-  updateCarrierLocation(lat:number, lng: number): Observable<any> {
+  updateCarrierLocation(lat:number, lng: number): Observable<Emergency> {
     let path = `/update/location?accesstoken=${this.jwtService.getAccessToken()}`;
     let body = {
       lat:lat,
@@ -34,9 +35,17 @@ export class EmergenecyService {
     return this.apiService.put(path,body);
   }
 
-  reportOnDuty(lat:number,lng:number){
+  reportOnDuty(lat:number,lng:number):Observable<Array<Emergency>>{
     let path = `/emergency/onduty?accesstoken=${this.jwtService.getAccessToken()}&lat=${lat}&lng=${lng}`;
-    return this.apiService.get(path);
+    return this.apiService.get(path).map(res=>{
+      var emergencies: Array<Emergency>= new Array();
+      var array = res.result;
+      array.forEach(function(res:Emergency){
+        emergencies.push(res);
+      });
+      return(emergencies);
+      }
+    );
   }
 
 }
