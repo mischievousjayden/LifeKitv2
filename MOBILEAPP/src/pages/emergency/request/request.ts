@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {Flashlight, Vibration} from "ionic-native";
 import {App} from "ionic-angular";
+import {Emergency} from "../emergency";
 
 @Component({
     templateUrl: 'request.html'
@@ -27,7 +28,7 @@ export class EmergencyRequest {
       },Emergency.vibrate.vibrateTime);
 
       app.viewWillUnload.subscribe(res=>{
-        alert('view unloading');  
+        alert('view unloading');
         clearInterval(Emergency.flashLight.flashLightIntervalID);
         clearInterval(Emergency.vibrate.vibrateIntervalID);
       });

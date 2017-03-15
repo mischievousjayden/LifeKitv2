@@ -62,7 +62,7 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: Elocator, name: "elocator", segment: "elocator" },
         { component: EndScreen, name: "endscreen", segment:"endscreen"},
         { component: EmergencyTimer, name: "emergencytimer", segment:"emergencytimer"},
-        { component: EmergencyRequest, name "emergencyrequest", segment: "emergencyrequest"},
+        { component: EmergencyRequest, name: "emergencyrequest", segment: "emergencyrequest"},
     ]
 };
 //need to add naloxonelocator
