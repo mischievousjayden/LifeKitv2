@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 
 @Component({
-    templateUrl: 'endScreen.html'
+    templateUrl: 'endscreen.html'
 })
 export class EndScreen {
 

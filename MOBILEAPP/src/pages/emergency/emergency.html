@@ -1,38 +1,14 @@
-<ion-header>
-    <ion-navbar no-border-bottom>
+<ion-header class = "bgColor">
+    <ion-navbar color="salmon" no-border-bottom>
     </ion-navbar>
-        <h1 color = "teal" align = "center">Emergency Subsided</h1>
-        <p color = "dark" align = "center"> Please fill out the survey below to help us improve our service</p>
+        <h1 color = "white" align = "center">Alert</h1>
+        <p color = "white" align = "center"> Please fill out the survey below to help us improve our service</p>
 </ion-header>
-<ion-content>
-    <ion-list>
-	<ion-item>
-		<ion-label>How did the emergency end?</ion-label>
-        <ion-select [(ngModel)]="emergencyresult">
-        	<ion-option value="saved">Patient Save</ion-option>
-        	<ion-option value="notsaved">Patient not saved</ion-option>
-         	<ion-option value="notneeded">Patient did not need assistance</ion-option>
-      	</ion-select>
-    </ion-item>
-    <ion-item>
-    	<ion-label>Did emergency response help with this emergency?</ion-label>
-        <ion-select [(ngModel)]="emergencyresponse">
-        	<ion-option value="yes">Yes</ion-option>
-            <ion-option value="no">No</ion-option>
-            <ion-option value="unsure">Unsure</ion-option>
-        </ion-select>
-    </ion-item>
-    <ion-item>
-    	<ion-label>Did any bystanders/pedestrians help with the emergency?</ion-label>
-        <ion-select [(ngModel)]="bystanders">
-        	<ion-option value="yes">Yes</ion-option>
-            <ion-option value="no">No</ion-option>
-            <ion-option value="unsure">Unsure</ion-option>
-        </ion-select>
-    </ion-item>
-    <ion-item>
+<ion-content padding class = "bgColor">
+    <ion-list no-lines>
+    <ion-item class = "bgColor">
             <p align = "center">
-                <button ion-button color ="teal" round outline>Submit</button>
+                <button ion-button color ="white" round outline>Submit</button>
             </p>
     </ion-item>
 </ion-list>

@@ -8,10 +8,10 @@
 <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="about">
         <ion-segment-button value="tool-about">
-            Opioid Risk Tool Information
+            Information
         </ion-segment-button>
         <ion-segment-button value="quiz-about">
-            Opioid Risk Tool
+            Tool
         </ion-segment-button>
     </ion-segment>
 </ion-toolbar>
@@ -19,9 +19,17 @@
 
 <ion-content>
     <div [ngSwitch]="about">
-        <ion-list *ngSwitchCase="'tool-about'">
-            <ion-item>
-                <p> Opioid Risk Tool here </p>
+        <ion-list *ngSwitchCase="'tool-about'" no-lines>
+            <ion-item text-wrap>
+                <br>
+                <h2 align = "center"> Opioid Risk Tool Introduction </h2>
+                <p align = "center">The Opioid Risk Tool (ORT) is a brief, self-report
+screening tool designed for use with adults patients in primary care
+settings to assess risk for opioid abuse among individuals prescibed opioids
+for treatment of chronic pain. Patients categorized as high-risk are at
+increased likelihood of future abusive drug-related behavior. The ORT can be
+adminsitered and scored in less than 1 minute and has been validated in both
+male and female patients, but not in non-pain populations. </p>
             </ion-item>
         </ion-list>
         <ion-list *ngSwitchCase="'quiz-about'">
@@ -33,7 +41,7 @@
                 </ion-select>
             </ion-item>
             <ion-item>
-                 <ion-label>Are you between the ages of 16 and 45 years old?</ion-label>
+                 <ion-label>Are you between the ages of 16 and 45?</ion-label>
                  <ion-select [(ngModel)]="gender">
                     <ion-option value="yes">Yes</ion-option>
                     <ion-option value="no">No</ion-option>
