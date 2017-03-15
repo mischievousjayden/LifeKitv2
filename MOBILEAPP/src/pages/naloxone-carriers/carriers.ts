@@ -18,30 +18,9 @@ export class Carriers {
       hasNaloxone: true
   };
 
-  opioidData = {
-      opioid : {
-          total: 8,
-          radius: 0.9
-      },
-      naloxone : {
-          total: 23,
-          radius: 1.5
-      }
-  };
 
   constructor(public emergencyService:EmergenecyService, public navCtrl: NavController) {
 
-  }
-
-  pageReportOnDuty(){
-    Geolocation.getCurrentPosition().then(resp=>{
-      console.log("reporting on duty");
-      this.emergencyService.reportOnDuty(resp.coords.latitude,resp.coords.longitude).subscribe(res=>{
-        console.log(res);
-        setTimeout(this.pageReportOnDuty(),10000);
-
-      });
-    });
   }
 
   open(url){

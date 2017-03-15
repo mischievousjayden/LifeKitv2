@@ -27,7 +27,6 @@ export class Emergency {
       },Emergency.vibrate.vibrateTime);
 
       app.viewWillUnload.subscribe(res=>{
-        alert('view unloading');  
         clearInterval(Emergency.flashLight.flashLightIntervalID);
         clearInterval(Emergency.vibrate.vibrateIntervalID);
       });

@@ -1,37 +1,36 @@
 import {Component} from "@angular/core";
 import {Flashlight, Vibration} from "ionic-native";
-import {App} from "ionic-angular";
+import {App, NavController} from "ionic-angular";
 import {Emergency} from "../emergency";
+import {Observable} from "rxjs";
 
 @Component({
     templateUrl: 'request.html'
 })
 export class EmergencyRequest {
+  //Time limit in seconds
+  public static TIME_LIMIT = 10;
+  public timer:Observable<any> = Observable.timer(0,1000);
+  public timerOb:any;
+  public currentTime:number = EmergencyRequest.TIME_LIMIT;
 
-  public static flashLight = {
-    flashLightTime: 1000,
-    flashLightIntervalID:0
-  };
+    constructor(public navCtrl:NavController, public app: App) {
 
-  public static vibrate = {
-    vibrateTime: 1000,
-    vibrateIntervalID:0
-  };
-    constructor(public app: App) {
-      //flashlight
-      Emergency.flashLight.flashLightIntervalID = setInterval(function(){
-        Flashlight.toggle();
-      },Emergency.flashLight.flashLightTime);
-
-      //vibrate
-      Emergency.vibrate.vibrateIntervalID = setInterval(function(){
-        Vibration.vibrate(500);
-      },Emergency.vibrate.vibrateTime);
-
-      app.viewWillUnload.subscribe(res=>{
-        alert('view unloading');
-        clearInterval(Emergency.flashLight.flashLightIntervalID);
-        clearInterval(Emergency.vibrate.vibrateIntervalID);
-      });
     }
+
+  ngOnInit(){
+    //start the timer count
+    console.log('ngoninit ran');
+    this.timerOb=this.timer.subscribe(t=>{
+      this.currentTime = this.currentTime - 1;
+      if(this.currentTime==0){
+        //stop the subscription and then.... start the next page with the alert.
+        if(this.timerOb){
+          this.timerOb.unsubscribe();
+          //move to the next page
+          this.navCtrl.push('elocator');
+        }
+      }
+    });
+  }
 }
