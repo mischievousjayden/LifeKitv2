@@ -10,9 +10,9 @@ import {Emergency} from "../../shared/models/emergency.model";
     selector: 'carrier',
     templateUrl: 'carriers.html'
 })
-export class Carriers {
-public emergencies:Array<Emergency> = new Array<Emergency>();
 
+export class Carriers {
+  @Input() emergencies:Array<Emergency> = new Array<Emergency>();
   carrierSetting = {
       onDuty: true,
       hasNaloxone: true

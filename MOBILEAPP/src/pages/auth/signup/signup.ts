@@ -49,6 +49,7 @@ export class SignUpPage {
               //console.log("verification code", res);
                 //NEXT PAGE HERE AFTER COR FIXED
               console.log(res);
+              alert("Your verification code: " + res.result);
               this.nextPage();
             },
             // if you wish to intercept the error
