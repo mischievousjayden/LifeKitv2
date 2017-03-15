@@ -18,7 +18,6 @@ import { Start } from "../pages/start/start";
 import { NaloxoneLocator } from "../pages/naloxone-locator/naloxone-locator"
 import { Einstruction } from '../pages/emergency/instruction/instruction';
 import {Elocator} from '../pages/emergency/locator/elocator';
-import {EndScreen} from '../pages/emergency/end/endscreen';
 import {EmergencyTimer} from '../pages/emergency/timer/timer';
 import {EmergencyRequest} from '../pages/emergency/request/request';
 
@@ -34,6 +33,7 @@ import {AddFromPhoneEmergencyContact} from "../pages/contacts/add-fromphone-emer
 import {AddNewEmergencyContact} from "../pages/contacts/add-new-emergency-contact/add-new-emergency-contact";
 import {LaunchNavigator, Geolocation} from 'ionic-native';
 import {EmergenecyService} from "../shared/services/emergency.service";
+import {EndScreen} from '../pages/emergency/endscreen/endscreen'
 
 //import { Auth } from '../pages/auth/auth.module';
 
