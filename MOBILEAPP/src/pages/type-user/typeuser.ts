@@ -37,9 +37,24 @@ export class TypeUser {
     });
   }
 
+  pageReportOnDuty(){
+    if(!this.onDutyToggled){
+      return;
+    }
+    Geolocation.getCurrentPosition().then(resp=>{
+      console.log("reporting on duty");
+      this.emergencyService.reportOnDuty(resp.coords.latitude,resp.coords.longitude).subscribe(res=>{
+        console.log(res);
+        setTimeout(this.pageReportOnDuty(),15000);
+
+      });
+    });
+  }
+
   // toDo: implement to send data to server
   notifyOnDuty() {
     this.sendLocation();
+    //this.pageReportOnDuty();
     console.log(this.onDutyToggled);
     this.onDutyToggledObserver.next(this.onDutyToggled);
   }

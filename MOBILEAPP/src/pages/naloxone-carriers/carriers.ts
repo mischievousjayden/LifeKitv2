@@ -30,17 +30,16 @@ public emergencies:Array<Emergency> = new Array<Emergency>();
   };
 
   constructor(public emergencyService:EmergenecyService, public navCtrl: NavController) {
-    this.pageReportOnDuty();
 
   }
 
   pageReportOnDuty(){
-    console.log('reporting on duty!');
     Geolocation.getCurrentPosition().then(resp=>{
+      console.log("reporting on duty");
       this.emergencyService.reportOnDuty(resp.coords.latitude,resp.coords.longitude).subscribe(res=>{
         console.log(res);
-        this.emergencies = res;
         setTimeout(this.pageReportOnDuty(),10000);
+
       });
     });
   }

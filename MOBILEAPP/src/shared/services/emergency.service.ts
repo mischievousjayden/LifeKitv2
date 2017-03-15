@@ -3,7 +3,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {Http, URLSearchParams} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
@@ -28,13 +28,9 @@ export class EmergenecyService {
 
   updateCarrierLocation(lat:number, lng: number): Observable<Emergency> {
     let path = `/update/location?accesstoken=${this.jwtService.getAccessToken()}`;
-
-    let body = {
-      lat:lat,
-      lng:lng
-    };
-    console.log("body:");
-    console.log(body);
+    let body = new URLSearchParams();
+    body.set('lat',lat.toString());
+    body.set('lng',lng.toString());
     return this.apiService.post(path,body);
   }
 
