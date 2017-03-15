@@ -1,21 +1,18 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title align = "center">Registration Page</ion-title>
-    </ion-navbar>
-</ion-header>
+
 <ion-content>
+    <img src="assets/verification.png" alt="lifekit">
     <ion-item-group>
-        <ion-item-divider color="light">Please input your phone number to sign up for LifeKit</ion-item-divider>
+        <ion-item-divider color="light">Connect with LifeKit</ion-item-divider>
         <ion-item>
-            <ion-label>Phone</ion-label>
-            <ion-input type = "tel"></ion-input>
+            <ion-label>Enter your phone number</ion-label>
+            <ion-input [(ngModel)] = 'this.phoneNumber' type = "tel"></ion-input>
         </ion-item>
     </ion-item-group>
 
     <ion-content padding>
     <p align = "center">
-        <button ion-button background-color =#49C7B5 (click)="sendVerif()"  round outline>Next</button>
-        <button ion-button color="secondary" round outline>Exit</button>
+        <button ion-button color ="teal" (click)="sendVerif()"  round outline>Next</button>
+
     </p>
     <ion-content padding>
 </ion-content>

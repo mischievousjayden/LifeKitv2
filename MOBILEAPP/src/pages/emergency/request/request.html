@@ -1,0 +1,22 @@
+<ion-header class = "bgColor">
+    <ion-navbar color="salmon" no-border-bottom>
+      <ion-title>
+        Emergency
+      </ion-title>
+    </ion-navbar>
+        <h1 color = "white" align = "center">Alert</h1>
+        <p color = "white" align = "center"> An overdose alert is about to be triggered. please press the cancel button below if this request was requested in error.</p>
+</ion-header>
+<ion-content padding class = "bgColor">
+    <ion-list no-lines>
+    <ion-item class = "bgColor">
+            <h2 align = "center"> Naloxone Carriers and Emergency Contacts will be alerted shortly </h2>
+            <br>
+            <br>
+      {{this.currentTime}}
+            <p align = "center">
+                <button ion-button large color ="white" round outline>Cancel</button>
+            </p>
+    </ion-item>
+</ion-list>
+</ion-content>

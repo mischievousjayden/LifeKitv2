@@ -29,7 +29,7 @@ export class UserService {
   // Verify JWT in localstorage with server & load user's info.
   // This runs once on application startup.
   populate() {
-    // todo: revisit this again    
+    // todo: revisit this again
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getRefreshToken()) {
       this.apiService.get('/user')
@@ -40,6 +40,14 @@ export class UserService {
     } else {
       // Remove any potential remnants of previous auth states
       this.purgeAuth();
+    }
+  }
+
+  isRegistered(){
+    if(this.jwtService.getRefreshToken()){
+      return(true);
+    }else{
+      return(false);
     }
   }
 
@@ -60,17 +68,10 @@ export class UserService {
     this.isAuthenticatedSubject.next(false);
   }
 
-  signup(phone: string): Observable<boolean> {
-    let path = `/signup?phone=${phone}`
-    return this.apiService.get(`${environment.api_url}${path}`)
-      .map( 
-        ok => { 
-          // It worked, let's hold on to the phone number
-          this.currentUserSubject.value.phone = phone;
-          return true;
-        },
-        err => { return false;}
-      );
+  signup(phone: string): Observable<any> {
+    let path = `/user/signup?phone=${phone}`;
+    this.currentUserSubject.value.phone = phone;
+    return this.apiService.get(path);
   }
 
   validate(code: number): Observable<boolean> {
@@ -78,12 +79,13 @@ export class UserService {
   }
 
   _validate(phone: string, code: number): Observable<boolean> {
-    let path = `/validate?phone=${phone}&code=${code}`
-    return this.apiService.get(`${environment.api_url}${path}`)
-      .map( 
-        refreshToken => { 
+    let path = `/user/validate?phone=${phone}&code=${code}`
+    return this.apiService.get(path)
+      .map(
+        res => {
           // save the refresh token for use in acquiring access token
-          this.jwtService.saveRefreshToken(refreshToken);
+          this.jwtService.saveRefreshToken(res.result);
+          this.jwtService.saveTelephoneNumber(phone);
           return true;
         },
         err => { return false;}
@@ -91,21 +93,21 @@ export class UserService {
   }
 
   signin() {
-    return this._signin(this.currentUserSubject.value.phone, this.jwtService.getRefreshToken());
+    return this._signin(this.jwtService.getTelephoneNumber(), this.jwtService.getRefreshToken());
   }
 
   _signin(phone: string, token: string) {
-    let path = `/signin?phone=${phone}&refreshToken=${token}`
-    return this.apiService.get(`${environment.api_url}${path}`)
-      .map( 
-        accessToken => {
+    let path = `/user/signin?phone=${phone}&refreshToken=${token}`
+    return this.apiService.get(path)
+      .map(
+        res => {
           // Save the access token
-          this.jwtService.saveAccessToken(accessToken);
+          this.jwtService.saveAccessToken(res.result);
 
           // mark this user as signed in
           this.isAuthenticatedSubject.next(true);
 
-          return accessToken; // in case someone else needs it
+          return res; // in case someone else needs it
         }
       );
   }

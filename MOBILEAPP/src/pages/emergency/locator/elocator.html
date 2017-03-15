@@ -1,0 +1,85 @@
+<ion-header>
+  <h1 text-center class="alert-header">Alert</h1>
+</ion-header>
+<ion-content>
+
+  <div class="side-margin-div">
+
+    <!-- Naloxone Locator -->
+
+    <div>
+      <ion-list-header class="title-text">
+        Nearest Naloxone locator:
+      </ion-list-header>
+      <ion-list>
+        <ion-item  ion-item *ngFor="let p of this.locators">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6>
+                <h6 class="title">{{p.name}}</h6>
+                <p>{{p.address}}</p>
+                <p>{{p.hours}}</p>
+              </ion-col>
+              <ion-col col-6>
+                <button ion-button clear item-right large class="button-style" (click)="openMap(p.address)"><ion-icon name="navigate"></ion-icon></button>
+                <button ion-button clear item-right large class="button-style" (click)="call(p.phone)"><ion-icon name="call"></ion-icon></button>
+
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+      </ion-list>
+    </div>
+
+
+
+    <!-- Patient Information -->
+    <div>
+      <ion-list-header class="title-text">
+        Patient Information:
+      </ion-list-header>
+
+        <ion-item>
+          <ion-row>
+            <ion-col col-6>
+              <div>
+                <h6 class="title">{{patient.name}}</h6>
+                <p>{{patient.address}}</p>
+              </div>
+            </ion-col>
+            <ion-col col-6>
+              <button ion-button clear item-right large class="button-style" (click)="openMap(patient.address)"><ion-icon name="navigate"></ion-icon></button>
+              <button ion-button clear item-right large class="button-style" (click)="call(patient.phone)"><ion-icon name="call"></ion-icon></button>
+
+            </ion-col>
+
+          </ion-row>
+
+
+        </ion-item>
+
+    </div>
+
+    <!-- timer -->
+    <ion-row>
+      <ion-col text-center>
+        <div >
+          <h1 class="alert-header">{{this.etimer}}</h1>
+          <ion-label class="label-text-color">estimate seconds</ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <p class="indicate-text">left to save patient</p>
+      </ion-col>
+    </ion-row>
+
+    <!--  Cancel request -->
+    <p align = "center">
+      <button (click)="sendVerif()" ion-button class="alert-button" round>Cancel request</button>
+    </p>
+
+  </div>
+
+
+</ion-content>

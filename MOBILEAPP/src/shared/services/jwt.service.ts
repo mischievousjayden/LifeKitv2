@@ -4,6 +4,13 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class JwtService {
 
+  saveTelephoneNumber(phone: string){
+    window.localStorage['phone'] = phone;
+  }
+  getTelephoneNumber(){
+    return(window.localStorage['phone']);
+  }
+
   getRefreshToken(): string {
     return window.localStorage['refToken'];
   }

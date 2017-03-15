@@ -1,84 +1,121 @@
-import {NgModule, ErrorHandler} from "@angular/core";
-import {IonicApp, IonicModule, IonicErrorHandler, DeepLinkConfig} from "ionic-angular";
-import {MyApp} from "./app.component";
-import {AboutPage} from "../pages/about/about";
-import {ContactPage} from "../pages/contacts/contact";
-//import {Menu} from "../pages/menu/menu";
-import {Dashboard} from "../pages/dashboard/dashboard";
-import {VerificationPage} from "../pages/auth/verification/verification";
-import {SignUpPage} from "../pages/auth/signup/signup";
-import {Devices} from "../pages/devices/devices";
-import {Emergency} from "../pages/emergency/emergency";
-import {Help} from "../pages/help/help";
-import {Carriers} from "../pages/naloxone-carriers/carriers";
-import {Profile} from "../pages/profile/profile";
-import {Settings} from "../pages/settings/settings";
-import {Vitals} from "../pages/vitals-monitor/vitals";
-import {ContactAddPage} from "../pages/contact-add/contact-add";
-import {DevicesEdit} from "../pages/devices-edit/devices-edit";
-import {OpioidTool} from "../pages/opioid-tool/opioid";
-import {SettingsEdit} from "../pages/setting-edit/setting-edit";
-import {OpioidUsers} from "../pages/opioid-users/opioidusers";
+import { NgModule, ErrorHandler } from "@angular/core";
+import { IonicApp, IonicModule, IonicErrorHandler, DeepLinkConfig } from "ionic-angular";
+import { MyApp } from "./app.component";
+import { AboutPage } from "../pages/about/about";
+import { ContactPage } from "../pages/contacts/contact";
+import { Dashboard } from "../pages/dashboard/dashboard";
+import { VerificationPage } from "../pages/auth/verification/verification";
+import { SignUpPage } from "../pages/auth/signup/signup";
+import { Devices } from "../pages/devices/devices";
+import { Emergency } from "../pages/emergency/emergency";
+import { Carriers } from "../pages/naloxone-carriers/carriers";
+import { Settings } from "../pages/settings/settings";
+import { OpioidTool } from "../pages/opioid-tool/opioid";
+import { SettingsEdit } from "../pages/setting-edit/setting-edit";
+import { OpioidUsers } from "../pages/opioid-users/opioidusers";
+import { Home } from "../pages/home/home";
+import { Start } from "../pages/start/start";
+import { NaloxoneLocator } from "../pages/naloxone-locator/naloxone-locator"
+import { Einstruction } from '../pages/emergency/instruction/instruction';
+import {Elocator} from '../pages/emergency/locator/elocator';
+import {EmergencyTimer} from '../pages/emergency/timer/timer';
+import {EmergencyRequest} from '../pages/emergency/request/request';
+
 import {
     ApiService,
     UserService,
     JwtService,
     DeviceService
 } from "../shared";
+import { BluetoothService } from "../shared/services/bluetooth.service";
+import { TypeUser } from "../pages/type-user/typeuser";
+import {AddFromPhoneEmergencyContact} from "../pages/contacts/add-fromphone-emergency-contact/add-fromphone-emergency-contact";
+import {AddNewEmergencyContact} from "../pages/contacts/add-new-emergency-contact/add-new-emergency-contact";
+import {LaunchNavigator, Geolocation} from 'ionic-native';
+import {EmergenecyService} from "../shared/services/emergency.service";
+import {EndScreen} from '../pages/emergency/endscreen/endscreen'
 
 //import { Auth } from '../pages/auth/auth.module';
 
 
 export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
-        {component: ContactPage, name: "contact", segment: "contact"},
-        {component: AboutPage, name: "about", segment: "about"},
-        {component: VerificationPage, name: "verification", segment: "verification"},
-        {component: SignUpPage, name: "signup", segment: "signup"},
-        {component: Devices, name: "devices", segment: "devices"},
-        {component: Emergency, name: "emergency", segment: "emergency"},
-        {component: Help, name: "help", segment: "help"},
-        {component: Carriers, name: "carriers", segment: "carriers"},
-        {component: Profile, name: "profile", segment: "profile"},
-        {component: Settings, name: "settings", segment: "settings"},
-        {component: Vitals, name: "vitals", segment: "vitals"},
-        {component: ContactAddPage, name: "contactadd", segment: "contactadd"},
-        {component: DevicesEdit, name: "devicesedit", segment: "devicesedit"},
-        {component: OpioidTool, name: "opioidtool", segment: "opioidtool"},
-        {component: SettingsEdit, name: "settingsedit", segment: "settingsedit"},
-        {component: OpioidUsers, name: "opioidusers", segment: "opioidusers"},
-        {component: Dashboard, name: "dashboard", segment: "dashboard"}
-        ]
+        { component: AddFromPhoneEmergencyContact, name: "addfromphoneemergencycontact", segment: "addfromphoneemergencycontact" },
+        { component: AddNewEmergencyContact, name: "addnewemergencycontact", segment: "addnewemergencycontact" },
+        { component: TypeUser, name: "usertype", segment: "usertype" },
+        { component: NaloxoneLocator, name: "naloxonelocator", segment: "naloxonelocator" },
+        { component: Home, name: "home", segment: "home" },
+        { component: VerificationPage, name: "verificationpage", segment: "verificationpage" },
+        { component: SignUpPage, name: "signuppage", segment: "signuppage" },
+        { component: Start, name: "start", segment: "start" },
+        { component: ContactPage, name: "contact", segment: "contact" },
+        { component: AboutPage, name: "about", segment: "about" },
+        { component: VerificationPage, name: "verification", segment: "verification" },
+        { component: SignUpPage, name: "signup", segment: "signup" },
+        { component: Devices, name: "devices", segment: "devices" },
+        { component: Emergency, name: "emergency", segment: "emergency" },
+        { component: Carriers, name: "carriers", segment: "carriers" },
+        { component: Settings, name: "settings", segment: "settings" },
+        { component: OpioidTool, name: "opioidtool", segment: "opioidtool" },
+        { component: SettingsEdit, name: "settingsedit", segment: "settingsedit" },
+        { component: OpioidUsers, name: "opioidusers", segment: "opioidusers" },
+        { component: Dashboard, name: "dashboard", segment: "dashboard" },
+        { component: Elocator, name: "elocator", segment: "elocator" },
+        { component: Einstruction, name: "einstruction", segment: "einstruction" },
+        { component: EndScreen, name: "endscreen", segment:"endscreen"},
+        { component: EmergencyTimer, name: "emergencytimer", segment:"emergencytimer"},
+        { component: EmergencyRequest, name: "emergencyrequest", segment: "emergencyrequest"},
+    ]
 };
+//need to add naloxonelocator
+export const menuLinks = [
+  {label:'Emergency Contact', name:'contact'},
+  {label:'Naloxone Locator', name:'naloxonelocator'},
+  {label:'Manage Device', name:'devices'},
+  {label:'User Settings', name:'settings'},
+  {label:'Opioid Quiz', name:'opioidtool'},
+  {label:'Help and Information', name:'about'},
+  {label:'TESTING-DASHBOARD',name:'dashboard'}
+];
 
 @NgModule({
     declarations: [
+      AddNewEmergencyContact,
+      AddFromPhoneEmergencyContact,
+        TypeUser,
+        NaloxoneLocator,
+        Start,
         MyApp,
         AboutPage,
         ContactPage,
         VerificationPage,
-        Dashboard,
         SignUpPage,
         Devices,
         Emergency,
-        Help,
         Carriers,
-        Profile,
         Settings,
-        Vitals,
         SettingsEdit,
         OpioidTool,
-        DevicesEdit,
-        ContactAddPage,
         OpioidUsers,
-        Dashboard
-        ],
+        Dashboard,
+        Home,
+        Elocator,
+        EndScreen,
+        Einstruction,
+        EmergencyRequest,
+        EmergencyTimer
+    ],
     imports: [
         //Auth,
-        IonicModule.forRoot(MyApp,{},deepLinkConfig)
+        IonicModule.forRoot(MyApp, {}, deepLinkConfig)
     ],
     bootstrap: [IonicApp],
     entryComponents: [
+      AddNewEmergencyContact,
+      AddFromPhoneEmergencyContact,
+        TypeUser,
+        NaloxoneLocator,
+        Start,
         MyApp,
         AboutPage,
         ContactPage,
@@ -87,18 +124,28 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         SignUpPage,
         Devices,
         Emergency,
-        Help,
         Carriers,
-        Profile,
         Settings,
-        Vitals,
         SettingsEdit,
         OpioidTool,
-        DevicesEdit,
-        ContactAddPage,
-        OpioidUsers
+        OpioidUsers,
+        Home,
+        Elocator,
+        Einstruction,
+        EndScreen,
+        EmergencyTimer,
+        EmergencyRequest
     ],
-    providers: [ {provide: ErrorHandler, useClass: IonicErrorHandler}]
+    providers: [
+        JwtService, ApiService, UserService, { provide: ErrorHandler, useClass: IonicErrorHandler },
+        ApiService,
+        UserService,
+        JwtService,
+        DeviceService,
+        LaunchNavigator,
+        EmergenecyService,
+        Geolocation
+    ]
 })
 export class AppModule {
 

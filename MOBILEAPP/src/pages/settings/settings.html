@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title align = "center">User Settings</ion-title>
+        <h1 color = "teal" align = "center">User Settings</h1>
     </ion-navbar>
 </ion-header>
 <ion-content>
@@ -36,6 +36,7 @@
         </ion-item>
     </ion-item-group>
     <p align = "center">
-        <button ion-button color ="secondary" round outline>Edit</button>
+
+        <button ion-button (click) = "this.goToEdit('settingsedit')" color ="teal" round outline>Edit</button>
     </p>
 </ion-content>
