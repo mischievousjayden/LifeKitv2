@@ -22,6 +22,7 @@ export class Home {
 
   constructor(public platform: Platform, public ref: ChangeDetectorRef) {
     this.rootPage = TypeUser;
+
   }
 
 

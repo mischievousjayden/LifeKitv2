@@ -7,6 +7,7 @@ import {Emergency} from "../emergency";
     templateUrl: 'request.html'
 })
 export class EmergencyRequest {
+
   public static flashLight = {
     flashLightTime: 1000,
     flashLightIntervalID:0

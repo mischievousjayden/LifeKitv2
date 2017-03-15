@@ -1,0 +1,56 @@
+
+<ion-header>
+  <h1 text-center class="alert-header">Alert</h1>
+  <p align="center" class="indicate-text">You have reached patient location!</p>
+</ion-header>
+<ion-content>
+
+  <div>
+
+    <!-- timer -->
+    <ion-row>
+      <ion-col text-center>
+        <div >
+          <h1 class="alert-header">{{this.etimer}}</h1>
+          <ion-label class="label-text-color">estimate seconds</ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <p class="indicate-text">left to save patient</p>
+      </ion-col>
+    </ion-row>
+
+    <!-- instruction -->
+    <ion-card class="instruction-card yellow-background">
+      <ion-card-header class="alert-color">
+        Please follow these steps:
+      </ion-card-header>
+      <ion-card-content>
+        <p>1. Do not panic!</p>
+        <p>2. Contact emergency response</p>
+        <p>3. Check if patient still breathing</p>
+        <p>4. Check if patient has pin point pupils</p>
+        <p>5. Administer Naloxone</p>
+      </ion-card-content>
+
+    </ion-card>
+
+    <!-- patient information -->
+    <div class="side-margin-div">
+      <ion-list-header class="title-text">
+        Patient Information:
+      </ion-list-header>
+      <div>
+        <p>{{this.patient.info}}</p>
+      </div>
+    </div>
+
+    <!--  End treatment -->
+    <p align = "center">
+      <button (click)="endEmergency()" outline ion-button color="teal" round>Finish</button>
+    </p>
+
+  </div>
+
+
+</ion-content>

@@ -60,6 +60,25 @@
         </ion-item>
 
     </div>
+
+    <!-- timer -->
+    <ion-row>
+      <ion-col text-center>
+        <div >
+          <h1 class="alert-header">{{this.etimer}}</h1>
+          <ion-label class="label-text-color">estimate seconds</ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <p class="indicate-text">left to save patient</p>
+      </ion-col>
+    </ion-row>
+
+    <!--  Cancel request -->
+    <p align = "center">
+      <button (click)="sendVerif()" ion-button class="alert-button" round>Cancel request</button>
+    </p>
+
   </div>
 
 

@@ -15,10 +15,10 @@ import { SettingsEdit } from "../pages/setting-edit/setting-edit";
 import { OpioidUsers } from "../pages/opioid-users/opioidusers";
 import { Home } from "../pages/home/home";
 import { Start } from "../pages/start/start";
-import { CarrierSettingsModel } from "../shared/models/carrier-settings/carrier-settings.model";
 import { NaloxoneLocator } from "../pages/naloxone-locator/naloxone-locator"
-import {Elocator} from '../pages/emergency/E-locator/elocator';
-import {EndScreen} from '../pages/emergency/endscreen/endscreen';
+import { Einstruction } from '../pages/emergency/instruction/instruction';
+import {Elocator} from '../pages/emergency/locator/elocator';
+import {EndScreen} from '../pages/emergency/end/endscreen';
 import {EmergencyTimer} from '../pages/emergency/timer/timer';
 import {EmergencyRequest} from '../pages/emergency/request/request';
 
@@ -32,7 +32,8 @@ import { BluetoothService } from "../shared/services/bluetooth.service";
 import { TypeUser } from "../pages/type-user/typeuser";
 import {AddFromPhoneEmergencyContact} from "../pages/contacts/add-fromphone-emergency-contact/add-fromphone-emergency-contact";
 import {AddNewEmergencyContact} from "../pages/contacts/add-new-emergency-contact/add-new-emergency-contact";
-import { LaunchNavigator } from 'ionic-native';
+import {LaunchNavigator, Geolocation} from 'ionic-native';
+import {EmergenecyService} from "../shared/services/emergency.service";
 
 //import { Auth } from '../pages/auth/auth.module';
 
@@ -60,6 +61,7 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: OpioidUsers, name: "opioidusers", segment: "opioidusers" },
         { component: Dashboard, name: "dashboard", segment: "dashboard" },
         { component: Elocator, name: "elocator", segment: "elocator" },
+        { component: Einstruction, name: "einstruction", segment: "einstruction" },
         { component: EndScreen, name: "endscreen", segment:"endscreen"},
         { component: EmergencyTimer, name: "emergencytimer", segment:"emergencytimer"},
         { component: EmergencyRequest, name: "emergencyrequest", segment: "emergencyrequest"},
@@ -97,11 +99,11 @@ export const menuLinks = [
         OpioidUsers,
         Dashboard,
         Home,
-        CarrierSettingsModel,
         Elocator,
         EndScreen,
-        EmergencyTimer,
-        EmergencyRequest
+        Einstruction,
+        EmergencyRequest,
+        EmergencyTimer
     ],
     imports: [
         //Auth,
@@ -129,6 +131,7 @@ export const menuLinks = [
         OpioidUsers,
         Home,
         Elocator,
+        Einstruction,
         EndScreen,
         EmergencyTimer,
         EmergencyRequest
@@ -139,7 +142,9 @@ export const menuLinks = [
         UserService,
         JwtService,
         DeviceService,
-        LaunchNavigator
+        LaunchNavigator,
+        EmergenecyService,
+        Geolocation
     ]
 })
 export class AppModule {

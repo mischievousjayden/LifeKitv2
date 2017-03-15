@@ -15,16 +15,21 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-
+$alert-color: #f07190;
+$indicate-color: #7c868a;
+$label-color: #969696;
+$sub-title-color: #8a8888;
+$prime-green-color: #49c7b5;
+$prime-yellow-color: #ffcf75;
 
 .alert-header {
-  color: #f07190;
+  color: $alert-color;
   font-weight: bold;
   font-size: 36px;
 }
 
 .title-text {
-  color: #8a8888;
+  color: $sub-title-color;
   font-size: 16px;
   font-weight: bold;
   text-transform: capitalize;
@@ -37,7 +42,7 @@
 
 
 .menuBg{
-    background-color: #49c7b5;
+    background-color: $prime-green-color;
 }
 
 .h3{
@@ -48,4 +53,29 @@
 	overflow: inherit;
 	text-overflow:inherit;
 	white-space: wrap;
+}
+
+.indicate-text {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 14px;
+  color: $indicate-color;
+}
+
+.alert-button {
+  background-color: $alert-color;
+}
+
+.alert-color {
+  color: $alert-color;
+}
+
+
+.label-text-color {
+  color: $label-color;
+}
+
+.yellow-background {
+  background-color: $prime-yellow-color;
+
 }
