@@ -40,7 +40,7 @@ export class Elocator {
     Geolocation.getCurrentPosition(Elocator.GPS_OPTIONS).then(res=>{
       var geoposition:Geoposition = res;
 
-      googlePlaces.getGooglePlaces('pharmacy',geoposition,2000).subscribe(res=>{
+      googlePlaces.getGooglePlaces('pharmacy',geoposition,1500).subscribe(res=>{
         console.log(res);
         this.locators = res;
       });

@@ -27,6 +27,7 @@ export class GooglePlaces{
     searchParams.append('opennow',"true");
     searchParams.append('rankby','distance');
     searchParams.append('radius',radius + "");
+    searchParams.append('keyword',aPlace);
     searchParams.append("type",aPlace);
     searchParams.append("location", userLocation.coords.latitude + "," + userLocation.coords.longitude);
     searchParams.append("key", environment.maps_api_key);
