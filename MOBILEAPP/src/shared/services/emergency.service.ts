@@ -13,7 +13,6 @@ import 'rxjs/add/operator/catch';
 import {environment} from "../../environment/environment";
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-import { User } from '../models';
 import {Emergency} from "../models/emergency.model";
 
 

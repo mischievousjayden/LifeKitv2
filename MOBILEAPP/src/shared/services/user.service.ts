@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 import {environment} from "../../environment/environment";
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-import { User } from '../models';
+import {User} from "../models/user.model";
 
 
 @Injectable()
@@ -106,7 +106,6 @@ export class UserService {
 
           // mark this user as signed in
           this.isAuthenticatedSubject.next(true);
-
           return res; // in case someone else needs it
         }
       );

@@ -3,6 +3,7 @@ import {NavController, AlertController} from 'ionic-angular';
 import {LaunchNavigator, LaunchNavigatorOptions, Geolocation, Geoposition, GeolocationOptions} from 'ionic-native';
 import {GooglePlaces} from "../../../shared/services/googleplaces.service";
 import {GooglePlace} from "../../../shared/models/GooglePlace";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'e-locator',
@@ -10,6 +11,12 @@ import {GooglePlace} from "../../../shared/models/GooglePlace";
 })
 export class Elocator {
   // toDO: implement method to get patient and naloxone locators
+
+  //Time limit in seconds
+  public static TIME_LIMIT = 123;
+  public timer:Observable<any> = Observable.timer(0,1000);
+  public timerOb:any;
+  public currentTime:number = Elocator.TIME_LIMIT;
 
   locators:Array<GooglePlace> = new Array();
 
@@ -26,7 +33,6 @@ export class Elocator {
 
 
   // toDO: get timer from server?
-  etimer = 123;
 
   public static GPS_OPTIONS:GeolocationOptions = {maximumAge:3000, timeout:10000, enableHighAccuracy:true};
   constructor(public googlePlaces: GooglePlaces, public navCtrl: NavController, public alertCtrl : AlertController) {
@@ -41,6 +47,18 @@ export class Elocator {
 
     }).catch(res=>{
       console.log('error getting location');
+    });
+  }
+
+  ngOnInit(){
+    //start the timer count
+    console.log('ngoninit ran');
+    this.timerOb=this.timer.subscribe(t=>{
+      this.currentTime = this.currentTime - 1;
+      if(this.currentTime==0){
+        //stop the subscription and then.... start the next page with the alert.
+        this.timerOb.unsubscribe();
+      }
     });
   }
 
@@ -92,9 +110,9 @@ export class Elocator {
 
   // toDO : to cancel the whole emergency.
   cancelRequest() {
-
+    if(this.timerOb){
+      this.timerOb.unsubscribe();
+    }
     this.navCtrl.setRoot('home');
   }
-
-
 }

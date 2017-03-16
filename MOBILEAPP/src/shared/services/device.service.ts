@@ -4,7 +4,7 @@ import {
   Contacts, Contact, ContactName, ContactField, ContactFieldType,
   ContactFindOptions
 } from "ionic-native";
-import { Carrier, Device, Reading, EmergencyContact, User, SimpleMarker } from "../models";
+import { Carrier, Device, Reading, EmergencyContact, SimpleMarker } from "../models";
 import { Geolocation, Geoposition } from "ionic-native";
 import { Observable } from 'rxjs/Rx';
 import { ReplaySubject } from 'rxjs/ReplaySubject';

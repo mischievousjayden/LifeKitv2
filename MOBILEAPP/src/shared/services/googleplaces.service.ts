@@ -24,6 +24,7 @@ export class GooglePlaces{
     let example = "https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyDJ2gtLk2bgMvCwqBDWHJGilstJuKE87-Y";
     let url = `https://maps.googleapis.com/maps/api/place/radarsearch/json`;
     let searchParams = new URLSearchParams();
+    searchParams.append('opennow',"true");
     searchParams.append('rankby','distance');
     searchParams.append('radius',radius + "");
     searchParams.append("type",aPlace);

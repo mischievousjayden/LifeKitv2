@@ -35,6 +35,7 @@ import {LaunchNavigator, Geolocation} from 'ionic-native';
 import {EmergenecyService} from "../shared/services/emergency.service";
 import {EndScreen} from '../pages/emergency/endscreen/endscreen'
 import {GooglePlaces} from "../shared/services/googleplaces.service";
+import {UserSettingsService} from "../shared/services/user-settings.service";
 
 //import { Auth } from '../pages/auth/auth.module';
 
@@ -146,7 +147,8 @@ export const menuLinks = [
         LaunchNavigator,
         EmergenecyService,
         Geolocation,
-        GooglePlaces
+        GooglePlaces,
+        UserSettingsService
     ]
 })
 export class AppModule {
