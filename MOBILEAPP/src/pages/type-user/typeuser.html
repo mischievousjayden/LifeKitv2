@@ -9,7 +9,7 @@
 
 <ion-content>
     <opioid-users [hidden]="onDutyToggled"></opioid-users>
-    <carrier [hidden] = "!onDutyToggled"></carrier>
+    <carrier [onDutyToggled] = "onDutyToggled" [hidden] = "!onDutyToggled"></carrier>
     <div class="carrier-settings">
       <div>
         <ion-label text-center class="text-margin text-label">For Carrier</ion-label>
