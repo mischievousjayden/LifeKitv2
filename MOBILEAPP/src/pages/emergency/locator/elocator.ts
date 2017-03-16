@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import {NavController, AlertController} from 'ionic-angular';
-import { LaunchNavigator, LaunchNavigatorOptions } from 'ionic-native';
+import {LaunchNavigator, LaunchNavigatorOptions, Geolocation, Geoposition, GeolocationOptions} from 'ionic-native';
+import {GooglePlaces} from "../../../shared/services/googleplaces.service";
+import {GooglePlace} from "../../../shared/models/GooglePlace";
 
 @Component({
   selector: 'e-locator',
@@ -9,17 +11,7 @@ import { LaunchNavigator, LaunchNavigatorOptions } from 'ionic-native';
 export class Elocator {
   // toDO: implement method to get patient and naloxone locators
 
-  locators = [{
-    name: 'CVS',
-    address : '1286 Chestnut, PA',
-    phone: '+1 215-834-8222',
-    hours: 'Open: 8AM-11PM'
-  }, {
-    name: 'Rite aids',
-    address : '1633 Chestnut, PA',
-    phone: '+1 215-987-2354',
-    hours: 'Open: 8AM-10PM'
-  }];
+  locators:Array<GooglePlace> = new Array();
 
 
   patient = {
@@ -30,14 +22,26 @@ export class Elocator {
 
   // toDO: implement method to get current location
 
-  currentLocation = 'Philadelphia, PA';
+  currentLocation:Geoposition;
 
 
   // toDO: get timer from server?
   etimer = 123;
 
-  constructor(public navCtrl: NavController, public alertCtrl : AlertController) {
+  public static GPS_OPTIONS:GeolocationOptions = {maximumAge:3000, timeout:10000, enableHighAccuracy:true};
+  constructor(public googlePlaces: GooglePlaces, public navCtrl: NavController, public alertCtrl : AlertController) {
 
+    Geolocation.getCurrentPosition(Elocator.GPS_OPTIONS).then(res=>{
+      var geoposition:Geoposition = res;
+
+      googlePlaces.getGooglePlaces('pharmacy',geoposition,2000).subscribe(res=>{
+        console.log(res);
+        this.locators = res;
+      });
+
+    }).catch(res=>{
+      console.log('error getting location');
+    });
   }
 
   call(phoneNumber) {
@@ -56,15 +60,17 @@ export class Elocator {
         app = LaunchNavigator.APP.USER_SELECT;
       }
 
-      let options: LaunchNavigatorOptions =  {
-        start: this.currentLocation,
-        app: app
-      }
-
-      LaunchNavigator.navigate(address, options).then(
-        success => console.log('Launched navigator'),
-        error => console.log('Error launching navigator', error)
-      );
+      Geolocation.getCurrentPosition(Elocator.GPS_OPTIONS).then(res=>{
+          var geoposition:Geoposition = res;
+          var options =  {
+            start: geoposition.coords.latitude + "," + geoposition.coords.longitude,
+            app: app
+          };
+          LaunchNavigator.navigate(address, options).then(
+            success => console.log('Launched navigator'),
+            error => console.log('Error launching navigator', error)
+          );
+        });
     });
   }
 

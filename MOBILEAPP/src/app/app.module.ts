@@ -34,6 +34,7 @@ import {AddNewEmergencyContact} from "../pages/contacts/add-new-emergency-contac
 import {LaunchNavigator, Geolocation} from 'ionic-native';
 import {EmergenecyService} from "../shared/services/emergency.service";
 import {EndScreen} from '../pages/emergency/endscreen/endscreen'
+import {GooglePlaces} from "../shared/services/googleplaces.service";
 
 //import { Auth } from '../pages/auth/auth.module';
 
@@ -144,7 +145,8 @@ export const menuLinks = [
         DeviceService,
         LaunchNavigator,
         EmergenecyService,
-        Geolocation
+        Geolocation,
+        GooglePlaces
     ]
 })
 export class AppModule {

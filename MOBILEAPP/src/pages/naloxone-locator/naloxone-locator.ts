@@ -3,6 +3,7 @@ import { Platform } from "ionic-angular";
 import { DeviceService } from "../../shared";
 import { Geoposition } from "ionic-native";
 import { SimpleMarker } from "../../shared/models";
+import {GooglePlaces} from "../../shared/services/googleplaces.service";
 
 declare var google: any;
 
@@ -13,13 +14,13 @@ export class NaloxoneLocator {
 
 
     @ViewChild('mapCanvas') mapElement: ElementRef;
-    constructor(private deviceService: DeviceService, private platform: Platform) {
+    constructor(public googlePlaces: GooglePlaces, private deviceService: DeviceService, private platform: Platform) {
     }
 
     ionViewDidLoad() {
         let mapEle = this.mapElement.nativeElement;
         let map;
-        
+
         this.deviceService.getCurrentPosition().subscribe(
             userPosition => {
                 // center map on user's location
@@ -28,15 +29,7 @@ export class NaloxoneLocator {
                     zoom: 13
                 });
 
-                // add user's location marker to map
-                this.addToMap(userPosition, map);
 
-                // get other marker's and add
-                this.deviceService.getCarrierLocations().subscribe((mapData: any) => {
-                    mapData.forEach((markerData: any) => {
-                        this.addToMap(markerData, map);
-                    });
-                });
 
             })
     }
