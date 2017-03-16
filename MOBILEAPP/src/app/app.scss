@@ -36,8 +36,8 @@ $prime-yellow-color: #ffcf75;
 }
 
 .side-margin-div {
-  margin: auto 25px;
-  padding: 5px 5px;
+  margin: auto 2.5%;
+  padding: 2.5% 2.5%;
 }
 
 
@@ -78,4 +78,8 @@ $prime-yellow-color: #ffcf75;
 .yellow-background {
   background-color: $prime-yellow-color;
 
+}
+
+.scroll {
+  overflow-y:scroll;
 }
