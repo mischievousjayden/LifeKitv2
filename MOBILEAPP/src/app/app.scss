@@ -58,7 +58,7 @@ $prime-yellow-color: #ffcf75;
 .indicate-text {
   font-style: italic;
   font-weight: bold;
-  font-size: 14px;
+  font-size: small;
   color: $indicate-color;
 }
 
@@ -82,4 +82,11 @@ $prime-yellow-color: #ffcf75;
 
 .scroll {
   overflow-y:scroll;
+}
+
+.static-bottom{
+  position : fixed;
+  width: 100%;
+  bottom: 0;
+  background-color: white;
 }
