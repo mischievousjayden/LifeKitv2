@@ -6,10 +6,14 @@ import {UserSettings} from "../models/user-setting.model";
 @Injectable()
 export class UserSettingsService{
   public saveUserSettings(userSettings:UserSettings){
-    window.localStorage['userSettings']= JSON.stringify(userSettings);
+    console.log('saved:' + userSettings);
+    window.localStorage.removeItem('userSettings');
+    window.localStorage.setItem('userSettings',JSON.stringify(userSettings));
   }
 
   public loadUserSettings():UserSettings{
-    return(window.localStorage['userSettings']);
+    var temp =JSON.parse(window.localStorage.getItem('userSettings'));
+    console.log('loaded: ' + temp);
+    return(temp);
   }
 }

@@ -19,7 +19,7 @@ export class ApiService {
     let headersConfig = {
       'Content-Type': 'application/x-www-form-urlencoded',
       //'Content-Type': 'application/json'
-      'Accept': 'application/json',
+      //'Accept': 'application/json',
 
   };
 

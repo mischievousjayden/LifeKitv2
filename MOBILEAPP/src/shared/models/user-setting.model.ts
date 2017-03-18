@@ -12,9 +12,10 @@ export class Address {
   city: string;
   state: string;
   zipCode: number;
+  additionalInformation: string;
   gps:Geolocation;
 
   public toString():string{
-    return(this.houseNumber + this.street+this.city+this.state+this.zipCode);
+    return(this.houseNumber +" "  + this.street +" " +this.city+ " " + this.state + " " +this.zipCode);
   }
 }

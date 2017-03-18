@@ -4,39 +4,28 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-item-group>
-        <ion-item-divider color="light">Basic Info:</ion-item-divider>
-            <ion-item>
-                <ion-label>First Name: </ion-label>
-                <ion-note item-right> Kathy </ion-note>
-            </ion-item>
-            <ion-item>
-                 <ion-label>Last Name: </ion-label>
-                <ion-note item-right> Wang </ion-note>
-            </ion-item>
-            <ion-item>
-                 <ion-label>Age: </ion-label>
-                <ion-note item-right> 21 </ion-note>
-            </ion-item>
-    </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="light">Basic Info:</ion-item-divider>
+    <ion-item>
+      <ion-label>First Name:</ion-label>
+      <ion-input  [(ngModel)]="userSettings.firstName" clearInput='true' ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Last Name:</ion-label>
+      <ion-input  [(ngModel)]="userSettings.lastName"  clearInput='true'  ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Age:</ion-label>
+      <ion-input  [(ngModel)]="userSettings.age" clearInput='true'  type="number" ></ion-input>
+    </ion-item>
+  </ion-item-group>
 
     <ion-item-group>
         <ion-item-divider color="light">Frequent Addresses:</ion-item-divider>
-            <ion-item>
-                 <ion-label>Address 1: </ion-label>
-                <ion-note item-right> 123 test rd philadelphia, pa 19123 </ion-note>
+            <ion-item *ngFor="let i = index; let addr of userSettings.addresses">
+                  <ion-label> {{addr.houseNumber}} {{addr.street}} {{addr.city}} {{addr.state}} {{addr.zipCode}}<button (click)="remove(i)" style=" float:right; text-align: right;" align="right" round color="danger" ion-button small>X</button></ion-label>
+                  <ion-note>{{addr.additionalInformation}}</ion-note>
             </ion-item>
-        <ion-item>
-                 <ion-label>Address 2: </ion-label>
-                <ion-note item-right>  </ion-note>
-        </ion-item>
-        <ion-item>
-                 <ion-label>Address 3: </ion-label>
-                <ion-note item-right>  </ion-note>
-        </ion-item>
     </ion-item-group>
-    <p align = "center">
-
-        <button ion-button (click) = "this.goToEdit('settingsedit')" color ="teal" round outline>Edit</button>
-    </p>
+  <ion-footer><button (click)='presentAddAddressModal()'  full ion-button round icon-right>Add Address</button></ion-footer>
 </ion-content>

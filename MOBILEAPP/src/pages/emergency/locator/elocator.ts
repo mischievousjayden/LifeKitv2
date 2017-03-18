@@ -1,9 +1,12 @@
 import {Component} from "@angular/core";
-import {NavController, AlertController} from 'ionic-angular';
+import {NavController, AlertController, App} from 'ionic-angular';
 import {LaunchNavigator, LaunchNavigatorOptions, Geolocation, Geoposition, GeolocationOptions} from 'ionic-native';
 import {GooglePlaces} from "../../../shared/services/googleplaces.service";
 import {GooglePlace} from "../../../shared/models/GooglePlace";
 import {Observable} from "rxjs";
+import {EmergenecyService} from "../../../shared/services/emergency.service";
+import {UserSettings, Address} from "../../../shared/models/user-setting.model";
+import {UserSettingsService} from "../../../shared/services/user-settings.service";
 
 @Component({
   selector: 'e-locator',
@@ -30,17 +33,32 @@ export class Elocator {
   // toDO: implement method to get current location
 
   currentLocation:Geoposition;
-
+  public userSettings: UserSettings;
 
   // toDO: get timer from server?
 
   public static GPS_OPTIONS:GeolocationOptions = {maximumAge:3000, timeout:10000, enableHighAccuracy:true};
-  constructor(public googlePlaces: GooglePlaces, public navCtrl: NavController, public alertCtrl : AlertController) {
-
-    Geolocation.getCurrentPosition(Elocator.GPS_OPTIONS).then(res=>{
+  constructor(public userSettingsService: UserSettingsService, public er: EmergenecyService, public googlePlaces: GooglePlaces, public navCtrl: NavController, public alertCtrl : AlertController) {
+    this.userSettings =userSettingsService.loadUserSettings();
+      Geolocation.getCurrentPosition(Elocator.GPS_OPTIONS).then(res=>{
       var geoposition:Geoposition = res;
+      //Get emergency services
+      var sendAddr: Address;
 
-      googlePlaces.getGooglePlaces('pharmacy',geoposition,1500).subscribe(res=>{
+      // toDo: implement a function to figure out which address to send is the most likely they will be there
+      if(this.userSettings.addresses.length==0){
+        sendAddr = null;
+      }else{
+        sendAddr = this.userSettings.addresses[0];
+      }
+
+      //Sends the emergency
+      er.startEmergency(this.userSettings.firstName + " " + this.userSettings.lastName, sendAddr, geoposition).subscribe(res=>{
+        console.log('Emergency request has been sent: ' + res);
+      });
+
+      //Get positions for the map
+      googlePlaces.getGooglePlaces('pharmacy',geoposition,1500,3).subscribe(res=>{
         console.log(res);
         this.locators = res;
       });
@@ -113,6 +131,8 @@ export class Elocator {
     if(this.timerOb){
       this.timerOb.unsubscribe();
     }
-    this.navCtrl.setRoot('home');
+    this.er.endEmergency().subscribe(res=>{
+      this.navCtrl.setRoot('home');
+    });
   }
 }

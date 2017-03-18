@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar>
+        <h1 color = "teal" align = "center">Add Address</h1>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-item-group>
+        <ion-item-divider color="light">Frequent Address:</ion-item-divider>
+            <ion-item>
+                <ion-label>Building Number</ion-label>
+                <ion-input [(ngModel)]="address.houseNumber" type = "text"></ion-input>
+            </ion-item>
+        <ion-item>
+            <ion-label>Street</ion-label>
+            <ion-input [(ngModel)]="address.street" type = "text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>City</ion-label>
+            <ion-input [(ngModel)]="address.city" type = "text"></ion-input>
+        </ion-item>
+      <ion-item>
+        <ion-label>State</ion-label>
+        <ion-input [(ngModel)]="address.state" type = "text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Zip Code</ion-label>
+        <ion-input [(ngModel)]="address.zipCode" type = "number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Additional Information To Locate (ex: floor#|room#)</ion-label>
+        <ion-textarea clearInput="true" [(ngModel)] ="address.additionalInformation"></ion-textarea>
+      </ion-item>
+    </ion-item-group>
+  <ion-footer align="center"><button (click)="dismiss()" color="danger" round large ion-button>Cancel</button><button (click)="addThenDismiss()" color="secondary" large  round ion-button>Add</button></ion-footer>
+</ion-content>

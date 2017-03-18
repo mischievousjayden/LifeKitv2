@@ -11,7 +11,7 @@ import { Emergency } from "../pages/emergency/emergency";
 import { Carriers } from "../pages/naloxone-carriers/carriers";
 import { Settings } from "../pages/settings/settings";
 import { OpioidTool } from "../pages/opioid-tool/opioid";
-import { SettingsEdit } from "../pages/setting-edit/setting-edit";
+import {SettingsEditUser} from "../pages/settings/setting-edituser/setting-edituser";
 import { OpioidUsers } from "../pages/opioid-users/opioidusers";
 import { Home } from "../pages/home/home";
 import { Start } from "../pages/start/start";
@@ -36,6 +36,7 @@ import {EmergenecyService} from "../shared/services/emergency.service";
 import {EndScreen} from '../pages/emergency/endscreen/endscreen'
 import {GooglePlaces} from "../shared/services/googleplaces.service";
 import {UserSettingsService} from "../shared/services/user-settings.service";
+import {SettingsEditAddr} from "../pages/settings/setting-editaddr/setting-editaddr";
 
 //import { Auth } from '../pages/auth/auth.module';
 
@@ -59,7 +60,6 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: Carriers, name: "carriers", segment: "carriers" },
         { component: Settings, name: "settings", segment: "settings" },
         { component: OpioidTool, name: "opioidtool", segment: "opioidtool" },
-        { component: SettingsEdit, name: "settingsedit", segment: "settingsedit" },
         { component: OpioidUsers, name: "opioidusers", segment: "opioidusers" },
         { component: Dashboard, name: "dashboard", segment: "dashboard" },
         { component: Elocator, name: "elocator", segment: "elocator" },
@@ -67,6 +67,10 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: EndScreen, name: "endscreen", segment:"endscreen"},
         { component: EmergencyTimer, name: "emergencytimer", segment:"emergencytimer"},
         { component: EmergencyRequest, name: "emergencyrequest", segment: "emergencyrequest"},
+        { component: SettingsEditUser, name: "settingsedituser", segment: "settingsedituser"},
+        { component: SettingsEditAddr, name: "settingseditaddr", segment: "settingseditaddr"},
+
+
     ]
 };
 //need to add naloxonelocator
@@ -96,7 +100,6 @@ export const menuLinks = [
         Emergency,
         Carriers,
         Settings,
-        SettingsEdit,
         OpioidTool,
         OpioidUsers,
         Dashboard,
@@ -105,7 +108,9 @@ export const menuLinks = [
         EndScreen,
         Einstruction,
         EmergencyRequest,
-        EmergencyTimer
+        EmergencyTimer,
+        SettingsEditUser,
+        SettingsEditAddr
     ],
     imports: [
         //Auth,
@@ -128,7 +133,6 @@ export const menuLinks = [
         Emergency,
         Carriers,
         Settings,
-        SettingsEdit,
         OpioidTool,
         OpioidUsers,
         Home,
@@ -136,7 +140,9 @@ export const menuLinks = [
         Einstruction,
         EndScreen,
         EmergencyTimer,
-        EmergencyRequest
+        EmergencyRequest,
+        SettingsEditUser,
+        SettingsEditAddr
     ],
     providers: [
         JwtService, ApiService, UserService, { provide: ErrorHandler, useClass: IonicErrorHandler },

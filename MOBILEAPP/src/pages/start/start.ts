@@ -10,6 +10,7 @@ import {Dialogs} from 'ionic-native'
 
 export class Start {
   constructor(public userService:UserService, public alerCtrl: AlertController, public navCtrl: NavController) {
+    //window.localStorage.clear();
     setTimeout(() => {
       this.goNextPageAuth();
     }, 3000);
