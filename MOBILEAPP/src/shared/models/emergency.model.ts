@@ -21,3 +21,8 @@ export class Emergency{
   public ended_at: string;
 
 }
+
+export class ResponderCordinate{
+  public last_lat:number;
+  public last_lng:number;
+}

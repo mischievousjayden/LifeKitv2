@@ -19,7 +19,7 @@ export class ApiService {
     let headersConfig = {
       'Content-Type': 'application/x-www-form-urlencoded',
       //'Content-Type': 'application/json'
-      'Accept': 'application/json',
+      //'Accept': 'application/json',
 
   };
 
@@ -82,18 +82,6 @@ export class ApiService {
     return this.http.get(`${path}`, { headers: headers, search: params })
       .catch(this.formatErrors)
       .map((res: Response) => res.json());
-  }
-
-  getGooglePlaces(query, userLocation: SimpleMarker) {
-    let example = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyDJ2gtLk2bgMvCwqBDWHJGilstJuKE87-Y";
-    let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?`;
-    let searchParams = new URLSearchParams();
-    Object.keys(query).forEach(k => {
-      searchParams.append(k, query[k]);
-    });
-    searchParams.append("location", userLocation.lat + "," + userLocation.lng);
-    searchParams.append("key", environment.maps_api_key);
-    return this.abs_get(url, searchParams, true);
   }
 
 }

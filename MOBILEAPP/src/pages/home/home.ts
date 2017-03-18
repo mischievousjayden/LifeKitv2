@@ -1,6 +1,6 @@
 import {Component, ChangeDetectorRef, ViewChild} from "@angular/core";
 import {BluetoothSerial} from 'ionic-native';
-import {Platform, NavController} from 'ionic-angular';
+import {Platform, NavController, App} from 'ionic-angular';
 import {deepLinkConfig, menuLinks} from "../../app/app.module";
 import {TypeUser} from "../type-user/typeuser";
 
@@ -20,8 +20,9 @@ export class Home {
   public discoveredBluetoothDevices: any [];
   public bluetoothData: any;
 
-  constructor(public platform: Platform, public ref: ChangeDetectorRef) {
+  constructor(public app:App, public platform: Platform, public ref: ChangeDetectorRef) {
     this.rootPage = TypeUser;
+    app._setDisableScroll(true);
 
   }
 

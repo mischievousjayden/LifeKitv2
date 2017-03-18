@@ -9,7 +9,7 @@ import {Observable} from "rxjs";
 })
 export class EmergencyRequest {
   //Time limit in seconds
-  public static TIME_LIMIT = 10;
+  public static TIME_LIMIT = 2;
   public timer:Observable<any> = Observable.timer(0,1000);
   public timerOb:any;
   public currentTime:number = EmergencyRequest.TIME_LIMIT;
@@ -32,5 +32,12 @@ export class EmergencyRequest {
         }
       }
     });
+  }
+
+  cancelRequest(){
+    if(this.timerOb){
+      this.timerOb.unsubscribe();
+    }
+    this.navCtrl.pop();
   }
 }

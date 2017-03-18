@@ -38,7 +38,9 @@ export class VerificationPage {
       //alert('verification code entered:' + veriCode);
       this.userService.validate(veriCode).subscribe(res=>{
         //alert("Refresh Token: " + res);
-        this.navCtrl.setRoot('home');
+        this.userService.signin().subscribe(res=>{
+          this.navCtrl.setRoot('home');
+        });
       });
     }
 }
