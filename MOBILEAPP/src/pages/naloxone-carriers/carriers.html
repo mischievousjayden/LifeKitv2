@@ -10,7 +10,7 @@
             <p>{{e.started_at}}</p>
           </ion-col>
           <ion-col col-6>
-            <button ion-button clear item-right [color] = 'green' [outline] = "true" large class="button-style" (click)="this.acceptTask(e.emergencyid)"></button>
+            <button ion-button class="button-style" clear large [color]='light' (click)="this.acceptTask(e.emergencyid)">Assist!</button>
           </ion-col>
         </ion-row>
       </ion-grid>
