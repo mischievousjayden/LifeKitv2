@@ -1,9 +1,10 @@
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { Platform } from "ionic-angular";
 import { DeviceService } from "../../shared";
-import { Geoposition } from "ionic-native";
+import { Geoposition, Geolocation } from "ionic-native";
 import { SimpleMarker } from "../../shared/models";
 import {GooglePlaces} from "../../shared/services/googleplaces.service";
+import {GooglePlace} from "../../shared/models/GooglePlace";
 
 declare var google: any;
 
@@ -11,9 +12,10 @@ declare var google: any;
     templateUrl: 'naloxone-locator.html'
 })
 export class NaloxoneLocator {
+  test:any = new Array();
 
 
-    @ViewChild('mapCanvas') mapElement: ElementRef;
+  @ViewChild('mapCanvas') mapElement: ElementRef;
     constructor(public googlePlaces: GooglePlaces, private deviceService: DeviceService, private platform: Platform) {
     }
 
@@ -21,17 +23,34 @@ export class NaloxoneLocator {
         let mapEle = this.mapElement.nativeElement;
         let map;
 
-        this.deviceService.getCurrentPosition().subscribe(
-            userPosition => {
-                // center map on user's location
-                map = new google.maps.Map(mapEle, {
-                    center: userPosition,
-                    zoom: 13
-                });
+        Geolocation.getCurrentPosition().then((loc:Geoposition)=>{
+          map = new google.maps.Map(mapEle, {
+            center: {
+              lat: loc.coords.latitude,
+              lng: loc.coords.longitude,
+              name: 'your location'
+            },
+            zoom: 13
+          });
+          this.addToMap({
+            lat: loc.coords.latitude,
+            lng: loc.coords.longitude,
+            name: 'your location'
+          },map);
 
 
-
-            })
+          this.googlePlaces.getGooglePlaces('pharmacy',loc,9000,6).subscribe(res=> {
+            console.log(res);
+              res.forEach(element=>{
+                console.log(map+'repeating');
+                this.addToMap({
+                  lat: element.geometry.location.lat,
+                  lng: element.geometry.location.lng,
+                  name: element.name
+                },map);
+              });
+            });
+        });
     }
 
     addToMap(markerData, map) {
