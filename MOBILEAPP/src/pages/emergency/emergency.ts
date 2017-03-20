@@ -16,19 +16,6 @@ export class Emergency {
     vibrateIntervalID:0
   };
     constructor(public app: App) {
-      //flashlight
-      Emergency.flashLight.flashLightIntervalID = setInterval(function(){
-        Flashlight.toggle();
-      },Emergency.flashLight.flashLightTime);
 
-      //vibrate
-      Emergency.vibrate.vibrateIntervalID = setInterval(function(){
-        Vibration.vibrate(500);
-      },Emergency.vibrate.vibrateTime);
-
-      app.viewWillUnload.subscribe(res=>{
-        clearInterval(Emergency.flashLight.flashLightIntervalID);
-        clearInterval(Emergency.vibrate.vibrateIntervalID);
-      });
     }
 }

@@ -1,7 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
-import {Geolocation} from "ionic-native";
+import {Geolocation, Dialogs} from "ionic-native";
 import {EmergenecyService} from "../../shared/services/emergency.service";
 import {Emergency} from "../../shared/models/emergency.model";
 import {ReplaySubject, Observable} from "rxjs";
@@ -32,10 +32,18 @@ export class Carriers {
   };
 
 
-  constructor(public emergencyService:EmergenecyService, public navCtrl: NavController) {
+  constructor(public em: EmergenecyService, public emergencyService:EmergenecyService, public navCtrl: NavController) {
 
   }
 
+  acceptTask(emergencyId){
+    this.em.assistEmergency(emergencyId,EmergenecyService.ACCEPT_EMERGENCY).subscribe(res=>{
+      //the emegrency has been accepted
+      Dialogs.alert("Emergency Accepted!");
+      this.navCtrl.push('elocator');
+    }
+    );
+  }
 
   sendLocation(){
     Geolocation.getCurrentPosition().then(resp=>{
