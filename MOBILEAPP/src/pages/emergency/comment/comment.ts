@@ -1,3 +1,26 @@
-/**
- * Created by roy_f on 3/20/2017.
- */
+import {Component} from "@angular/core";
+import {NavParams, NavController} from "ionic-angular";
+import {EmergenecyService} from "../../../shared/services/emergency.service";
+
+@Component({
+  templateUrl: 'comment.html'
+})
+export class Comment {
+public emergencyId;
+public comment:string = "";
+  constructor(public er:EmergenecyService, public params: NavParams,public navCtrl:NavController) {
+    this.emergencyId = params.get('emergencyId');
+  }
+
+  finish(){
+    //send the comment
+    this.er.commentEmergency(this.emergencyId,this.comment).subscribe(res=>{
+      alert("Thanks for commenting!");
+      this.navCtrl.setRoot('home');
+    });
+  }
+
+  cancel(){
+    this.navCtrl.pop();
+  }
+}

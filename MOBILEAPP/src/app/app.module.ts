@@ -37,13 +37,15 @@ import {EndScreen} from '../pages/emergency/endscreen/endscreen'
 import {GooglePlaces} from "../shared/services/googleplaces.service";
 import {UserSettingsService} from "../shared/services/user-settings.service";
 import {SettingsEditAddr} from "../pages/settings/setting-editaddr/setting-editaddr";
+import {Comment} from "../pages/emergency/comment/comment";
 
 //import { Auth } from '../pages/auth/auth.module';
 
 
 export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
-        { component: AddFromPhoneEmergencyContact, name: "addfromphoneemergencycontact", segment: "addfromphoneemergencycontact" },
+      { component: Comment, name: "comment", segment: "comment" },
+      { component: AddFromPhoneEmergencyContact, name: "addfromphoneemergencycontact", segment: "addfromphoneemergencycontact" },
         { component: AddNewEmergencyContact, name: "addnewemergencycontact", segment: "addnewemergencycontact" },
         { component: TypeUser, name: "usertype", segment: "usertype" },
         { component: NaloxoneLocator, name: "naloxonelocator", segment: "naloxonelocator" },
@@ -86,6 +88,7 @@ export const menuLinks = [
 
 @NgModule({
     declarations: [
+      Comment,
       AddNewEmergencyContact,
       AddFromPhoneEmergencyContact,
         TypeUser,
@@ -118,6 +121,7 @@ export const menuLinks = [
     ],
     bootstrap: [IonicApp],
     entryComponents: [
+      Comment,
       AddNewEmergencyContact,
       AddFromPhoneEmergencyContact,
         TypeUser,

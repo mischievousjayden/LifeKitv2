@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {NavController, AlertController, App, NavParams, Modal} from 'ionic-angular';
+import {NavController, AlertController, App, NavParams, Modal, ModalController} from 'ionic-angular';
 import {LaunchNavigator, LaunchNavigatorOptions, Geolocation, Geoposition, GeolocationOptions} from 'ionic-native';
 import {GooglePlaces} from "../../../shared/services/googleplaces.service";
 import {GooglePlace} from "../../../shared/models/GooglePlace";
@@ -8,6 +8,7 @@ import {EmergenecyService} from "../../../shared/services/emergency.service";
 import {UserSettings, Address} from "../../../shared/models/user-setting.model";
 import {UserSettingsService} from "../../../shared/services/user-settings.service";
 import {Emergency} from "../../../shared/models/emergency.model";
+import {Comment} from "../comment/comment";
 @Component({
   selector: 'e-locator',
   templateUrl: 'elocator.html'
@@ -39,7 +40,7 @@ export class Elocator {
   // toDO: get timer from server?
 
   public static GPS_OPTIONS: GeolocationOptions = {maximumAge: 3000, timeout: 10000, enableHighAccuracy: true};
-  constructor(public params:NavParams,public googlePlaces: GooglePlaces, public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public modal: ModalController, public params:NavParams,public googlePlaces: GooglePlaces, public navCtrl: NavController, public alertCtrl: AlertController) {
     this.emergency = params.get('Emergency');
     Geolocation.getCurrentPosition(Elocator.GPS_OPTIONS).then(res => {
       var geoposition: Geoposition = res;
@@ -118,6 +119,10 @@ export class Elocator {
     alert.present();
   }
   saved(){
+    let modal = this.modal.create(Comment,{
+      emergencyId: this.emergency.emergencyid
+    });
+    modal.present();
   }
 }
 
