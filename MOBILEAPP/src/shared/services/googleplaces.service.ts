@@ -4,7 +4,7 @@ import {SimpleMarker} from "../models/marker.model";
 import {URLSearchParams} from "@angular/http";
 import {DeviceService} from "./device.service";
 import {ApiService} from "./api.service";
-import {Observable} from "rxjs";
+import {Observable, ReplaySubject} from "rxjs";
 import {Geoposition} from "ionic-native";
 import {GooglePlace} from "../models/GooglePlace";
 /**
@@ -20,7 +20,7 @@ export class GooglePlaces{
 
   }
 
-  public getGooglePlaces(aPlace:string, userLocation: Geoposition, radius: number, numResults: number ):Observable<Array<GooglePlace>> {
+  public getGooglePlaces(aPlace:string, userLocation: Geoposition, radius: number, numResults: number ):Observable<GooglePlace[]> {
     let example = "https://maps.googleapis.com/maps/api/place/radarsearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyDJ2gtLk2bgMvCwqBDWHJGilstJuKE87-Y";
     let url = `https://maps.googleapis.com/maps/api/place/radarsearch/json`;
     let searchParams = new URLSearchParams();
@@ -33,18 +33,21 @@ export class GooglePlaces{
     searchParams.append("key", environment.maps_api_key);
     var getGoogleDetailed = this.getGoogleDetailed;
     var abs_get = this.apiService.abs_get;
-    return(this.apiService.abs_get(url,searchParams,false).map(res=>{
-
-      var places:Array<GooglePlace> = new Array();
-      var array:Array<any> = res.results;
-      var i =0;
-      for(i = 0 ; i<array.length && i <numResults; i++) {
-        this.getGoogleDetailed(array[i].place_id + "").subscribe(res => {
-          places.push(res);
-        });
-      }
-      return(places);
-    }));
+    var ob:Observable<GooglePlace[]> = new Observable<GooglePlace[]>(observer=>{
+      this.apiService.abs_get(url,searchParams,false).subscribe(res=>{
+          var places:GooglePlace[] = [];
+          var array:any[] = res.results;
+          var i =0;
+          for(i = 0 ; i<array.length && i <numResults; i++) {
+            this.getGoogleDetailed(array[i].place_id + "").subscribe(res => {
+              places.push(res);
+              observer.next(places);
+            });
+          }
+        }
+      );
+    });
+    return(ob);
   }
 
   public getGoogleDetailed(placeId:string):Observable<GooglePlace>{

@@ -30,14 +30,13 @@
         <ion-row>
           <ion-col col-6>
             <div>
-              <h6 class="title">{{patient.name}}</h6>
-              <p>{{patient.address}}</p>
+              <h6 class="title">{{emergency.user_nickname}}</h6>
+              <p>{{emergency.emergency_address.houseNumber}} {{emergency.emergency_address.street}}<br>
+                {{emergency.emergency_address.city}} {{emergency.emergency_address.state}} {{emergency.emergency_address.zipCode}}</p>
             </div>
           </ion-col>
           <ion-col col-6>
-            <button ion-button clear item-right large class="button-style" (click)="openMap(patient.address)"><ion-icon name="navigate"></ion-icon></button>
-            <button ion-button clear item-right large class="button-style" (click)="call(patient.phone)"><ion-icon name="call"></ion-icon></button>
-
+            <button ion-button clear item-right large class="button-style" (click)="openMap(emergency.emergency_lat+','+emergency.emergency_lng)"><ion-icon name="navigate"></ion-icon></button>
           </ion-col>
 
         </ion-row>
@@ -61,7 +60,8 @@
 
       <!--  Cancel request -->
       <p align = "center">
-        <button (click)="sendVerif()" ion-button class="alert-button" round>Cancel request</button>
+        <button (click)="cancelHelp()" ion-button class="alert-button" round>Cancel Help</button>
+        <button ion-button (click)="saved()">Saved!</button>
       </p>
     </div>
 </ion-content>

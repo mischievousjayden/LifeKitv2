@@ -1,7 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
-import {Geolocation} from "ionic-native";
+import {Geolocation, Dialogs} from "ionic-native";
 import {EmergenecyService} from "../../shared/services/emergency.service";
 import {Emergency} from "../../shared/models/emergency.model";
 import {ReplaySubject, Observable} from "rxjs";
@@ -32,10 +32,20 @@ export class Carriers {
   };
 
 
-  constructor(public emergencyService:EmergenecyService, public navCtrl: NavController) {
+  constructor(public em: EmergenecyService, public emergencyService:EmergenecyService, public navCtrl: NavController) {
 
   }
 
+  acceptTask(emergency){
+    this.em.assistEmergency(emergency.emergencyid,EmergenecyService.ACCEPT_EMERGENCY).subscribe(res=>{
+      //the emegrency has been accepted
+      Dialogs.alert("Emergency Accepted!");
+      this.navCtrl.push('elocator',{
+        Emergency: emergency
+      });
+    }
+    );
+  }
 
   sendLocation(){
     Geolocation.getCurrentPosition().then(resp=>{
@@ -49,8 +59,9 @@ export class Carriers {
   pageReportOnDuty(){
     Geolocation.getCurrentPosition().then(resp=>{
       console.log('reporting for duty');
-      this.emergencyService.reportOnDuty(resp.coords.latitude,resp.coords.longitude).subscribe(res=>{
+      this.emergencyService.reportOnDuty(resp.coords.latitude,resp.coords.longitude).subscribe((res:Array<Emergency>)=>{
         console.log(res);
+        console.log('address is: ' + res[0].emergency_address);
         this.emergencies = res;
       });
     });

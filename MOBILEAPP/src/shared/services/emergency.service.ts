@@ -20,7 +20,7 @@ import {Geolocation, Geoposition} from "ionic-native";
 
 @Injectable()
 export class EmergenecyService {
-
+  public static ACCEPT_EMERGENCY:number = 1;
   public hostingEmergencyId;
 
   constructor (
@@ -29,7 +29,23 @@ export class EmergenecyService {
     private jwtService: JwtService
   ) {}
 
+  //Assistance
 
+
+  commentEmergency(emergencyId,comment:string):Observable<any>{
+    let path = `/assist/comment?accesstoken=${this.jwtService.getAccessToken()}`;
+    let body: URLSearchParams = new URLSearchParams();
+    body.append('emergencyid',emergencyId);
+    body.append('comment',comment);
+    return(this.apiService.put(path,body));
+  }
+  assistEmergency(emergencyId, response: number):Observable<any>{
+    let path = `/assist/create?accesstoken=${this.jwtService.getAccessToken()}`;
+    let body: URLSearchParams = new URLSearchParams();
+    body.append('emergencyid', emergencyId);
+    body.append('response', response + "");
+    return(this.apiService.post(path,body));
+  }
 
   //untested khoi
   getEmergencyStatus(emergencyId):Observable<Array<ResponderCordinate>>{
@@ -81,6 +97,9 @@ export class EmergenecyService {
       var emergencies: Array<Emergency>= new Array();
       var array = res.result;
       array.forEach(function(res:Emergency){
+        var temp:Emergency;
+        temp = res;
+        temp.emergency_address = JSON.parse(res.emergency_address + "");
         emergencies.push(res);
       });
       return(emergencies);
