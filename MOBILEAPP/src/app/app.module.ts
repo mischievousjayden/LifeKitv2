@@ -1,5 +1,7 @@
 import { NgModule, ErrorHandler } from "@angular/core";
 import { IonicApp, IonicModule, IonicErrorHandler, DeepLinkConfig } from "ionic-angular";
+import { IonicStorageModule } from '@ionic/storage';
+
 import { MyApp } from "./app.component";
 import { AboutPage } from "../pages/about/about";
 import { ContactPage } from "../pages/contacts/contact";
@@ -117,6 +119,7 @@ export const menuLinks = [
     ],
     imports: [
         //Auth,
+        IonicStorageModule.forRoot(),
         IonicModule.forRoot(MyApp, {}, deepLinkConfig)
     ],
     bootstrap: [IonicApp],
