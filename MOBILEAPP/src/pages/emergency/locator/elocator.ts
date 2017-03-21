@@ -124,8 +124,9 @@ export class Elocator {
       emergencyId: this.emergency.emergencyid
     });
     modal.dismiss(res=>{
+    }).then(()=>{
       this.navCtrl.setRoot('home');
-    }).then();
+    });
     modal.present();
   }
 }
