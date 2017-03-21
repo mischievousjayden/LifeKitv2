@@ -41,7 +41,9 @@ export class GooglePlaces{
           for(i = 0 ; i<array.length && i <numResults; i++) {
             this.getGoogleDetailed(array[i].place_id + "").subscribe(res => {
               places.push(res);
-              observer.next(places);
+              if(places.length==numResults){
+                observer.next(places);
+              }
             });
           }
         }
