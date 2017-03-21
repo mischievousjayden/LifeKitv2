@@ -97,6 +97,9 @@ export class EmergenecyService {
       var emergencies: Array<Emergency>= new Array();
       var array = res.result;
       array.forEach(function(res:Emergency){
+        var temp:Emergency;
+        temp = res;
+        temp.emergency_address = JSON.parse(res.emergency_address + "");
         emergencies.push(res);
       });
       return(emergencies);

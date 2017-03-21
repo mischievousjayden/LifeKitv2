@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {NavController, AlertController, App} from 'ionic-angular';
+import {Component, Input} from "@angular/core";
+import {NavController, AlertController, App, NavParams, Modal} from 'ionic-angular';
 import {LaunchNavigator, LaunchNavigatorOptions, Geolocation, Geoposition, GeolocationOptions} from 'ionic-native';
 import {GooglePlaces} from "../../../shared/services/googleplaces.service";
 import {GooglePlace} from "../../../shared/models/GooglePlace";
@@ -7,20 +7,21 @@ import {Observable} from "rxjs";
 import {EmergenecyService} from "../../../shared/services/emergency.service";
 import {UserSettings, Address} from "../../../shared/models/user-setting.model";
 import {UserSettingsService} from "../../../shared/services/user-settings.service";
-
+import {Emergency} from "../../../shared/models/emergency.model";
 @Component({
   selector: 'e-locator',
   templateUrl: 'elocator.html'
 })
 export class Elocator {
-  // toDO: implement method to get patient and naloxone locators
 
+  // toDO: implement method to get patient and naloxone locators
   //Time limit in seconds
   public static TIME_LIMIT = 123;
   public timer: Observable<any> = Observable.timer(0, 1000);
   public timerOb: any;
   public currentTime: number = Elocator.TIME_LIMIT;
 
+  public emergency:Emergency;
   locators: Array<GooglePlace> = new Array();
 
 
@@ -38,27 +39,16 @@ export class Elocator {
   // toDO: get timer from server?
 
   public static GPS_OPTIONS: GeolocationOptions = {maximumAge: 3000, timeout: 10000, enableHighAccuracy: true};
-
-  constructor(public googlePlaces: GooglePlaces, public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public params:NavParams,public googlePlaces: GooglePlaces, public navCtrl: NavController, public alertCtrl: AlertController) {
+    this.emergency = params.get('Emergency');
     Geolocation.getCurrentPosition(Elocator.GPS_OPTIONS).then(res => {
       var geoposition: Geoposition = res;
-      //Get emergency services
-      var sendAddr: Address;
-
-      // toDo: implement a function to figure out which address to send is the most likely they will be there
-      if (this.userSettings.addresses.length == 0) {
-        sendAddr = null;
-      } else {
-        sendAddr = this.userSettings.addresses[0];
-      }
-
 
       //Get positions for the map
       googlePlaces.getGooglePlaces('pharmacy', geoposition, 1500, 3).subscribe(res => {
         console.log(res);
         this.locators = res;
       });
-
     }).catch(res => {
       console.log('error getting location');
     });
@@ -103,25 +93,31 @@ export class Elocator {
           error => console.log('Error launching navigator', error)
         );
       });
+
+
     });
   }
 
 
-  sendVerif() {
+  cancelHelp() {
     let alert = this.alertCtrl.create({
       title: 'Cancel Help Request',
       message: `Are you sure you want to cancel the patient request for help?`,
       buttons: [{
         text: 'Confirm',
         handler: () => {
-
+          //Nofunction in database to say you are not coming anymore....
+          this.navCtrl.pop();
         }
       }, {
         text: 'Cancel',
-        role: 'cancel'
+        role: 'cancel',
+
       }]
     });
     alert.present();
+  }
+  saved(){
   }
 }
 

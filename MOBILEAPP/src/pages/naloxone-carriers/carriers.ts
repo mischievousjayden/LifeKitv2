@@ -36,11 +36,13 @@ export class Carriers {
 
   }
 
-  acceptTask(emergencyId){
-    this.em.assistEmergency(emergencyId,EmergenecyService.ACCEPT_EMERGENCY).subscribe(res=>{
+  acceptTask(emergency){
+    this.em.assistEmergency(emergency.emergencyid,EmergenecyService.ACCEPT_EMERGENCY).subscribe(res=>{
       //the emegrency has been accepted
       Dialogs.alert("Emergency Accepted!");
-      this.navCtrl.push('elocator');
+      this.navCtrl.push('elocator',{
+        Emergency: emergency
+      });
     }
     );
   }
@@ -57,8 +59,9 @@ export class Carriers {
   pageReportOnDuty(){
     Geolocation.getCurrentPosition().then(resp=>{
       console.log('reporting for duty');
-      this.emergencyService.reportOnDuty(resp.coords.latitude,resp.coords.longitude).subscribe(res=>{
+      this.emergencyService.reportOnDuty(resp.coords.latitude,resp.coords.longitude).subscribe((res:Array<Emergency>)=>{
         console.log(res);
+        console.log('address is: ' + res[0].emergency_address);
         this.emergencies = res;
       });
     });

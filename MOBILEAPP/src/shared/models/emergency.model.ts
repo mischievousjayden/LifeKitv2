@@ -1,4 +1,5 @@
 
+import {Address} from "./user-setting.model";
 export class Emergency{
 
   /*
@@ -11,12 +12,12 @@ export class Emergency{
    "started_at": "2017-03-10T21:21:24.000Z",
    "ended_at": null
    */
-
+  public user_nickname:string;
   public emergencyid: number;
   public status: number;
   public emergency_lat: number;
   public emergency_lng: number;
-  public emergency_address: string;
+  public emergency_address: Address;
   public started_at: string;
   public ended_at: string;
 
