@@ -77,13 +77,13 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
 };
 //need to add naloxonelocator
 export const menuLinks = [
-  {label:'Emergency Contact', name:'contact'},
-  {label:'Naloxone Locator', name:'naloxonelocator'},
-  {label:'Manage Device', name:'devices'},
-  {label:'User Settings', name:'settings'},
-  {label:'Opioid Quiz', name:'opioidtool'},
-  {label:'Help and Information', name:'about'},
-  {label:'TESTING-DASHBOARD',name:'dashboard'}
+  {label:'Emergency Contacts', name:'contact', icon: 'contacts'},
+  {label:'Naloxone Locator', name:'naloxonelocator', icon:'map'},
+  {label:'Manage Devices', name:'devices', icon:'speedometer'},
+  {label:'User Settings', name:'settings', icon:'settings'},
+  {label:'Opioid Quiz', name:'opioidtool', icon: 'paper'},
+  {label:'Help and Information', name:'about', icon: 'information-circle'},
+  {label:'TESTING-DASHBOARD',name:'dashboard', icon:'heart'}
 ];
 
 @NgModule({

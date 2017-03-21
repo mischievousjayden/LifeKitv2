@@ -7,8 +7,8 @@
   <ion-content class = "menu-content menuBg">
     <ion-list no-lines>
         <br>
-      <button padding-horizontal = "3px" menuClose ion-item *ngFor="let p of menu" (click)="open(p.name)" color = "teal">
-            <ion-icon padding-right = "2px" name="heart"> </ion-icon>
+      <button padding-horizontal = "3px" menuClose ion-item *ngFor="let p of menu" (click)="open(p.name)" color = "teal">        
+          <ion-icon padding-right = "2px" *ngIf="p.icon" name = "{{p.icon}}"></ion-icon>
             {{p.label}}
       </button>
     </ion-list>
@@ -16,11 +16,4 @@
 
 </ion-menu>
 <ion-nav [root]="rootPage" #myNav swipeBackEnabled="false"></ion-nav>
-
-
-
-
-
-
-
 
