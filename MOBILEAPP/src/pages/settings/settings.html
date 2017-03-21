@@ -27,5 +27,7 @@
                   <ion-note>{{addr.additionalInformation}}</ion-note>
             </ion-item>
     </ion-item-group>
-  <ion-footer><button (click)='presentAddAddressModal()'  full ion-button round icon-right>Add Address</button></ion-footer>
+    <ion-fab right bottom>
+        <button ion-fab color="teal" (click)='presentAddAddressModal()'> <ion-icon name = "create"></ion-icon></button>
+    </ion-fab>
 </ion-content>

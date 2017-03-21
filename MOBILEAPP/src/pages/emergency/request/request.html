@@ -10,10 +10,18 @@
 <ion-content padding class = "bgColor">
     <ion-list no-lines>
     <ion-item class = "bgColor">
-            <h2 align = "center"> Naloxone Carriers and Emergency Contacts will be alerted shortly </h2>
+        <br>
+        <br>
+        <h2 align = "center" color = "white"> Naloxone Carriers and Emergency Contacts will be alerted shortly </h2>
             <br>
             <br>
-      {{this.currentTime}}
+            <p align = "center">
+            <img src="assets/emergency_request.PNG" alt="emergencyrequest">
+            </p>
+            <br>
+            <br>
+            <h2 align = "center" color = "white"> The application will contact users in</h2>
+            <h1 align = "center" color = "white"> {{this.currentTime}}</h1>
             <p align = "center">
                 <button (click) = 'cancelRequest()' ion-button large color ="white" round outline>Cancel</button>
             </p>
