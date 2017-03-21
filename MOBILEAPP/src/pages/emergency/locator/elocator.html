@@ -2,7 +2,8 @@
   <div style="width: 100%;height: 50% !important;">
     <ion-item-divider color="light" class="title-text">Nearest Naloxone Locator:</ion-item-divider>
       <ion-list>
-        <ion-item-sliding *ngFor="let p of this.locators">
+        <ion-item-sliding>
+        <ion-item *ngFor="let p of this.locators">
           <ion-grid>
             <ion-row>
               <ion-col col-6 text-wrap>
@@ -18,7 +19,8 @@
               </ion-col>
             </ion-row>
           </ion-grid>
-        </ion-item-sliding>i
+        </ion-item>
+       </ion-item-sliding>
       </ion-list>
   </div>
 
