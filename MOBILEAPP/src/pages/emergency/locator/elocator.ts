@@ -23,7 +23,7 @@ export class Elocator {
   public currentTime: number = Elocator.TIME_LIMIT;
 
   public emergency:Emergency;
-  locators: Array<GooglePlace> = new Array();
+  locators: GooglePlace[] = [];
 
 
   patient = {
@@ -108,7 +108,7 @@ export class Elocator {
         text: 'Confirm',
         handler: () => {
           //Nofunction in database to say you are not coming anymore....
-          this.navCtrl.pop();
+          this.navCtrl.popToRoot();
         }
       }, {
         text: 'Cancel',
@@ -121,6 +121,11 @@ export class Elocator {
   saved(){
     let modal = this.modal.create(Comment,{
       emergencyId: this.emergency.emergencyid
+    });
+    modal.dismiss(res=>{
+      //this.navCtrl.setRoot('home');
+    }).then(res=>{
+      this.navCtrl.popToRoot();
     });
     modal.present();
   }

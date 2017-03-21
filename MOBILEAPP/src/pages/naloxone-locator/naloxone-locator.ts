@@ -12,14 +12,13 @@ declare var google: any;
     templateUrl: 'naloxone-locator.html'
 })
 export class NaloxoneLocator {
-  test:any = new Array();
 
 
   @ViewChild('mapCanvas') mapElement: ElementRef;
     constructor(public googlePlaces: GooglePlaces, private deviceService: DeviceService, private platform: Platform) {
     }
 
-    ionViewDidLoad() {
+    ionViewDidEnter() {
         let mapEle = this.mapElement.nativeElement;
         let map;
 
@@ -41,14 +40,15 @@ export class NaloxoneLocator {
 
           this.googlePlaces.getGooglePlaces('pharmacy',loc,9000,6).subscribe(res=> {
             console.log(res);
-              res.forEach(element=>{
-                console.log(map+'repeating');
-                this.addToMap({
-                  lat: element.geometry.location.lat,
-                  lng: element.geometry.location.lng,
-                  name: element.name
-                },map);
-              });
+            console.log(res[0]);
+            for(var i = 0 ; i <res.length; i ++){
+              console.log(res[i]+'repeating');
+              this.addToMap({
+                lat: res[i].geometry.location.lat,
+                lng: res[i].geometry.location.lng,
+                name: res[i].name
+              },map);
+            }
             });
         });
     }

@@ -16,7 +16,7 @@ public comment:string = "";
     //send the comment
     this.er.commentEmergency(this.emergencyId,this.comment).subscribe(res=>{
       alert("Thanks for commenting!");
-      this.navCtrl.setRoot('home');
+      this.navCtrl.popToRoot();
     });
   }
 
