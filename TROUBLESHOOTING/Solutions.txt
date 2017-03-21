@@ -18,6 +18,8 @@ if need chart.js
 -->npm install chart.js --save
 if need filesystem
 -->$ ionic plugin add cordova-plugin-file
+if need SMS
+-->ionic plugin add cordova-sms-plugin
 
 
 

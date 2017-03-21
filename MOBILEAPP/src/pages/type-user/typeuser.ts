@@ -1,5 +1,8 @@
-import {Component, ViewChild} from "@angular/core";
+import {Component, ViewChild, ChangeDetectorRef} from "@angular/core";
 import {Segment} from 'ionic-angular';
+import {EmergenecyService} from "../../shared/services/emergency.service";
+import {Geolocation} from "ionic-native";
+
 
 @Component({
   templateUrl: 'typeuser.html'
@@ -7,21 +10,14 @@ import {Segment} from 'ionic-angular';
 
 export class TypeUser {
   @ViewChild(Segment) segment: Segment;
+  public onDutyToggled = false;
 
-  onDutyToggled = false;
-
-  constructor() {
-
+  constructor(public ref: ChangeDetectorRef, public emergencyService:EmergenecyService, public geo:Geolocation) {
   }
 
-
-  // toDo: implement to send data to server
   notifyOnDuty() {
+    this.ref.detectChanges();
     console.log(this.onDutyToggled);
   }
-  notifyHasNaloxone(){
-
-  }
-
 }
 

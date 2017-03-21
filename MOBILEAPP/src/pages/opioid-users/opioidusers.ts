@@ -4,6 +4,8 @@ import { ViewController, NavController } from 'ionic-angular';
 import {BluetoothService} from "../../shared/services/bluetooth.service";
 
 import { Chart } from "chart.js";
+import {TimerObservable} from "rxjs/observable/TimerObservable";
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'opioid-users',
@@ -18,6 +20,8 @@ export class OpioidUsers {
   lineChart: any;
   connected = false;
 
+
+
   count = 3;
 
   carrierSetting = {
@@ -28,17 +32,25 @@ export class OpioidUsers {
 
   constructor(public viewCtrl: ViewController, public navCtrl: NavController) {
 
+  }
+
+  ngOnInit(){
+    //untested
+    this.subscribeBluetoothService();
+  }
+
+  subscribeBluetoothService(){
     BluetoothService.bluetoothData.subscribe(data=>{
-        this.connected = true;
-        if(data.respirPulse > 0) {
-           this.updateChart(data);
-         }else{
-          if(this.updateFreq>=OpioidUsers.UPDATE_FREQ){
-            this.updateChart(data);
-            this.updateFreq = 0;
-          }
-           this.updateFreq++;
+      this.connected = true;
+      if(data.respirPulse > 0) {
+        this.updateChart(data);
+      }else{
+        if(this.updateFreq>=OpioidUsers.UPDATE_FREQ){
+          this.updateChart(data);
+          this.updateFreq = 0;
         }
+        this.updateFreq++;
+      }
     });
   }
 

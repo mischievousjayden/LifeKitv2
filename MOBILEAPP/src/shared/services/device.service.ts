@@ -4,7 +4,7 @@ import {
   Contacts, Contact, ContactName, ContactField, ContactFieldType,
   ContactFindOptions
 } from "ionic-native";
-import { Carrier, Device, Reading, EmergencyContact, User, SimpleMarker } from "../models";
+import { Carrier, Device, Reading, EmergencyContact, SimpleMarker } from "../models";
 import { Geolocation, Geoposition } from "ionic-native";
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs/Rx';
@@ -96,26 +96,6 @@ export class DeviceService {
         }
     }
 
-
-    getCarrierLocations(): Observable<SimpleMarker[]> {
-        if (this.currentLocation) { // we hope this is the case 99.99% of the time
-            return this.apiService.getGooglePlaces({ keyword: "pharmacy", type: "store" }, this.currentLocation)
-                .map(this.processGooglePlaces)
-        }
-        else {
-            return this.getCurrentPosition().flatMap(
-                position => {
-                    return this.apiService.getGooglePlaces({ keyword: "pharmacy" }, position)
-                        .map(this.processGooglePlaces);
-                }
-            )
-        }
-
-        // load some sample locations (synonymous to carriers)
-        /*return this.load().map((data: any) => {
-            return data.map;
-        });*/
-    }
 
     processGooglePlaces(data): Array<SimpleMarker> {
         console.log(data);

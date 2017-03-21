@@ -13,14 +13,15 @@ import { Emergency } from "../pages/emergency/emergency";
 import { Carriers } from "../pages/naloxone-carriers/carriers";
 import { Settings } from "../pages/settings/settings";
 import { OpioidTool } from "../pages/opioid-tool/opioid";
-import { SettingsEdit } from "../pages/setting-edit/setting-edit";
+import {SettingsEditUser} from "../pages/settings/setting-edituser/setting-edituser";
 import { OpioidUsers } from "../pages/opioid-users/opioidusers";
 import { Home } from "../pages/home/home";
 import { Start } from "../pages/start/start";
 import { NaloxoneLocator } from "../pages/naloxone-locator/naloxone-locator"
-import { Elocator } from '../pages/emergency/locator/elocator';
 import { Einstruction } from '../pages/emergency/instruction/instruction';
-import { EndScreen } from '../pages/emergency/end/endscreen';
+import {Elocator} from '../pages/emergency/locator/elocator';
+import {EmergencyTimer} from '../pages/emergency/timer/timer';
+import {EmergencyRequest} from '../pages/emergency/request/request';
 
 import {
     ApiService,
@@ -32,14 +33,21 @@ import { BluetoothService } from "../shared/services/bluetooth.service";
 import { TypeUser } from "../pages/type-user/typeuser";
 import {AddFromPhoneEmergencyContact} from "../pages/contacts/add-fromphone-emergency-contact/add-fromphone-emergency-contact";
 import {AddNewEmergencyContact} from "../pages/contacts/add-new-emergency-contact/add-new-emergency-contact";
-import { LaunchNavigator } from 'ionic-native';
+import {LaunchNavigator, Geolocation} from 'ionic-native';
+import {EmergenecyService} from "../shared/services/emergency.service";
+import {EndScreen} from '../pages/emergency/endscreen/endscreen'
+import {GooglePlaces} from "../shared/services/googleplaces.service";
+import {UserSettingsService} from "../shared/services/user-settings.service";
+import {SettingsEditAddr} from "../pages/settings/setting-editaddr/setting-editaddr";
+import {Comment} from "../pages/emergency/comment/comment";
 
 //import { Auth } from '../pages/auth/auth.module';
 
 
 export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
     links: [
-        { component: AddFromPhoneEmergencyContact, name: "addfromphoneemergencycontact", segment: "addfromphoneemergencycontact" },
+      { component: Comment, name: "comment", segment: "comment" },
+      { component: AddFromPhoneEmergencyContact, name: "addfromphoneemergencycontact", segment: "addfromphoneemergencycontact" },
         { component: AddNewEmergencyContact, name: "addnewemergencycontact", segment: "addnewemergencycontact" },
         { component: TypeUser, name: "usertype", segment: "usertype" },
         { component: NaloxoneLocator, name: "naloxonelocator", segment: "naloxonelocator" },
@@ -56,12 +64,16 @@ export const deepLinkConfig: DeepLinkConfig = <DeepLinkConfig>{
         { component: Carriers, name: "carriers", segment: "carriers" },
         { component: Settings, name: "settings", segment: "settings" },
         { component: OpioidTool, name: "opioidtool", segment: "opioidtool" },
-        { component: SettingsEdit, name: "settingsedit", segment: "settingsedit" },
         { component: OpioidUsers, name: "opioidusers", segment: "opioidusers" },
         { component: Dashboard, name: "dashboard", segment: "dashboard" },
         { component: Elocator, name: "elocator", segment: "elocator" },
         { component: Einstruction, name: "einstruction", segment: "einstruction" },
-        { component: EndScreen, name: "endscreen", segment: "endscreen" }
+        { component: EndScreen, name: "endscreen", segment:"endscreen"},
+        { component: EmergencyTimer, name: "emergencytimer", segment:"emergencytimer"},
+        { component: EmergencyRequest, name: "emergencyrequest", segment: "emergencyrequest"},
+        { component: SettingsEditUser, name: "settingsedituser", segment: "settingsedituser"},
+        { component: SettingsEditAddr, name: "settingseditaddr", segment: "settingseditaddr"},
+
 
     ]
 };
@@ -78,6 +90,7 @@ export const menuLinks = [
 
 @NgModule({
     declarations: [
+      Comment,
       AddNewEmergencyContact,
       AddFromPhoneEmergencyContact,
         TypeUser,
@@ -92,14 +105,17 @@ export const menuLinks = [
         Emergency,
         Carriers,
         Settings,
-        SettingsEdit,
         OpioidTool,
         OpioidUsers,
         Dashboard,
         Home,
         Elocator,
+        EndScreen,
         Einstruction,
-        EndScreen
+        EmergencyRequest,
+        EmergencyTimer,
+        SettingsEditUser,
+        SettingsEditAddr
     ],
     imports: [
         //Auth,
@@ -108,6 +124,7 @@ export const menuLinks = [
     ],
     bootstrap: [IonicApp],
     entryComponents: [
+      Comment,
       AddNewEmergencyContact,
       AddFromPhoneEmergencyContact,
         TypeUser,
@@ -123,13 +140,16 @@ export const menuLinks = [
         Emergency,
         Carriers,
         Settings,
-        SettingsEdit,
         OpioidTool,
         OpioidUsers,
         Home,
         Elocator,
         Einstruction,
-        EndScreen
+        EndScreen,
+        EmergencyTimer,
+        EmergencyRequest,
+        SettingsEditUser,
+        SettingsEditAddr
     ],
     providers: [
         JwtService, ApiService, UserService, { provide: ErrorHandler, useClass: IonicErrorHandler },
@@ -137,7 +157,11 @@ export const menuLinks = [
         UserService,
         JwtService,
         DeviceService,
-        LaunchNavigator
+        LaunchNavigator,
+        EmergenecyService,
+        Geolocation,
+        GooglePlaces,
+        UserSettingsService
     ]
 })
 export class AppModule {

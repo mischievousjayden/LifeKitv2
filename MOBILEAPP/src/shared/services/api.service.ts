@@ -17,13 +17,15 @@ export class ApiService {
 
   private setHeaders(): Headers {
     let headersConfig = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    };
+      'Content-Type': 'application/x-www-form-urlencoded',
+      //'Content-Type': 'application/json'
+      //'Accept': 'application/json',
 
-    if (this.jwtService.getAccessToken()) {
-      headersConfig['Authorization'] = `Token ${this.jwtService.getAccessToken()}`;
-    }
+  };
+
+    //if (this.jwtService.getAccessToken()) {
+    //  headersConfig['Authorization'] = `Token ${this.jwtService.getAccessToken()}`;
+    //}
     return new Headers(headersConfig);
   }
 
@@ -34,7 +36,7 @@ export class ApiService {
   get(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {
     return this.http.get(`${environment.api_url}${path}`, { headers: this.setHeaders(), search: params })
     .catch(this.formatErrors)
-    .map((res:Response) => res.json());
+    .map((res:Response) => {console.log(res.json().result); return(res.json());});
   }
 
   server_get(path: string): Observable<any> {
@@ -43,20 +45,20 @@ export class ApiService {
     .map((res:Response) => res.json());
   }
 
-  put(path: string, body: Object = {}): Observable<any> {
+  put(path: string, body: URLSearchParams): Observable<any> {
     return this.http.put(
       `${environment.api_url}${path}`,
-      JSON.stringify(body),
+      body,
       { headers: this.setHeaders() }
     )
     .catch(this.formatErrors)
-    .map((res:Response) => res.json());
+    .map((res:Response) => {return res.json()});
   }
 
-  post(path: string, body: Object = {}): Observable<any> {
+  post(path: string, body: URLSearchParams): Observable<any> {
     return this.http.post(
       `${environment.api_url}${path}`,
-      JSON.stringify(body),
+      body,
       { headers: this.setHeaders() }
     )
     .catch(this.formatErrors)
@@ -72,7 +74,7 @@ export class ApiService {
     .map((res:Response) => res.json());
   }
 
-  
+
   // absolute get, bascially you determine the fqdn and optional cors
   abs_get(path: string, params: URLSearchParams = new URLSearchParams(), cors: boolean): Observable<any> {
     let headers = this.setHeaders();
@@ -80,18 +82,6 @@ export class ApiService {
     return this.http.get(`${path}`, { headers: headers, search: params })
       .catch(this.formatErrors)
       .map((res: Response) => res.json());
-  }
-
-  getGooglePlaces(query, userLocation: SimpleMarker) {
-    let example = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyDJ2gtLk2bgMvCwqBDWHJGilstJuKE87-Y";
-    let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?`;
-    let searchParams = new URLSearchParams();
-    Object.keys(query).forEach(k => {
-      searchParams.append(k, query[k]);
-    });
-    searchParams.append("location", userLocation.lat + "," + userLocation.lng);
-    searchParams.append("key", environment.maps_api_key);
-    return this.abs_get(url, searchParams, true);
   }
 
 }

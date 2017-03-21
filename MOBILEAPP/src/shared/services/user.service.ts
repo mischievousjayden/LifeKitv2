@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch';
 import {environment} from "../../environment/environment";
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-import { User } from '../models';
+import {User} from "../models/user.model";
 
 
 @Injectable()
@@ -40,6 +40,14 @@ export class UserService {
     } else {
       // Remove any potential remnants of previous auth states
       this.purgeAuth();
+    }
+  }
+
+  isRegistered(){
+    if(this.jwtService.getRefreshToken()){
+      return(true);
+    }else{
+      return(false);
     }
   }
 
@@ -74,9 +82,10 @@ export class UserService {
     let path = `/user/validate?phone=${phone}&code=${code}`
     return this.apiService.get(path)
       .map(
-        refreshToken => {
+        res => {
           // save the refresh token for use in acquiring access token
-          this.jwtService.saveRefreshToken(refreshToken);
+          this.jwtService.saveRefreshToken(res.result);
+          this.jwtService.saveTelephoneNumber(phone);
           return true;
         },
         err => { return false;}
@@ -84,21 +93,20 @@ export class UserService {
   }
 
   signin() {
-    return this._signin(this.currentUserSubject.value.phone, this.jwtService.getRefreshToken());
+    return this._signin(this.jwtService.getTelephoneNumber(), this.jwtService.getRefreshToken());
   }
 
   _signin(phone: string, token: string) {
     let path = `/user/signin?phone=${phone}&refreshToken=${token}`
     return this.apiService.get(path)
       .map(
-        accessToken => {
+        res => {
           // Save the access token
-          this.jwtService.saveAccessToken(accessToken);
+          this.jwtService.saveAccessToken(res.result);
 
           // mark this user as signed in
           this.isAuthenticatedSubject.next(true);
-
-          return accessToken; // in case someone else needs it
+          return res; // in case someone else needs it
         }
       );
   }
