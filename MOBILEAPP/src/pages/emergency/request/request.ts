@@ -77,7 +77,12 @@ export class EmergencyRequest {
             //send SMS message
             var list = this.deviceService.getEmergencyContacts();
             list.forEach((item:EmergencyContact)=>{
-              //SMS.send('6105170591','I am overdosing!!!!');
+              item.phone.forEach(phone=>{
+                if(phone){
+                  var googleMapUrl = "http://maps.google.com/maps?q=loc:"+geo.coords.latitude+","+geo.coords.longitude;
+                  SMS.send(phone.value, this.userSettings.firstName + ' Is currently having an overdose. Navigate to: ' + googleMapUrl );
+                }
+              });
             });
           });
         }
