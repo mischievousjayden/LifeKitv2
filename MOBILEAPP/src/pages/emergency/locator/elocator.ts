@@ -9,6 +9,7 @@ import {UserSettings, Address} from "../../../shared/models/user-setting.model";
 import {UserSettingsService} from "../../../shared/services/user-settings.service";
 import {Emergency} from "../../../shared/models/emergency.model";
 import {Comment} from "../comment/comment";
+import {EndScreen} from "../endscreen/endscreen";
 @Component({
   selector: 'e-locator',
   templateUrl: 'elocator.html'
@@ -23,7 +24,7 @@ export class Elocator {
   public currentTime: number = Elocator.TIME_LIMIT;
 
   public emergency:Emergency;
-  locators: GooglePlace[] = [];
+  locators: Array<GooglePlace> = new Array();
 
 
   patient = {
@@ -119,13 +120,12 @@ export class Elocator {
     alert.present();
   }
   saved(){
-    let modal = this.modal.create(Comment,{
+    let modal = this.modal.create(EndScreen,{
       emergencyId: this.emergency.emergencyid
     });
     modal.dismiss(res=>{
-      //this.navCtrl.setRoot('home');
-    }).then(res=>{
-      this.navCtrl.popToRoot();
+    }).then(()=>{
+      this.navCtrl.setRoot('home');
     });
     modal.present();
   }

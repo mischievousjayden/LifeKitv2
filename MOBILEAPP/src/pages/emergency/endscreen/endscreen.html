@@ -10,15 +10,15 @@
     <ion-list no-lines>
 	<ion-item text-wrap>
 		<ion-label>How did the emergency end?</ion-label>
-        <ion-select [(ngModel)]="emergencyresult">
+        <ion-select [(ngModel)]="this.emergencyComment.howEnd">
         	<ion-option value="saved">Patient Save</ion-option>
         	<ion-option value="notsaved">Patient not saved</ion-option>
          	<ion-option value="notneeded">Patient did not need assistance</ion-option>
       	</ion-select>
     </ion-item>
     <ion-item text-wrap>
-    	<ion-label>Did emergency response help with this emergency?</ion-label>
-        <ion-select [(ngModel)]="emergencyresponse">
+    	<ion-label>Did an abulance show to the emergency?</ion-label>
+        <ion-select [(ngModel)]="this.emergencyComment.came911">
         	<ion-option value="yes">Yes</ion-option>
             <ion-option value="no">No</ion-option>
             <ion-option value="unsure">Unsure</ion-option>
@@ -26,7 +26,7 @@
     </ion-item>
     <ion-item text-wrap>
     	<ion-label>Did any bystanders/pedestrians help with the emergency?</ion-label>
-        <ion-select [(ngModel)]="bystanders">
+        <ion-select [(ngModel)]="this.emergencyComment.byStanderHelp">
         	<ion-option value="yes">Yes</ion-option>
             <ion-option value="no">No</ion-option>
             <ion-option value="unsure">Unsure</ion-option>
@@ -34,7 +34,8 @@
     </ion-item>
     <ion-item>
             <p align = "center">
-                <button ion-button color ="teal" round outline>Submit</button>
+              <button (click)="cancel()" ion-button color ="teal" round outline>Cancel</button>
+              <button (click)="finish()" ion-button color ="teal" round outline>Submit</button>
             </p>
     </ion-item>
 </ion-list>

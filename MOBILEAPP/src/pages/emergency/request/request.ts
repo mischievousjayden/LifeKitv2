@@ -1,11 +1,13 @@
 import {Component} from "@angular/core";
-import {Flashlight, Dialogs, Vibration, Geolocation, Geoposition} from "ionic-native";
+import {Flashlight, Dialogs, Vibration, Geolocation, Geoposition, SMS} from "ionic-native";
 import {App, NavController} from "ionic-angular";
 import {Emergency} from "../emergency";
 import {Observable, TimeInterval} from "rxjs";
 import {UserSettings, Address} from "../../../shared/models/user-setting.model";
 import {UserSettingsService} from "../../../shared/services/user-settings.service";
 import {EmergenecyService} from "../../../shared/services/emergency.service";
+import {DeviceService} from "../../../shared/services/device.service";
+import {EmergencyContact} from "../../../shared/models/emergency-contact.model";
 
 @Component({
     templateUrl: 'request.html'
@@ -18,7 +20,7 @@ export class EmergencyRequest {
   public currentTime:number = EmergencyRequest.TIME_LIMIT;
   public beepingOb:any;
   public userSettings:UserSettings = new UserSettings();
-    constructor(public er: EmergenecyService,public userSettingsService: UserSettingsService,public navCtrl:NavController, public app: App) {
+    constructor(public deviceService: DeviceService,public er: EmergenecyService,public userSettingsService: UserSettingsService,public navCtrl:NavController, public app: App) {
       this.userSettings =userSettingsService.loadUserSettings();
 
       //flashlight
@@ -69,7 +71,18 @@ export class EmergencyRequest {
               sendAddr = this.userSettings.addresses[0];
             }
             this.er.startEmergency(this.userSettings.firstName + " " + this.userSettings.lastName,sendAddr, geo).subscribe(res=>{
-              console.log('Emergency Request Has been Sent!')
+              console.log('Emergency Request Has been Sent!');
+            });
+
+            //send SMS message
+            var list = this.deviceService.getEmergencyContacts();
+            list.forEach((item:EmergencyContact)=>{
+              item.phone.forEach(phone=>{
+                if(phone){
+                  var googleMapUrl = "http://maps.google.com/maps?q=loc:"+geo.coords.latitude+","+geo.coords.longitude;
+                  SMS.send(phone.value, this.userSettings.firstName + ' Is currently having an overdose. Navigate to: ' + googleMapUrl );
+                }
+              });
             });
           });
         }

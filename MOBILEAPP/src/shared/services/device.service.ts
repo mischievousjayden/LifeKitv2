@@ -6,6 +6,7 @@ import {
 } from "ionic-native";
 import { Carrier, Device, Reading, EmergencyContact, SimpleMarker } from "../models";
 import { Geolocation, Geoposition } from "ionic-native";
+import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs/Rx';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ApiService } from "./api.service";
@@ -22,8 +23,15 @@ export class DeviceService {
 
 
 
-    constructor(public http: Http, private apiService: ApiService) {
-
+    constructor(public http: Http, private apiService: ApiService, private storage: Storage) {
+            // if there is emergency contact before, use it.
+            this.storage.get("emergency_contacts").then(
+                res => {
+                    if(res != null) this.emergencyContacts = res;
+                    else this.updateContactStorage();
+                }
+            )
+            
     }
 
     getAllPhoneContacts():Promise<any>{
@@ -42,14 +50,21 @@ export class DeviceService {
     getEmergencyContacts(): Array<EmergencyContact> {
         return this.emergencyContacts;
     }
+
+    updateContactStorage() {
+        this.storage.set("emergency_contacts", this.emergencyContacts);
+    }
+
     //use when deleting an emergency contact from the page
     removeEmergencyContact(contact:EmergencyContact){
       this.emergencyContacts.splice(this.emergencyContacts.indexOf(contact),1);
+      this.updateContactStorage();
     }
     //use when adding emergency contact from the phone list
     addEmergencyContact(contact: Contact) {
         let emerg = EmergencyContact.fromContact(contact);
         this.emergencyContacts.push(emerg);
+        this.updateContactStorage();
         return                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ;
     }
     //use when creating then adding the emergency contact
