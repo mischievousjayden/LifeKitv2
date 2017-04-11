@@ -13,8 +13,14 @@ contacts: any;
     }
 
     public addEmergencyContact(contact){
+      console.log(contact);
       alert('Adding emergency contact ' + contact.displayName);
-      this.deviceService.addEmergencyContact(contact);
+      if(contact.phoneNumbers){
+        //It has phone numbers then add...
+        this.deviceService.addEmergencyContact(contact);
+      }else{
+        alert('Contact has no phone numbers...');
+      }
     }
 
 }

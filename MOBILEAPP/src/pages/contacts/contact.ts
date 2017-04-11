@@ -8,10 +8,8 @@ import {Contact, Dialogs, ContactField} from "ionic-native";
     templateUrl: 'contact.html'
 })
 export class ContactPage {
-emergencyContacts: any;
     constructor(public deviceService: DeviceService, public navCtrl:NavController) {
       //need to loo through the emergency contacts list
-      this.emergencyContacts = deviceService.getEmergencyContacts();
     }
 
     public showsContactInformation(contact){

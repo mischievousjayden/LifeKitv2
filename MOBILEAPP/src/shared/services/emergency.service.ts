@@ -19,7 +19,7 @@ import {Geolocation, Geoposition} from "ionic-native";
 
 
 @Injectable()
-export class EmergenecyService {
+export class EmergencyService {
   public static ACCEPT_EMERGENCY:number = 1;
   public hostingEmergencyId;
 
