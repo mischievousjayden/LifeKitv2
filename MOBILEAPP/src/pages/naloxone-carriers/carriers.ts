@@ -2,7 +2,7 @@ import {Component, Input} from "@angular/core";
 import {NavController} from "ionic-angular";
 import {CarrierSettingsModel} from '../shared/models/carrier-settings/carrier-settings.model';
 import {Geolocation, Dialogs} from "ionic-native";
-import {EmergenecyService} from "../../shared/services/emergency.service";
+import {EmergencyService} from "../../shared/services/emergency.service";
 import {Emergency} from "../../shared/models/emergency.model";
 import {ReplaySubject, Observable} from "rxjs";
 import {TypeUser} from "../type-user/typeuser";
@@ -32,12 +32,12 @@ export class Carriers {
   };
 
 
-  constructor(public em: EmergenecyService, public emergencyService:EmergenecyService, public navCtrl: NavController) {
+  constructor(public em: EmergencyService, public emergencyService:EmergencyService, public navCtrl: NavController) {
 
   }
 
   acceptTask(emergency){
-    this.em.assistEmergency(emergency.emergencyid,EmergenecyService.ACCEPT_EMERGENCY).subscribe(res=>{
+    this.em.assistEmergency(emergency.emergencyid,EmergencyService.ACCEPT_EMERGENCY).subscribe(res=>{
       //the emegrency has been accepted
       Dialogs.alert("Emergency Accepted!");
       this.navCtrl.push('elocator',{

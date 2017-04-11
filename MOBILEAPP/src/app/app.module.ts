@@ -34,7 +34,7 @@ import { TypeUser } from "../pages/type-user/typeuser";
 import {AddFromPhoneEmergencyContact} from "../pages/contacts/add-fromphone-emergency-contact/add-fromphone-emergency-contact";
 import {AddNewEmergencyContact} from "../pages/contacts/add-new-emergency-contact/add-new-emergency-contact";
 import {LaunchNavigator, Geolocation} from 'ionic-native';
-import {EmergenecyService} from "../shared/services/emergency.service";
+import {EmergencyService} from "../shared/services/emergency.service";
 import {EndScreen} from '../pages/emergency/endscreen/endscreen'
 import {GooglePlaces} from "../shared/services/googleplaces.service";
 import {UserSettingsService} from "../shared/services/user-settings.service";
@@ -158,7 +158,7 @@ export const menuLinks = [
         JwtService,
         DeviceService,
         LaunchNavigator,
-        EmergenecyService,
+        EmergencyService,
         Geolocation,
         GooglePlaces,
         UserSettingsService
