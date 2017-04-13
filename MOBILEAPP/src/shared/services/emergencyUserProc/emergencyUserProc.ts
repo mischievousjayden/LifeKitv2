@@ -16,14 +16,15 @@ export class EmergencyUserProc {
   public beepingProc: BeepingProc = new BeepingProc();
   public countDownProc:CountDownProc = new CountDownProc();
   public smsAllEmergencyContactsProc: SMSAllEmergencyContactsProc = new SMSAllEmergencyContactsProc(this.userSettingService,this.deviceService);
-
   public userSettings:UserSettings;
+
+  public emergencyOngoing:boolean = false;
 
   constructor(public deviceService:DeviceService,public userSettingService: UserSettingsService, public emergencyService:EmergencyService){
   this.userSettings = userSettingService.loadUserSettings();
 }
   public startEmergencyProc(){
-    this.flashLightProc.startFlashing();
+    //this.flashLightProc.startFlashing();
     this.vibrateProc.startVibrate();
     this.beepingProc.startBeepingProc();
     this.countDownProc.startTimerTillEnd().then(()=>{
@@ -31,7 +32,7 @@ export class EmergencyUserProc {
       Geolocation.getCurrentPosition().then(geo=>{
         console.log('geolocation found preparing to notify server and contacts...');
         this.startEmergencyWithServer(geo);
-        this.smsAllEmergencyContactsProc.contactAllEmergencyContacts(geo);
+        this.smsAllEmergencyContactsProc.contactAllStartEmergency(geo);
       });
     });
 
