@@ -8,7 +8,7 @@ var SMSAllEmergencyContactsProc = (function () {
         this.deviceService = deviceService;
         this.userSettings = userSettingsService.loadUserSettings();
     }
-    SMSAllEmergencyContactsProc.prototype.contactAllEmergencyContacts = function (geo) {
+    SMSAllEmergencyContactsProc.prototype.contactAllStartEmergency = function (geo) {
         var _this = this;
         //send SMS message
         var list = this.deviceService.getEmergencyContacts();

@@ -1,19 +1,24 @@
 import {Vibration} from "ionic-native";
+import {Observable} from "rxjs";
 /**
  * Created by roy_f on 4/10/2017.
  */
 
 export class VibrateProc{
-    vibrateTime: 1000;
-    vibrateIntervalID;
+    //Time indicates how long it waits till it vibrates again.
+    vibrateTime: 4000;
+    vibrateIntervalObserverRef;
 
   public startVibrate(){
-    this.vibrateIntervalID = setInterval(function(){
-    Vibration.vibrate(500);
-    }, this.vibrateTime);
+    console.log('started vibrate');
+    this.vibrateIntervalObserverRef = Observable.interval(this.vibrateTime).subscribe(res=>{
+      Vibration.vibrate(500);
+    });
   }
 
   public stopVibrate(){
-    clearInterval(this.vibrateIntervalID);
+    if(this.vibrateIntervalObserverRef){
+      this.vibrateIntervalObserverRef.unsubscribe();
+    }
   }
 }

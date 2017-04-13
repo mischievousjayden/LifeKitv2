@@ -1,20 +1,28 @@
 import {Flashlight} from "ionic-native";
+import { Observable} from "rxjs";
 /**
  * Created by roy_f on 4/10/2017.
  */
 
 export class FlashLightProc{
       flashLightTime: 1000;
-      flashLightIntervalID;
+      flashLightIntervalObserverRef;
 
   public startFlashing(){
-    this.flashLightIntervalID = setInterval(function(){
-      Flashlight.toggle();
-    }, this.flashLightTime);
+    console.log('started flashing');
+    this.flashLightIntervalObserverRef = Observable.interval(this.flashLightTime).subscribe(res=>{
+      if(Flashlight.isSwitchedOn()){
+        Flashlight.switchOff();
+      }else{
+        Flashlight.switchOn();
+      }
+    });
   }
 
   public stopFlashing(){
-    clearInterval(this.flashLightIntervalID);
+    if(this.flashLightIntervalObserverRef){
+      this.flashLightIntervalObserverRef.unsubscribe();
+    }
     Flashlight.switchOff();
   }
 }

@@ -27,7 +27,7 @@ var EmergencyUserProc = (function () {
             ionic_native_1.Geolocation.getCurrentPosition().then(function (geo) {
                 console.log('geolocation found preparing to notify server and contacts...');
                 _this.startEmergencyWithServer(geo);
-                _this.smsAllEmergencyContactsProc.contactAllEmergencyContacts(geo);
+                _this.smsAllEmergencyContactsProc.contactAllStartEmergency(geo);
             });
         });
     };
