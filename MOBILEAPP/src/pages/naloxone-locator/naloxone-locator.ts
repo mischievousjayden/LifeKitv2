@@ -38,7 +38,7 @@ export class NaloxoneLocator {
           },map);
 
 
-          this.googlePlaces.getGooglePlaces('pharmacy',loc,9000,6).subscribe(res=> {
+          this.googlePlaces.getGooglePlaces('pharmacy',loc,1500,6).subscribe(res=> {
             console.log(res);
             console.log(res[0]);
             for(var i = 0 ; i <res.length; i ++){

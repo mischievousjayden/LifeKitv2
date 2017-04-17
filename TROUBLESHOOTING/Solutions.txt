@@ -20,6 +20,9 @@ if need filesystem
 -->$ ionic plugin add cordova-plugin-file
 if need SMS
 -->ionic plugin add cordova-sms-plugin
+if google map doesn't work
+--> https://developers.google.com/maps/documentation/javascript/get-api-key , get the api key and then do this
+--> https://ionicframework.com/docs/native/google-maps/
 
 
 

@@ -6,6 +6,8 @@ import {BluetoothService} from "../../shared/services/bluetooth.service";
 import { Chart } from "chart.js";
 import {TimerObservable} from "rxjs/observable/TimerObservable";
 import {Observable} from "rxjs";
+import {FrequencyDeviceFilter} from "../../shared/services/frequency-device-filter";
+import {HealthClassification} from "../../shared/services/health-classification.service";
 
 @Component({
     selector: 'opioid-users',
@@ -13,9 +15,10 @@ import {Observable} from "rxjs";
 })
 
 export class OpioidUsers {
-  public static UPDATE_FREQ:number = 5;
+  healthClassification:HealthClassification = new HealthClassification();
+  deviceTriggeredEmergency = false;
+  frequencyDeviceFilter: FrequencyDeviceFilter = new FrequencyDeviceFilter(5);
   bluetoothData = "";
-  updateFreq: number = 0;
   lineCanvas : any;
   lineChart: any;
   connected = false;
@@ -40,19 +43,27 @@ export class OpioidUsers {
   }
 
   subscribeBluetoothService(){
-    BluetoothService.bluetoothData.subscribe(data=>{
+    BluetoothService.bluetoothData.subscribe(data=> {
       this.connected = true;
-      if(data.respirPulse > 0) {
-        this.updateChart(data);
-      }else{
-        if(this.updateFreq>=OpioidUsers.UPDATE_FREQ){
-          this.updateChart(data);
-          this.updateFreq = 0;
+      console.log('data recieved');
+      console.log(data);
+      if(this.frequencyDeviceFilter.shouldProcess(data)){
+        console.log('data processed...');
+        this.updateChart(data)
+        if(!this.deviceTriggeredEmergency){
+          if(this.healthClassification.isOverdosing(data.respirRate)){
+          //Trigger overdose page.
+            this.deviceTriggeredEmergency = true;
+            console.log('device emergency triggered is true');
+            this.navCtrl.push('emergencyrequest',{
+              'deviceTriggeredEmergency': this.deviceTriggeredEmergency
+            });
+          }
         }
-        this.updateFreq++;
       }
     });
   }
+
 
   open(url){
     this.navCtrl.push(url);
@@ -65,7 +76,7 @@ export class OpioidUsers {
 
 
   updateChart(data) {
-
+      console.log('updated chart');
       document.getElementById('respiratoryRate').innerHTML = data.respirRate;
       this.lineChart.data.datasets[0].data.splice(0,2);
       this.lineChart.data.labels.splice(0,2);

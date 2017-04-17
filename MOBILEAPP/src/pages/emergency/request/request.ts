@@ -1,101 +1,102 @@
-import {Component} from "@angular/core";
-import {Flashlight, Dialogs, Vibration, Geolocation, Geoposition, SMS} from "ionic-native";
-import {App, NavController} from "ionic-angular";
-import {Emergency} from "../emergency";
-import {Observable, TimeInterval} from "rxjs";
-import {UserSettings, Address} from "../../../shared/models/user-setting.model";
+import {Component, ViewChild, ElementRef} from "@angular/core";
+import {
+  Flashlight, Dialogs, Vibration, Geolocation, Geoposition, SMS, GoogleMapsLatLng,
+} from "ionic-native";
+import {App, NavController, NavParams} from "ionic-angular";
 import {UserSettingsService} from "../../../shared/services/user-settings.service";
-import {EmergenecyService} from "../../../shared/services/emergency.service";
+import {EmergencyService} from "../../../shared/services/emergency.service";
 import {DeviceService} from "../../../shared/services/device.service";
-import {EmergencyContact} from "../../../shared/models/emergency-contact.model";
+import {GooglePlaces} from "../../../shared/services/googleplaces.service";
+import {EmergencyUserProc} from "../../../shared/services/emergencyUserProc/emergencyUserProc";
+
+declare var google: any;
 
 @Component({
     templateUrl: 'request.html'
 })
 export class EmergencyRequest {
-  //Time limit in seconds
-  public static TIME_LIMIT = 2;
-  public timer:Observable<any> = Observable.timer(0,1000);
-  public timerOb:any;
-  public currentTime:number = EmergencyRequest.TIME_LIMIT;
-  public beepingOb:any;
-  public userSettings:UserSettings = new UserSettings();
-    constructor(public deviceService: DeviceService,public er: EmergenecyService,public userSettingsService: UserSettingsService,public navCtrl:NavController, public app: App) {
-      this.userSettings =userSettingsService.loadUserSettings();
-
-      //flashlight
-      Emergency.flashLight.flashLightIntervalID = setInterval(function(){
-        Flashlight.toggle();
-      },Emergency.flashLight.flashLightTime);
-
-      //vibrate
-      Emergency.vibrate.vibrateIntervalID = setInterval(function(){
-        Vibration.vibrate(500);
-      },Emergency.vibrate.vibrateTime);
-
-      //Beep
-      this.beepingOb = setInterval(function(){
-        Dialogs.beep(1);
-      },1000);
-
+  @ViewChild('mapCanvas') mapElement: ElementRef;
+  public emergencyUserProc: EmergencyUserProc;
+    constructor(public navParam: NavParams, userSettingService: UserSettingsService, emergencyService:EmergencyService, geolocation: Geolocation, public googlePlaces: GooglePlaces, public deviceService: DeviceService, public er: EmergencyService, public userSettingsService: UserSettingsService, public navCtrl:NavController, public app: App) {
+      this.emergencyUserProc = new EmergencyUserProc(deviceService,userSettingService,emergencyService);
+        this.emergencyUserProc.startEmergencyProc();
       app.viewWillUnload.subscribe(res=>{
-        clearInterval(Emergency.flashLight.flashLightIntervalID);
-        clearInterval(Emergency.vibrate.vibrateIntervalID);
-        Flashlight.switchOff();
-        clearInterval(this.beepingOb);
+        this.emergencyUserProc.stopEmergencyProc();
       });
-
-
     }
 
-  ngOnInit(){
-    //start the timer count
-    console.log('ngoninit ran');
-    this.timerOb=this.timer.subscribe(t=>{
-      this.currentTime = this.currentTime - 1;
-      if(this.currentTime==0){
-        //stop the subscription and then.... start the next page with the alert.
-        if(this.timerOb){
-          this.timerOb.unsubscribe();
-          //move to the next page
-          //Do the emergency call
-          //Sends the emergency
-          console.log('about to get position to send emergencyt request');
-          Geolocation.getCurrentPosition().then((geo:Geoposition)=>{
-            var sendAddr: Address;
-            console.log("about to send emergency requestion");
-            // toDo: implement a function to figure out which address to send is the most likely they will be there
-            if (this.userSettings.addresses.length == 0) {
-              sendAddr = new Address();
-            } else {
-              sendAddr = this.userSettings.addresses[0];
-            }
-            this.er.startEmergency(this.userSettings.firstName + " " + this.userSettings.lastName,sendAddr, geo).subscribe(res=>{
-              console.log('Emergency Request Has been Sent!');
-            });
+  /*ionViewDidEnter() {
+    //Load your current location and nearby pharmacies.
+    let mapEle = this.mapElement.nativeElement;
+    let map;
 
-            //send SMS message
-            var list = this.deviceService.getEmergencyContacts();
-            list.forEach((item:EmergencyContact)=>{
-              item.phone.forEach(phone=>{
-                if(phone){
-                  var googleMapUrl = "http://maps.google.com/maps?q=loc:"+geo.coords.latitude+","+geo.coords.longitude;
-                  SMS.send(phone.value, this.userSettings.firstName + ' Is currently having an overdose. Navigate to: ' + googleMapUrl );
-                }
-              });
-            });
-          });
+    Geolocation.getCurrentPosition().then((loc:Geoposition)=>{
+      map = new google.maps.Map(mapEle, {
+        center: {
+          lat: loc.coords.latitude,
+          lng: loc.coords.longitude,
+          name: 'your location'
+        },
+        zoom: 13
+      });
+      this.addToMap({
+        lat: loc.coords.latitude,
+        lng: loc.coords.longitude,
+        name: 'your location'
+      },map);
+
+
+      this.googlePlaces.getGooglePlaces('pharmacy',loc,1500,6).subscribe(res=> {
+        console.log(res);
+        console.log(res[0]);
+        for(var i = 0 ; i <res.length; i ++){
+          console.log(res[i]+'repeating');
+            this.addToMap({
+            lat: res[i].geometry.location.lat,
+            lng: res[i].geometry.location.lng,
+            name: res[i].name
+          },map);
         }
-      }
+      });
+    });
+  }*/
+
+  addToMap(markerData, map) {
+    let infoWindow = new google.maps.InfoWindow({
+      content: `<h5>${markerData.name}</h5>`
+    });
+
+    let marker = new google.maps.Marker({
+      position: markerData,
+      map: map,
+      title: markerData.name
+    });
+
+    marker.addListener('click', () => {
+      infoWindow.open(map, marker);
     });
   }
 
+  moveMarker(map, marker, moveCord: GoogleMapsLatLng, panCord:GoogleMapsLatLng){
+    marker.setPosition(new google.map.LatLng(moveCord.lat,moveCord.lng));
+    //map.panTo(new google.map.LatLng(panCord.lat,panCord.lng));
+  }
+
+  moveMarkerMe(map, marker, moveCord: GoogleMapsLatLng, panCord:GoogleMapsLatLng){
+    marker.setPosition(new google.map.LatLng(moveCord.lat,moveCord.lng));
+    map.panTo(new google.map.LatLng(panCord.lat,panCord.lng));
+  }
+
   cancelRequest(){
-    if(this.timerOb) {
-      this.timerOb.unsubscribe();
-    }
-    this.er.endEmergency().subscribe(res=>{
-      this.navCtrl.setRoot('home');
-    });
+    this.emergencyUserProc.stopEmergencyProc();
+    this.emergencyUserProc.smsAllEmergencyContactsProc.contactAllCancelEmergency();
+    let deviceTriggeredEmergency = this.navParam.get('deviceTriggeredEmergency');
+    if(deviceTriggeredEmergency){
+      this.navCtrl.popToRoot().then(res=>{
+        deviceTriggeredEmergency = false;
+      });
+    }else {
+      this.navCtrl.popToRoot();
+      }
   }
 }

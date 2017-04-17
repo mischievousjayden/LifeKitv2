@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {NavParams, NavController} from "ionic-angular";
-import {EmergenecyService} from "../../../shared/services/emergency.service";
+import {EmergencyService} from "../../../shared/services/emergency.service";
 
 @Component({
   templateUrl: 'comment.html'
@@ -8,7 +8,7 @@ import {EmergenecyService} from "../../../shared/services/emergency.service";
 export class Comment {
 public emergencyId;
 public comment:string = "";
-  constructor(public er:EmergenecyService, public params: NavParams,public navCtrl:NavController) {
+  constructor(public er:EmergencyService, public params: NavParams, public navCtrl:NavController) {
     this.emergencyId = params.get('emergencyId');
   }
 

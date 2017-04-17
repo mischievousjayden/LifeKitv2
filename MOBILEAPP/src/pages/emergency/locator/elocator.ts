@@ -4,7 +4,7 @@ import {LaunchNavigator, LaunchNavigatorOptions, Geolocation, Geoposition, Geolo
 import {GooglePlaces} from "../../../shared/services/googleplaces.service";
 import {GooglePlace} from "../../../shared/models/GooglePlace";
 import {Observable} from "rxjs";
-import {EmergenecyService} from "../../../shared/services/emergency.service";
+import {EmergencyService} from "../../../shared/services/emergency.service";
 import {UserSettings, Address} from "../../../shared/models/user-setting.model";
 import {UserSettingsService} from "../../../shared/services/user-settings.service";
 import {Emergency} from "../../../shared/models/emergency.model";

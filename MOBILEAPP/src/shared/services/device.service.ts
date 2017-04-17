@@ -14,7 +14,7 @@ import { ApiService } from "./api.service";
 @Injectable()
 export class DeviceService {
 
-    emergencyContacts: Array<EmergencyContact> = [];
+    emergencyContacts: Array<EmergencyContact> = new Array<EmergencyContact>();
     allContacts: Array<Contact> = [];
     devices: Array<Device> = [];
     carriers: Array<Carrier> = [];
@@ -31,7 +31,7 @@ export class DeviceService {
                     else this.updateContactStorage();
                 }
             )
-            
+
     }
 
     getAllPhoneContacts():Promise<any>{
@@ -71,6 +71,7 @@ export class DeviceService {
     createEmergencyContact(lastName, firstName, phone) {
         let contact: Contact = Contacts.create();
         contact.name = new ContactName(null, lastName, firstName);
+        contact.displayName = firstName + " " + lastName;
         contact.phoneNumbers = [new ContactField("phone", phone)];
         return this.addEmergencyContact(contact);
     }

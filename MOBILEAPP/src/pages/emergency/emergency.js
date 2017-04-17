@@ -7,8 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var Emergency = (function () {
-    function Emergency() {
+    function Emergency(app) {
+        this.app = app;
     }
+    Emergency.flashLight = {
+        flashLightTime: 1000,
+        flashLightIntervalID: 0
+    };
+    Emergency.vibrate = {
+        vibrateTime: 1000,
+        vibrateIntervalID: 0
+    };
     Emergency = __decorate([
         core_1.Component({
             templateUrl: 'emergency.html'
